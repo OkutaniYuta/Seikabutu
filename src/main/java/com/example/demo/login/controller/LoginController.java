@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class LoginController {
 
-    /**
-     * ログイン画面のGETメソッド用処理.
-     */
+  //ログイン画面のGETメソッド用処理
     @GetMapping("/login")
     public String getLogin(Model model) {
 
@@ -25,6 +23,6 @@ public class LoginController {
     public String postLogin(Model model) {
 
         //login.htmlに画面遷移
-        return "redirect:/login";
+        return "login/login";
     }
 }
