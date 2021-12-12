@@ -17,21 +17,27 @@ import lombok.Data;
 
 @Data
 public class SignupForm {
+	//必須入力
+	@NotBlank
+	private String userName; // ユーザー名
 
     //必須入力、メールアドレス形式
-    @NotBlank(message = "{require_check}")
-    @Email(message = "{email_check}")
+    @NotBlank
+    @Email
     private String mailAddress;
 
-    //必須入力、長さ4から100桁まで、半角英数字のみ
-    @NotBlank(message = "{require_check}")
-    @Length(message = "{length_check}")
-    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "{pattern_check}")
+    //必須入力、長さ8から50桁まで、半角英数字のみ
+    @NotBlank
+    @Length(min = 8, max = 50)
+    @Pattern(regexp = "^[a-zA-Z0-9]+$")
     private String password; // パスワード
 
-    //必須入力
-    @NotBlank(message = "{require_check}")
-    private String userName; // ユーザー名
+    //パスワード確認
+    @NotBlank
+    @Length(min = 8, max = 50)
+    @Pattern(regexp = "^[a-zA-Z0-9]+$")
+    private String passwordConfirmation; // パスワード
+
 
 
 }

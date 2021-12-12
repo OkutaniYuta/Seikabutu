@@ -21,9 +21,12 @@
                 <tr>
                     <th class="active">ユーザー名</th>
                     <td>
-                        <div class="form-group">
-                            <input type="text" class="form-control" />
-                            
+                        <div class="form-group"
+                        	th:classappend="${#fields.hasErrors('userName')} ? 'has-error'">
+                            <input type="text" class="form-control" th:field="*{userName}" />
+                            <span class="text-danger" th:if="${#fields.hasErrors('userName')}"
+                            	th:errors="*{userName}">userName error
+                            </span>
                         </div>
                     </td>
                 </tr>
@@ -31,8 +34,12 @@
                 <!-- メールアドレスの入力エリア -->
                     <th class="active col-sm-3">メールアドレス</th>
                     <td>
-                        <div class="form-group">
-                            <input type="text" class="form-control" />
+                        <div class="form-group"
+                        	th:classappend="${#fields.hasErrors('mailAddress')} ? 'has-error'">
+                            <input type="text" class="form-control" th:field="*{mailAddress}" />
+                         	<span class="text-danger" th:if="${#fields.hasErrors('mailAddress')}"
+                            	th:errors="*{mailAddress}">mailAddress error
+                            </span>
                         </div>
                     </td>
                 </tr>
@@ -40,8 +47,12 @@
                 <tr>
                     <th class="active">パスワード</th>
                     <td>
-                        <div class="form-group">
-                            <input type="text" class="form-control" />
+                        <div class="form-group"
+                        	th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
+                            <input type="text" class="form-control" th:field="*{password}" />
+                            <span class="text-danger" th:if="${#fields.hasErrors('password')}"
+                            	th:errors="*{password}">password error
+                            </span>
                         </div>
                     </td>
                 </tr>
@@ -49,13 +60,23 @@
                 <tr>
                     <th class="active">パスワード確認</th>
                     <td>
-                        <div class="form-group">
-                            <input type="text" class="form-control" />
+                        <div class="form-group"
+                        	th:classappend="${#fields.hasErrors('passwordConfirmation')} ? 'has-error'">
+                            <input type="text" class="form-control" th:field="*{passwordConfirmation}" />
+                            <span class="text-danger" th:if="${#fields.hasErrors('passwordConfirmation')}"
+                            	th:errors="*{passwordConfirmation}">password error
+                            </span>
                         </div>
                     </td>
                 </tr>
-        
             </table>
+            
+            <!-- エラーメッセージの一覧表示 -->
+            <ul>
+                <li th:each="error : ${#fields.detailedErrors()}">
+                    <span th:text="${error.message}">Error message</span>
+                </li>
+            </ul>
             
             <!-- 申請する -->
             <button class="btn btn-primary" th:href="@{'/waitApplication'}" type="submit">申請する</button>

@@ -33,7 +33,8 @@ public class SignupController {
      * ログイン画面のPOSTメソッド用処理.
      */
     @PostMapping("/signup")
-    public String postSignUp(@ModelAttribute SignupForm form, BindingResult bindingResult, Model model) {
+    public String postSignUp(@ModelAttribute @Validated SignupForm form, BindingResult bindingResult,
+    		Model model) {
     	if(bindingResult.hasErrors()) {
     		//GETリクエスト用のメソッドを呼び出して、ユーザー画面に戻ります
     		return getSignUp(form, model);
