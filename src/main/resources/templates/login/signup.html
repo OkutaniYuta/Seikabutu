@@ -13,7 +13,7 @@
 <body>
     <div class="col-sm-8">
         <div class="page-header">
-            <h1>ユーザー登録画面</h1>
+            <h1>新規登録</h1>
         </div>
         <form method="post" th:action="@{/signup}" th:object="${signupForm}">
             <table class="table table-bordered table-hover">
@@ -21,15 +21,9 @@
                 <tr>
                     <th class="active">ユーザー名</th>
                     <td>
-                        <div class="form-group"
-                            th:classappend="${#fields.hasErrors('userName')} ? 'has-error'">
-                            <input type="text" class="form-control"
-                                th:field="*{userName}" />
-                            <span class="text-danger"
-                                th:if="${#fields.hasErrors('userName')}"
-                                th:errors="*{userName}">
-                                userName error
-                            </span>
+                        <div class="form-group">
+                            <input type="text" class="form-control" />
+                            
                         </div>
                     </td>
                 </tr>
@@ -37,15 +31,8 @@
                 <!-- メールアドレスの入力エリア -->
                     <th class="active col-sm-3">メールアドレス</th>
                     <td>
-                        <div class="form-group"
-                            th:classappend="${#fields.hasErrors('mailAddress')} ? 'has-error'">
-                            <input type="text" class="form-control"
-                                th:field="*{mailAddress}" />
-                            <span class="text-danger"
-                                th:if="${#fields.hasErrors('mailAddress')}"
-                                th:errors="*{mailAddress}">
-                                mailAddress error
-                            </span>
+                        <div class="form-group">
+                            <input type="text" class="form-control" />
                         </div>
                     </td>
                 </tr>
@@ -53,15 +40,8 @@
                 <tr>
                     <th class="active">パスワード</th>
                     <td>
-                        <div class="form-group"
-                            th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
-                            <input type="text" class="form-control"
-                                th:field="*{password}" />
-                            <span class="text-danger"
-                                th:if="${#fields.hasErrors('password')}"
-                                th:errors="*{password}">
-                                password error
-                            </span>
+                        <div class="form-group">
+                            <input type="text" class="form-control" />
                         </div>
                     </td>
                 </tr>
@@ -69,28 +49,19 @@
                 <tr>
                     <th class="active">パスワード確認</th>
                     <td>
-                        <div class="form-group"
-                            th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
-                            <input type="text" class="form-control"
-                                th:field="*{password}" />
-                            <span class="text-danger"
-                                th:if="${#fields.hasErrors('password')}"
-                                th:errors="*{password}">
-                                password error
-                            </span>
+                        <div class="form-group">
+                            <input type="text" class="form-control" />
                         </div>
                     </td>
                 </tr>
         
             </table>
-            <!-- エラーメッセージの一覧表示 -->
-            <ul>
-                <li th:each="error : ${#fields.detailedErrors()}">
-                    <span th:text="${error.message}">Error message</span>
-                </li>
-            </ul>
-            <!-- ユーザー登録ボタン -->
-            <button class="btn btn-primary" type="submit">ユーザー登録</button>
+            
+            <!-- 申請する -->
+            <button class="btn btn-primary" th:href="@{'/waitApplication'}" type="submit">申請する</button>
+            <!-- ログイン画面に戻る -->
+            <br>
+            <a type="submit" th:href="@{'/login'}">ログイン画面に戻る</a>
         </form>
     </div>
 </body>

@@ -3,11 +3,3 @@ CREATE TABLE IF NOT EXISTS employee (
     employee_name VARCHAR(50),
     age INT
 );
-
-/* ユーザーマスター */
-CREATE TABLE IF NOT EXISTS m_user (
-    user_mailAddress VARCHAR(50) PRIMARY KEY,
-    password VARCHAR(100),
-    user_name VARCHAR(50),
-    role VARCHAR(50),
-);
