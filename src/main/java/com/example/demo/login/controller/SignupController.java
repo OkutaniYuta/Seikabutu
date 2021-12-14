@@ -1,7 +1,5 @@
 package com.example.demo.login.controller;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -16,10 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 import com.example.demo.login.domain.model.SignupForm;
+import com.example.demo.login.domain.model.User;
+import com.example.demo.login.domain.service.UserService;
 
 
 @Controller
 public class SignupController {
+	
+	@Autowired
+	private UserService userService;
 
   //ログイン画面のGETメソッド用処理
     @GetMapping("/signup")
@@ -43,9 +46,32 @@ public class SignupController {
     	//formの中身をコンソールに出して確認します
     	System.out.println(form);
     	
+    	//insert用変数
+    	User user = new User();
+    	
+    	user.setUserId(form.getUserId());
+		user.setUserName(form.getUserName());
+		user.setEmail(form.getEmail());
+		user.setPassword(form.getPassword());
+		user.setRole("ROLE_GENERAL");
+		user.setUserStatus(form.getUserStatus());
+		user.setReqestedAt(form.getRequestedAt());
+		
+		boolean result = userService.insert(user);
+		
+		//ユーザー登録結果の判定
+		if(result == true) {
+			System.out.println("insert成功");
+		} else {
+			System.out.println("insert失敗");
+		}
+    	
         //waitApplicationに画面遷移
         return "login/waitApplication";
+        
     }
+    
+   
    
     
    

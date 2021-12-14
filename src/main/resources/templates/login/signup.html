@@ -35,10 +35,10 @@
                     <th class="active col-sm-3">メールアドレス</th>
                     <td>
                         <div class="form-group"
-                        	th:classappend="${#fields.hasErrors('mailAddress')} ? 'has-error'">
-                            <input type="text" class="form-control" th:field="*{mailAddress}" />
-                         	<span class="text-danger" th:if="${#fields.hasErrors('mailAddress')}"
-                            	th:errors="*{mailAddress}">mailAddress error
+                        	th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
+                            <input type="text" class="form-control" th:field="*{email}" />
+                         	<span class="text-danger" th:if="${#fields.hasErrors('email')}"
+                            	th:errors="*{email}">email error
                             </span>
                         </div>
                     </td>

@@ -16,7 +16,24 @@ public class UserDaoJdbcImpl implements UserDao {
 	
 	@Override
 	public int count() throws DataAccessException {
-		return 0;
+		//1件登録
+		int rowNumber = jdbc.update("INSERT INTO m_user(user_id,"
+				+ " user_name,"
+				+ " email,"
+				+ " password,"
+				+ " role,"
+				+ " userStatus,"
+				+ " requestedAt)"
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?, )"
+				,user.getUserId()
+				,user.getUserName()
+				,user.getEmail()
+				,user.getPassword()
+				,user.getRole()
+				,user.getUserStatus()
+				,user.getReqestedAt());
+		
+		return rowNumber;
 	}
 	
 	//Userテーブルに1件insert

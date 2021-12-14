@@ -24,7 +24,7 @@ public class SignupForm {
     //必須入力、メールアドレス形式
     @NotBlank
     @Email
-    private String mailAddress;
+    private String email;
 
     //必須入力、長さ8から50桁まで、半角英数字のみ
     @NotBlank
@@ -37,6 +37,10 @@ public class SignupForm {
     @Length(min = 8, max = 50)
     @Pattern(regexp = "^[a-zA-Z0-9]+$")
     private String passwordConfirmation; // パスワード
+    
+    private String userId;
+    private int userStatus;
+    private int requestedAt;
 
 
 

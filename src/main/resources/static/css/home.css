@@ -44,7 +44,7 @@ header {
 #nav-open {
   display: inline-block;
   width: 30px;
-  height: 22px;
+  height: -100px; /* height元は20で設定、あとで変える */
   vertical-align: middle;
 }
 
