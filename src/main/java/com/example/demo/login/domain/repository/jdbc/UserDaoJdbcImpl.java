@@ -14,8 +14,15 @@ public class UserDaoJdbcImpl implements UserDao {
 	@Autowired
 	JdbcTemplate jdbc;
 	
+	//Userテーブルの件数を取得
 	@Override
 	public int count() throws DataAccessException {
+		return 0;
+	}
+	
+	//Userテーブルに1件insert
+	@Override
+	public int insertOne(User user) throws DataAccessException {
 		//1件登録
 		int rowNumber = jdbc.update("INSERT INTO m_user(user_id,"
 				+ " user_name,"
@@ -24,7 +31,7 @@ public class UserDaoJdbcImpl implements UserDao {
 				+ " role,"
 				+ " userStatus,"
 				+ " requestedAt)"
-				+ " VALUES(?, ?, ?, ?, ?, ?, ?, )"
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?)"
 				,user.getUserId()
 				,user.getUserName()
 				,user.getEmail()
@@ -36,11 +43,6 @@ public class UserDaoJdbcImpl implements UserDao {
 		return rowNumber;
 	}
 	
-	//Userテーブルに1件insert
-	@Override
-	public int insertOne(User user) throws DataAccessException {
-		return 0;
-	}
 	
 	//Userテーブルのデータを1件取得
 	@Override

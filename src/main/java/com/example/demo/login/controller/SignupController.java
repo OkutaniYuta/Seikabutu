@@ -49,13 +49,13 @@ public class SignupController {
     	//insert用変数
     	User user = new User();
     	
-    	user.setUserId(form.getUserId());
+    	user.setUserId(111);
 		user.setUserName(form.getUserName());
 		user.setEmail(form.getEmail());
 		user.setPassword(form.getPassword());
 		user.setRole("ROLE_GENERAL");
-		user.setUserStatus(form.getUserStatus());
-		user.setReqestedAt(form.getRequestedAt());
+		user.setUserStatus(1);
+		user.setReqestedAt(1);
 		
 		boolean result = userService.insert(user);
 		

@@ -38,7 +38,7 @@ public class SignupForm {
     @Pattern(regexp = "^[a-zA-Z0-9]+$")
     private String passwordConfirmation; // パスワード
     
-    private String userId;
+    private int userId;
     private int userStatus;
     private int requestedAt;
 
