@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"></meta>
 
@@ -24,12 +26,30 @@
       				<input id="nav-input" type="checkbox" class="nav-unshown">
       				<label id="nav-open" for="nav-input"><span></span></label>
       				<label class="nav-unshown" id="nav-close" for="nav-input"></label>
-      				<div id="nav-content">ここに中身を入れる</div>
+      				<div id="nav-content">
+      					ここに中身をいれる
+      				</div>
   				</div>
   					<div class="logo-area">LOGO</div>
   			</div>
 		</div>
 	</nav>
+	
+	<!-- ===== サイドバー ===== -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 sidebar">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation">
+                        <a th:href="@{'/userList'}">ユーザ管理</a>
+                    </li>
+                    <li role="presentation">
+                        <a th:href="@{'/admin'}">新規登録申請一覧</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 	
 	<!-- コンテンツ -->
 	<div class="container-fluid">
@@ -39,6 +59,33 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<div class="clock">
+		<span id="view_clock" ></span>
+			<script type="text/javascript">
+			timerID = setInterval('clock()',500); //0.5秒毎にclock()を実行
+
+			function clock() {
+			document.getElementById("view_clock").innerHTML = getNow();
+			}
+
+			function getNow() {
+			var now = new Date();
+			var year = now.getFullYear();
+			var mon = now.getMonth()+1; //１を足すこと
+			var day = now.getDate();
+			var hour = now.getHours();
+			var min = now.getMinutes();
+			var sec = now.getSeconds();
+
+			//出力用
+			var s = year + "年" + mon + "月" + day + "日" + hour + "時" + min + "分" + sec + "秒"; 
+			return s;
+			
+			}
+			</script>
+		</div>
 	
 </body>
 </html>

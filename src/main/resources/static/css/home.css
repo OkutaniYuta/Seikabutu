@@ -31,6 +31,13 @@ header {
   background: #ccc;
 }
 
+/* 時間を真ん中に */
+.clock {
+	margin: 10px auto;
+  width:200px;
+  background: pink;
+}
+
 #nav-drawer {
   position: relative;
 }
@@ -44,7 +51,7 @@ header {
 #nav-open {
   display: inline-block;
   width: 30px;
-  height: -100px; /* height元は20で設定、あとで変える */
+  height: -100px; /* height元は22で設定、あとで変える */
   vertical-align: middle;
 }
 
@@ -123,3 +130,4 @@ header {
 
 /*ロゴやサイトタイトルをセンタリング*/
 .logo-area{text-align:center;margin:auto;}
+

@@ -6,27 +6,9 @@
 </head>
 <body>
  	<div th:fragment="home_contents">
- 		<div class="page-header">
- 			
- 		</div>
+ 		<div class="page-header"></div>
  	</div>
- 	<body>
-  <a href="#" onclick="showTime()">現在時刻を表示する</a>
-  <span id="text"></span>
-
-  <script type="text/javascript">
-
-  function showTime() {
-    var now = new Date();
-    var nowhour = now.getHours();
-    var nowminutes = now.getMinutes();
-    var nowseconds = now.getSeconds();
-
-    var text = nowhour + "：" + nowminutes + "：" + nowseconds; 
-    document.getElementById("text").innerHTML = text;
-  }
-  </script>
-  </body>
+  
 </body>
 </html>
     
