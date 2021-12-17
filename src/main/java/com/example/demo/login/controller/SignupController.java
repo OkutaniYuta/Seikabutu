@@ -38,6 +38,8 @@ public class SignupController {
     @PostMapping("/signup")
     public String postSignUp(@ModelAttribute @Validated SignupForm form, BindingResult bindingResult,
     		Model model) {
+    	
+    	//入力チェックに引っかかった場合、ユーザー登録画面に戻る
     	if(bindingResult.hasErrors()) {
     		//GETリクエスト用のメソッドを呼び出して、ユーザー画面に戻ります
     		return getSignUp(form, model);
@@ -57,6 +59,7 @@ public class SignupController {
 		user.setUserStatus(1);
 		user.setReqestedAt(1);
 		
+		//ユーザー登録処理
 		boolean result = userService.insert(user);
 		
 		//ユーザー登録結果の判定

@@ -39,12 +39,12 @@ public class HomeController {
 	}
 	
 	//アドミン権限専用のGET用メソッド
-	@GetMapping("/admin")
-	public String getAdmin(Model model) {
-		//コンテンツ部分に新規登録申請一覧を表示させる文字列を登録
-		model.addAttribute("contents", "login/admin :: admin_contents");
-		
-		//レイアウト用テンプレート
-		return "login/home_layout";
-	}
+//	@GetMapping("/admin")
+//	public String getAdmin(Model model) {
+//		//コンテンツ部分に新規登録申請一覧を表示させる文字列を登録
+//		model.addAttribute("contents", "login/admin :: admin_contents");
+//		
+//		//レイアウト用テンプレート
+//		return "login/home_layout";
+//	}
 }

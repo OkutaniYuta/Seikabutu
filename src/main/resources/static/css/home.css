@@ -39,7 +39,7 @@ header {
 }
 
 #nav-drawer {
-  position: relative;
+  position:absolute; top:20px; right:30px;;
 }
 
 /*チェックボックス等は非表示に*/

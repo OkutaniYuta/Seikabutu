@@ -21,6 +21,7 @@
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">勤怠管理</a>
 			</div>
+			
 			<div class="header-logo-menu">
 				<div id="nav-drawer">
       				<input id="nav-input" type="checkbox" class="nav-unshown">
@@ -41,29 +42,17 @@
             <div class="col-sm-2 sidebar">
                 <ul class="nav nav-pills nav-stacked">
                     <li role="presentation">
-                        <a th:href="@{'/userList'}">ユーザ管理</a>
-                    </li>
-                    <li role="presentation">
                         <a th:href="@{'/admin'}">新規登録申請一覧</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-	
-	<!-- コンテンツ -->
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-10 col-sm-offset-3 main">
-				<div th:include="__${contents}__"></div>
-			</div>
-		</div>
-	</div>
-	
-	
+    
+    <!-- 現在日時 -->
 	<div class="clock">
 		<span id="view_clock" ></span>
-			<script type="text/javascript">
+		<script type="text/javascript">
 			timerID = setInterval('clock()',500); //0.5秒毎にclock()を実行
 
 			function clock() {
@@ -78,14 +67,33 @@
 			var hour = now.getHours();
 			var min = now.getMinutes();
 			var sec = now.getSeconds();
+			
+			var day_arr = ['日', '月', '火', '水', '木', '金', '土']
+			var day2 = day_arr[now.getDay()];
 
 			//出力用
-			var s = year + "年" + mon + "月" + day + "日" + hour + "時" + min + "分" + sec + "秒"; 
+			var s = year + "年" + mon + "月" + day + "日" + '（' + day2 + '）'; 
 			return s;
 			
 			}
-			</script>
+		</script><br>
+	</div>
+	
+	
+	
+	<!-- コンテンツ -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10 col-sm-offset-3 main">
+				<div th:include="__${contents}__"></div>
+					<p>現在契約中の会社</p>
+			</div>
 		</div>
+		
+	
+	</div>
+	
+	
 	
 </body>
 </html>
