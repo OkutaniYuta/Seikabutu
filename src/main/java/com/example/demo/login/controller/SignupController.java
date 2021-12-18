@@ -51,13 +51,16 @@ public class SignupController {
     	//insert用変数
     	User user = new User();
     	
-    	user.setUserId(111);
+    	user.setUserId(111); //インクリメントしていく
 		user.setUserName(form.getUserName());
 		user.setEmail(form.getEmail());
 		user.setPassword(form.getPassword());
-		user.setRole("ROLE_GENERAL");
-		user.setUserStatus(1);
-		user.setReqestedAt(1);
+		user.setRole(1);
+		user.setUserStatus(1); //初期値は0でOKだが、管理者が操作できるようにする
+		
+		user.setReqestedAt(1); //現在日時の設定
+		
+		System.out.println(user);
 		
 		//ユーザー登録処理
 		boolean result = userService.insert(user);

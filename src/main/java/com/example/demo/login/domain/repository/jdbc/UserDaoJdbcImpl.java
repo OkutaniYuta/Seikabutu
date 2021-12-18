@@ -19,7 +19,7 @@ public class UserDaoJdbcImpl implements UserDao {
 	public int count() throws DataAccessException {
 		
 		//全件取得してカウント
-		int count = jdbc.queryForObject("SELECT COUNT(*) FORM m_user", Integer.class);
+		int count = jdbc.queryForObject("SELECT COUNT(*) FORM user", Integer.class);
 		
 		return count;
 	}
@@ -28,8 +28,8 @@ public class UserDaoJdbcImpl implements UserDao {
 	@Override
 	public int insertOne(User user) throws DataAccessException {
 		//1件登録
-		int rowNumber = jdbc.update("INSERT INTO m_user(user_id,"
-				+ " user_name,"
+		int rowNumber = jdbc.update("INSERT INTO user(userId,"
+				+ " userName,"
 				+ " email,"
 				+ " password,"
 				+ " role,"
@@ -75,7 +75,7 @@ public class UserDaoJdbcImpl implements UserDao {
 			user.setUserName((String)map.get("user_name"));
 			user.setEmail((String)map.get("email"));
 			user.setPassword((String)map.get("password"));
-			user.setRole((String)map.get("role"));
+			user.setRole((Integer)map.get("role"));
 			user.setUserStatus((Integer)map.get("status"));
 			user.setReqestedAt((Integer)map.get("reqestedAt"));
 			
