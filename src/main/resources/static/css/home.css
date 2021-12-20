@@ -19,6 +19,7 @@ body {
   bottom: 0;
 }
 
+
 .page-header {
   margin-top: 0px;
 }
@@ -35,6 +36,12 @@ header {
 .clock {
 	margin: 10px auto;
   width:200px;
+  background: pink;
+}
+
+.btn {
+	margin: auto;
+  width:100px;
   background: pink;
 }
 

@@ -1,5 +1,8 @@
 package com.example.demo.login.controller;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpHeaders;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.login.domain.model.SignupForm;
 import com.example.demo.login.domain.service.UserService;
@@ -29,6 +33,15 @@ public class HomeController {
 		return "login/homeLayout";
 	}
 	
+	//現在の日時を取得
+	@GetMapping("/homeLayout")
+	public String postHomeLayout(String dateObj, Model model) {
+		String date1 = LocalDateTime.now().toString();
+		dateObj = date1;
+		model.addAttribute("dateObj", dateObj);
+		 
+		return "homeLayout";
+	}
 	
 	
 	//ログアウト用メソッド

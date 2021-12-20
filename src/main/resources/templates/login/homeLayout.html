@@ -1,9 +1,10 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"></meta>
+    
 
     <!-- Bootstrapの設定 -->
     <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
@@ -49,7 +50,7 @@
         </div>
     </div>
     
-    <!-- 現在日時 -->
+    <!-- 現在日時 js →　html -->
 	<div class="clock">
 		<span id="view_clock" ></span>
 		<script type="text/javascript">
@@ -77,6 +78,7 @@
 			
 			}
 		</script><br>
+			
 	</div>
 	
 	
@@ -87,12 +89,20 @@
 			<div class="col-sm-10 col-sm-offset-3 main">
 				<div th:include="__${contents}__"></div>
 					<p>現在契約中の会社</p>
+					
 			</div>
-		</div>
-		
-	
+		</div>	
 	</div>
+	<br>
 	
+	<!-- 過去の勤務時間詳細・変更 -->
+	
+    <button class="btn btn-primary" th:href="@{'/'}" type="submit">今日の勤務時間登録</button>
+    <!-- 過去の勤務時間登録 -->
+    <button class="btn btn-primary" th:href="@{'/'}" type="submit">過去の勤務時間詳細・変更</button>
+    <br>
+    <!-- 勤怠を締める -->
+    <button class="btn btn-primary" th:href="@{'/'}" type="submit">勤怠を締める</button>
 	
 	
 </body>
