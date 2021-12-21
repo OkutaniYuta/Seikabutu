@@ -1,6 +1,8 @@
 package com.example.demo.login.controller;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.login.domain.model.SignupForm;
 import com.example.demo.login.domain.service.UserService;
-
+import com.example.demo.service.HomeService;
 
 @Controller
 public class HomeController {
@@ -28,17 +30,24 @@ public class HomeController {
 	//ホーム画面用のGET用メソッド
 	@GetMapping("/home")
 	public String getHome(Model model) {
+
+//        Calendar cl = Calendar.getInstance();
+//        
+//        //フォーマットを指定する
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日(E)");
+//        System.out.println(sdf.format(cl.getTime()));
+//        String nowDate = sdf.format(cl.getTime()).toString();
+		
+		model.addAttribute("dateObj");
 		//コンテンツ部分に画面を表示するための文字列を登録
 		model.addAttribute("contents", "login/home :: home_contents");
-		return "login/homeLayout";
+		return "login/home";
 	}
 	
 	//現在の日時を取得
 	@GetMapping("/homeLayout")
-	public String postHomeLayout(String dateObj, Model model) {
-		String date1 = LocalDateTime.now().toString();
-		dateObj = date1;
-		model.addAttribute("dateObj", dateObj);
+	public String getHomeLayout(String dateObj, Model model) {
+		
 		 
 		return "homeLayout";
 	}
