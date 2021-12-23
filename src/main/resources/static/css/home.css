@@ -40,10 +40,12 @@ header {
 }
 
 .btn {
-	margin: auto;
-  width:100px;
+	
+  
   background: pink;
 }
+
+
 
 #nav-drawer {
   position:absolute; top:20px; right:30px;;

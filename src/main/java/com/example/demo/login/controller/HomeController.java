@@ -22,23 +22,23 @@ import com.example.demo.login.domain.model.SignupForm;
 import com.example.demo.login.domain.service.UserService;
 import com.example.demo.service.HomeService;
 
+
 @Controller
 public class HomeController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	HomeService homeService;
+	
 	//ホーム画面用のGET用メソッド
 	@GetMapping("/home")
 	public String getHome(Model model) {
-
-//        Calendar cl = Calendar.getInstance();
-//        
-//        //フォーマットを指定する
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日(E)");
-//        System.out.println(sdf.format(cl.getTime()));
-//        String nowDate = sdf.format(cl.getTime()).toString();
 		
-		model.addAttribute("dateObj");
+		String nowDate = homeService.todayObj();
+		
+		model.addAttribute("HomeService", nowDate);
+		
 		//コンテンツ部分に画面を表示するための文字列を登録
 		model.addAttribute("contents", "login/home :: home_contents");
 		return "login/home";

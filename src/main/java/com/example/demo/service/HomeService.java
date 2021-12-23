@@ -4,11 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 
 public class HomeService {
-	public String Service() {
+	public String todayObj() {
 	Calendar cl = Calendar.getInstance();
 
 	//フォーマットを指定する
