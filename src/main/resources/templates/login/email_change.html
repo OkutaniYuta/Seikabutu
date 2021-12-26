@@ -8,13 +8,13 @@
     <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-
 	<link th:href="@{/css/home.css}" rel="stylesheet"></link>
 	
-    <title>Home</title>
+    <title>EmailChange</title>
 </head>
+
 <body>
-	<!-- ヘッダー -->
+<!-- ヘッダー -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -31,56 +31,54 @@
       					<a th:href="@{'/contract_list'}">契約画面一覧</a><br>
       					<a th:href="@{'/whours_change'}">勤務時間変更</a><br>
       					<a th:href="@{'contract_update'}">契約更新</a><br>
+      					
       				</div>
   				</div>
   					<div class="logo-area">LOGO</div>
   			</div>
 		</div>
 	</nav>
-	<!-- ===== サイドバー ===== -->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-2 sidebar">
-                <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation">
-                        <a th:href="@{'/admin'}">新規登録申請一覧</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-	<!-- 現在の日時表示 -->
-	<div style=text-align:center>
-	<p th:text="${HomeService}"></p>
+	<div class="col-sm-8" th:text-align:center>
+		<h3>メールアドレス変更画面</h3>
 	</div>
-	<br>
-	<!-- コンテンツ -->
-	<div class="company">
-		<div class="col-sm-10 col-sm-offset-3">
-			<p>現在契約中の会社 : </p>
-			<br>
-			<p>最低稼働時間まで : </p>
-			<br>
-			<p>今月の稼働時間 : </p>
-		</div>	
-	</div>
-	<br>
-	<!-- ボタン実装 -->
-	<div class="container-fluid">
-		<div class=”row”>
-			<div class="text-center">
-				<!-- 過去の勤務時間詳細・変更 -->
-    			<button class="btn btn-primary　w-auto col-sm" th:href="@{'/'}" type="submit">今日の勤務時間登録</button>
-    			<!-- 過去の勤務時間登録 -->
-    			<button class="btn btn-primary　w-auto col-sm" th:href="@{'/'}" type="submit">過去の勤務時間詳細・変更</button>
-    		</div>
-    	</div>
-    </div>
-    <br>
-    <!-- ボタン -->
+	<form method="post" th:action="@{/email_change}" th:object="${signupForm}">
+    	<table class="table table-bordered table-hover">
+			<tr>
+        	<!-- メールアドレスの入力エリア -->
+            <th class="active col-sm-3">新しいメールアドレスの入力</th>
+            	<td>
+                	<div class="form-group"
+                		th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
+                    	<input type="text" class="form-control" th:field="*{email}" />
+                        	<span class="text-danger" th:if="${#fields.hasErrors('email')}"
+                            	th:errors="*{email}">email error
+                            </span>
+                    </div>
+               </td>
+            </tr>
+            <tr>
+               <th class="active col-sm-3">新しいメールアドレスの確認</th>
+            	<td>
+                	<div class="form-group"
+                		th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
+                    	<input type="text" class="form-control" th:field="*{email}" />
+                        	<span class="text-danger" th:if="${#fields.hasErrors('email')}"
+                            	th:errors="*{email}">email error
+                            </span>
+                    </div>
+               </td>
+            </tr>
+        </table>
+        <!-- エラーメッセージの一覧表示 -->
+            <ul>
+                <li th:each="error : ${#fields.detailedErrors()}">
+                    <span th:text="${error.message}">Error message</span>
+                </li>
+            </ul>
+            <!-- ボタン -->
     <div class="text-center">
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demoNormalModal">
-    勤怠を締める
+    変更する
 </button>
 
 <!-- モーダルダイアログ -->
@@ -88,23 +86,23 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="demoModalTitle">締め切り確認</h5>
+                <h5 class="modal-title" id="demoModalTitle">変更確認</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                本当に今月の勤怠を締めますか？
+                本当にメールアドレスを変更しますか？
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary w-auto col-sm">はい</button>
-                <button type="button" class="btn btn-primary w-auto col-sm" th:href="@{'/signup'}">いいえ</button>
+                <button type="button" class="btn btn-primary w-auto col-sm" th:href="@{'/email_change'}">いいえ</button>
             </div>
         </div>
     </div>
 </div>
 </div>
-
+	</form>
+	
 </body>
 </html>
-    

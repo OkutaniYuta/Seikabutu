@@ -10,7 +10,7 @@ public class LoginController {
 
   //ログイン画面のGETメソッド用処理
     @GetMapping("/login")
-    public String getLogin(Model model) {
+    public String getLogin() {
 
         //login.htmlに画面遷移
         return "login/login";
@@ -20,7 +20,7 @@ public class LoginController {
      * ログイン画面のPOSTメソッド用処理.
      */
     @PostMapping("/login")
-    public String postLogin(Model model) {
+    public String postLogin() {
 
         //homeに画面遷移
     	return "redirect:/home";

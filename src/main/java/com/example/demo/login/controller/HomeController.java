@@ -18,15 +18,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.login.domain.model.SignupForm;
-import com.example.demo.login.domain.service.UserService;
 import com.example.demo.service.HomeService;
 
 
 @Controller
 public class HomeController {
-	@Autowired
-	UserService userService;
 	
 	@Autowired
 	HomeService homeService;
@@ -39,34 +35,13 @@ public class HomeController {
 		
 		model.addAttribute("HomeService", nowDate);
 		
-		//コンテンツ部分に画面を表示するための文字列を登録
-		model.addAttribute("contents", "login/home :: home_contents");
 		return "login/home";
 	}
 	
-	//現在の日時を取得
-	@GetMapping("/homeLayout")
-	public String getHomeLayout(String dateObj, Model model) {
-		
-		 
-		return "homeLayout";
-	}
-	
-	
-	//ログアウト用メソッド
-	@PostMapping("/logout")
+	@PostMapping("/home")
 	public String postLogout() {
 		//ログイン画面にリダイレクト
-		return "redirecr:/login";
+		return "redirecr:/email_change";
 	}
 	
-	//アドミン権限専用のGET用メソッド
-//	@GetMapping("/admin")
-//	public String getAdmin(Model model) {
-//		//コンテンツ部分に新規登録申請一覧を表示させる文字列を登録
-//		model.addAttribute("contents", "login/admin :: admin_contents");
-//		
-//		//レイアウト用テンプレート
-//		return "login/home_layout";
-//	}
 }
