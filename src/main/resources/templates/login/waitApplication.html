@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+
+    <!-- Bootstrapの設定 -->
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+    <title>申請待機中</title>
+</head>
+<body>
+    <div class="col-sm-8">
+        <div class="page-header">
+            <h1>申請待機中です。。。</h1>
+        </div>
+        <!-- ログイン画面に戻る -->
+            <br>
+            <a type="submit" th:href="@{'/login'}">ログイン画面に戻る</a>
+    </div>
+</body>
+</html>
