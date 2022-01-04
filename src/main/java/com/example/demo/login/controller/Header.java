@@ -18,30 +18,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.service.HomeService;
-
-
 @Controller
-public class HomeController {
+public class Header {
 	
-	@Autowired
-	HomeService homeService;
-	
-	//ホーム画面用のGET用メソッド
-	@GetMapping({"/home", "/header"})
-	public String getHome(Model model) {
+	@GetMapping("/header")
+	public String getHeader() {
 		
-		String nowDate = homeService.todayObj();
-		
-		model.addAttribute("HomeService", nowDate);
-		
-		return "login/home";
+		return "login/header";
 	}
-	
-	@PostMapping("/home")
-	public String postLogout() {
-		//ログイン画面にリダイレクト
-		return "redirecr:/email_change";
-	}
-	
 }
