@@ -35,8 +35,11 @@ public class HomeController {
 		
 		model.addAttribute("HomeService", nowDate);
 		
+		
 		return "login/home";
 	}
+	
+	
 	
 //	@PostMapping("/home")
 //	public String postLogout() {

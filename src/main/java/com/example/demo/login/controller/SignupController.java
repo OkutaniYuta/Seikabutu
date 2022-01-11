@@ -70,7 +70,7 @@ public class SignupController {
 		}
     	
         //waitApplicationに画面遷移
-        return "redirect:/waitApplication";
+        return "login/waitApplication";
         
     }
     

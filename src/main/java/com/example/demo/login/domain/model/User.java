@@ -11,5 +11,14 @@ public class User {
 	private String email;
 	private String role;
 	private int userStatus;
-	private int reqestedAt ;
+	private int reqestedAt;
+	
+	//contractテーブル
+//	private int contractId;
+//	private int contractTime;
+//	private int startTime;
+//	private int brakeTime;
+//	private int endTime;
+//	private Date startDate;
+//	private String officeName;
 }
