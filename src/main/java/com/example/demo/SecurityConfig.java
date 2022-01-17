@@ -13,8 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@EnableWebSecurity
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	//パスワードエンコーダーのBean定義
@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			+ " email,"
 			+ " password,"
 			+ " true"
+			+ " FROM"
 			+ " user"
 			+ " WHERE"
 			+ " email = ?";
@@ -40,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String ROLE_SQL = "SELECT"
 			+ " email,"
 			+ " role"
-			+ " FORM" 
+			+ " FROM" 
 			+ " user"
 			+ " WHERE"
 			+ " email = ?";
@@ -60,7 +61,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/css/**").permitAll()
 				.antMatchers("/login").permitAll()
 				.antMatchers("/signup").permitAll()
-				.antMatchers("/jdbc:h2:mem:testdb;MODE=MYSQL").permitAll() //1/11 Securityを入れたらDBにアクセスできなくなった未解決
 				.anyRequest().authenticated();
 		
 		//ログイン処理
@@ -76,6 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		//CSRF対策を無効に設定
 		http.csrf().disable();
+		http.headers().frameOptions().disable();
 	}
 	
 	@Override

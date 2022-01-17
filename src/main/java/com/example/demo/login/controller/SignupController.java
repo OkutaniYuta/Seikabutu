@@ -51,7 +51,6 @@ public class SignupController {
     	//insert用変数
     	User user = new User();
     	
-    	user.setUserId(111);
 		user.setUserName(form.getUserName());
 		user.setEmail(form.getEmail());
 		user.setPassword(form.getPassword());

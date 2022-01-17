@@ -37,15 +37,14 @@ public class UserDaoJdbcImpl implements UserDao {
 		String password = passwordEncoder.encode(user.getPassword());
 		
 		//1件登録
-		int rowNumber = jdbc.update("INSERT INTO user(userId,"
+		int rowNumber = jdbc.update("INSERT INTO user("
 				+ " userName,"
 				+ " email,"
 				+ " password,"
 				+ " role,"
 				+ " userStatus,"
 				+ " requestedAt)"
-				+ " VALUES(?, ?, ?, ?, ?, ?, ?)"
-				,user.getUserId()
+				+ " VALUES(?, ?, ?, ?, ?, ?)"
 				,user.getUserName()
 				,user.getEmail()
 				,password

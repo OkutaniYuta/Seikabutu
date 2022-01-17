@@ -6,10 +6,10 @@ CREATE TABLE IF NOT EXISTS employee (
 
 /* ユーザー */
 CREATE TABLE IF NOT EXISTS user (
-    userId INTEGER(3) PRIMARY KEY,
+    userId int IDENTITY(0,1) PRIMARY KEY,
     userName VARCHAR(100),
     email VARCHAR(50),
-    password VARCHAR(50),
+    password VARCHAR(100),
     role VARCHAR(50),
     userStatus INTEGER(1),
     requestedAt VARCHAR(19)

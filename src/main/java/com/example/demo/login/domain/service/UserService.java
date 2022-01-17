@@ -12,7 +12,7 @@ import com.example.demo.login.domain.repository.UserDao;
 @Service
 public class UserService {
 	@Autowired
-	@Qualifier("UserDaoJdbcImpl")
+//	@Qualifier("UserDaoJdbcImpl")
 	UserDao dao;
 	
 	//insert用メソッド
