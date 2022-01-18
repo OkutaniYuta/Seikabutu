@@ -41,7 +41,7 @@ public class SignupForm {
     private int userId;
     private int userStatus;
     private int requestedAt;
-    private String role;
+    private int role;
 
 
 

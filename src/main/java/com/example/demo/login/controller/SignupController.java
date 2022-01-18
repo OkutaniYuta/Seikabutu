@@ -1,5 +1,8 @@
 package com.example.demo.login.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -50,13 +53,17 @@ public class SignupController {
     	
     	//insert用変数
     	User user = new User();
+    	Calendar cl = Calendar.getInstance();
+    	SimpleDateFormat sdfDB = new SimpleDateFormat("yyyy-MM-dd");
+    	System.out.println(sdfDB.format(cl.getTime()));
+    	String nowDate1 = sdfDB.format(cl.getTime()).toString();
     	
 		user.setUserName(form.getUserName());
 		user.setEmail(form.getEmail());
 		user.setPassword(form.getPassword());
-		user.setRole("ROLE_GENERAL");
-		user.setUserStatus(1);
-		user.setReqestedAt(1);
+		user.setUserStatus(0);
+		user.setRole(1);
+		user.setReqestedAt(nowDate1);
 		
 		//ユーザー登録処理
 		boolean result = userService.insert(user);

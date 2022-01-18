@@ -11,11 +11,12 @@ import org.springframework.ui.Model;
 public class HomeService {
 	public String todayObj() {
 	Calendar cl = Calendar.getInstance();
-
 	//フォーマットを指定する
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日(E)");
 	System.out.println(sdf.format(cl.getTime()));
 	String nowDate = sdf.format(cl.getTime()).toString();
+	
+	
 	
 	return nowDate;
 	}

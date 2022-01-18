@@ -24,7 +24,7 @@ public class UserDaoJdbcImpl implements UserDao {
 	public int count() throws DataAccessException {
 		
 		//全件取得してカウント
-		int count = jdbc.queryForObject("SELECT COUNT(*) FORM user", Integer.class);
+		int count = jdbc.queryForObject("SELECT COUNT(*) FROM user", Integer.class);
 		
 		return count;
 	}
@@ -67,7 +67,7 @@ public class UserDaoJdbcImpl implements UserDao {
 	public List<User> selectMany() throws DataAccessException {
 		
 		//M_USERテーブルのデータを全件取得
-		List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FORM m_user");
+		List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user");
 		
 		//結果返却用の変数
 		List<User> userList = new ArrayList<>();
@@ -83,9 +83,9 @@ public class UserDaoJdbcImpl implements UserDao {
 			user.setUserName((String)map.get("userName"));
 			user.setEmail((String)map.get("email"));
 			user.setPassword((String)map.get("password"));
-			user.setRole((String)map.get("role"));
+			user.setRole((Integer)map.get("role"));
 			user.setUserStatus((Integer)map.get("status"));
-			user.setReqestedAt((Integer)map.get("reqestedAt"));
+			user.setReqestedAt((String)map.get("reqestedAt"));
 			
 			//結果返却用のListに追加
 			userList.add(user);
