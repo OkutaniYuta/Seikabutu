@@ -1,20 +1,13 @@
 package com.example.demo.login.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
 
 import com.example.demo.login.domain.model.SignupForm;
 import com.example.demo.login.domain.model.User;
@@ -48,32 +41,20 @@ public class SignupController {
     		return getSignUp(form, model);
     	}
     	
-    	//formの中身をコンソールに出して確認します 
-    	System.out.println(form);
-    	
     	//insert用変数
     	User user = new User();
-    	Calendar cl = Calendar.getInstance();
-    	SimpleDateFormat sdfDB = new SimpleDateFormat("yyyy-MM-dd");
-    	System.out.println(sdfDB.format(cl.getTime()));
-    	String nowDate1 = sdfDB.format(cl.getTime()).toString();
     	
 		user.setUserName(form.getUserName());
 		user.setEmail(form.getEmail());
 		user.setPassword(form.getPassword());
-		user.setUserStatus(0);
-		user.setRole(1);
-		user.setReqestedAt(nowDate1);
+		user.setRole("ROLE_GENERAL");
+		user.setUserStatus(1);
+		user.setReqestedAt(1);
 		
 		//ユーザー登録処理
-		boolean result = userService.insert(user);
+		userService.insert(user);
 		
-		//ユーザー登録結果の判定
-		if(result == true) {
-			System.out.println("insert成功");
-		} else {
-			System.out.println("insert失敗");
-		}
+		
     	
         //waitApplicationに画面遷移
         return "login/waitApplication";

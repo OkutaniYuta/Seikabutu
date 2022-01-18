@@ -16,18 +16,10 @@ public class UserService {
 	UserDao dao;
 	
 	//insert用メソッド
-	public boolean insert(User user) {
+	public void insert(User user) {
 		//insert実行
-		int rowNumber = dao.insertOne(user);
+		dao.insertOne(user);
 		
-		//判定用変数
-		boolean result = false;
-		
-		if(rowNumber > 0) {
-			//insert成功
-			result = true;
-		}
-		return result;
 	}
 	
 	//カウント用メソッド

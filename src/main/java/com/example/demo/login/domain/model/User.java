@@ -1,6 +1,5 @@
 package com.example.demo.login.domain.model;
 
-import java.util.Date;
 import lombok.Data;
 
 @Data
@@ -9,9 +8,9 @@ public class User {
 	private String userName;
 	private String password;
 	private String email;
-	private int role;
+	private String role;
 	private int userStatus;
-	private String reqestedAt;
+	private int reqestedAt;
 	
 	//contractテーブル
 //	private int contractId;

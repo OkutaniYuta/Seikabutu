@@ -12,7 +12,7 @@ public interface UserDao {
 	public int count() throws DataAccessException;
 	
 	//Userテーブルにデータを1件insert
-	public int insertOne(User user) throws DataAccessException;
+	public void insertOne(User user) throws DataAccessException;
 	
 	//Userテーブルを1件取得
 	public User selectOne(String userName) throws DataAccessException;

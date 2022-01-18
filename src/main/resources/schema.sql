@@ -1,13 +1,19 @@
+CREATE TABLE IF NOT EXISTS employee (
+    employee_id INT PRIMARY KEY,
+    employee_name VARCHAR(50),
+    age INT
+);
+
 /* ユーザー */
 CREATE TABLE IF NOT EXISTS user (
-    userId INT IDENTITY(2,1) PRIMARY KEY,
+    userId int IDENTITY(0,1) PRIMARY KEY,
     userName VARCHAR(100),
     email VARCHAR(50),
     password VARCHAR(100),
-    role INT(1),
+    role VARCHAR(50),
     userStatus INTEGER(1),
     requestedAt VARCHAR(19)
-);
+)
 
 -- CREATE TABLE IF NOT EXISTS contract (
 --     contractId INTEGER(3) PRIMARY KEY,
