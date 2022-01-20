@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS user (
     userName VARCHAR(100),
     email VARCHAR(50),
     password VARCHAR(100),
-    role VARCHAR(50),
+    role INTEGER(1),
     userStatus INTEGER(1),
     requestedAt VARCHAR(19)
 )
