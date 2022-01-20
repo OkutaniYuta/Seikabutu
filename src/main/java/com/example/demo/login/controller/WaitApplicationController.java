@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class waitApplicationController {
+public class WaitApplicationController {
 
   //ログイン画面のGETメソッド用処理
     @GetMapping("/waitApplication")

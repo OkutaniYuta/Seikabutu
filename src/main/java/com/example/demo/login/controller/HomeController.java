@@ -28,20 +28,23 @@ public class HomeController {
 	HomeService homeService;
 	
 	//ホーム画面用のGET用メソッド
-	@GetMapping({"/home", "/header"})
+	@GetMapping("/home")
 	public String getHome(Model model) {
 		
 		String nowDate = homeService.todayObj();
 		
 		model.addAttribute("HomeService", nowDate);
 		
+		
 		return "login/home";
 	}
 	
-	@PostMapping("/home")
-	public String postLogout() {
-		//ログイン画面にリダイレクト
-		return "redirecr:/email_change";
-	}
+	
+	
+//	@PostMapping("/home")
+//	public String postLogout() {
+//		//ログイン画面にリダイレクト
+//		return "redirecr:/email_change";
+//	}
 	
 }

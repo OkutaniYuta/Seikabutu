@@ -47,10 +47,10 @@
 			<scope>runtime</scope>
 		</dependency>
 		<!-- SpringSecurity -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency> -->
+		</dependency>
 		<!-- Thyemeleaf拡張（セキュリティ） -->
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
