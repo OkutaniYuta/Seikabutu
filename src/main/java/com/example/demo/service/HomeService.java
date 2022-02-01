@@ -16,6 +16,9 @@ public class HomeService {
 	String nowDate = sdf.format(cl.getTime()).toString();
 	
 	return nowDate;
+	
 	}
+	
+	
 	
 }

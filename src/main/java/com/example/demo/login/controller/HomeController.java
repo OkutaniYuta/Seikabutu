@@ -1,11 +1,15 @@
 package com.example.demo.login.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.service.HomeService;
+
 
 
 @Controller
@@ -22,16 +26,30 @@ public class HomeController {
 		
 		model.addAttribute("HomeService", nowDate);
 		
-		
 		return "login/home";
 	}
 	
-	
-	
-//	@PostMapping("/home")
-//	public String postLogout() {
-//		//ログイン画面にリダイレクト
-//		return "redirecr:/email_change";
-//	}
+//	@RequestMapping("/home")
+//    private String init(Model model) {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        //Principalからログインユーザの情報を取得
+//        String userId = auth.getUserId();
+//        model.addAttribute("userId", userId);
+//        return "home";
+//
+//    }
+
+	@RequestMapping("/home")
+    private String init(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        //Principalからログインユーザの情報を取得
+        String userName = auth.getName();
+        model.addAttribute("userName", userName);
+        
+        System.out.println(userName);
+        return "login/home";
+        
+        
+	}
 	
 }
