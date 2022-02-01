@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 
+
 public class HomeService {
 	public String todayObj() {
 	Calendar cl = Calendar.getInstance();
@@ -18,7 +19,5 @@ public class HomeService {
 	return nowDate;
 	
 	}
-	
-	
 	
 }

@@ -26,30 +26,10 @@ public class HomeController {
 		
 		model.addAttribute("HomeService", nowDate);
 		
-		return "login/home";
-	}
-	
-//	@RequestMapping("/home")
-//    private String init(Model model) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        //Principalからログインユーザの情報を取得
-//        String userId = auth.getUserId();
-//        model.addAttribute("userId", userId);
-//        return "home";
-//
-//    }
-
-	@RequestMapping("/home")
-    private String init(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         //Principalからログインユーザの情報を取得
-        String userName = auth.getName();
-        model.addAttribute("userName", userName);
-        
-        System.out.println(userName);
-        return "login/home";
-        
-        
+        String mailAddress = auth.getName();    
+		return "login/home";
 	}
 	
 }

@@ -9,11 +9,12 @@ import com.example.demo.login.domain.repository.UserDao;
 @Service
 public class UserService {
 	@Autowired
-	UserDao dao;
+	 UserDao dao;
 	
 	//insert用メソッド
 	public void insert(User user) {
 		//insert実行
 		dao.insertOne(user);	
 	}
+	
 }
