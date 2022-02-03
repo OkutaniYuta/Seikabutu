@@ -9,5 +9,7 @@ public interface UserDao {
 	
 	//Userテーブルにデータを1件insert
 	public void insertOne(User user) throws DataAccessException;
+
+	public User getOfficeName(String mailAddress) throws DataAccessException;
 		
 }

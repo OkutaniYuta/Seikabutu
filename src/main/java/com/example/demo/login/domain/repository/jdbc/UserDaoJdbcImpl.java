@@ -1,5 +1,7 @@
 package com.example.demo.login.domain.repository.jdbc;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -40,7 +42,26 @@ public class UserDaoJdbcImpl implements UserDao {
 				,user.getRole()
 				,user.getUserStatus()
 				,user.getReqestedAt());
+		
+		
 	}
+
+	@Override
+	public User getOfficeName(String mailAddress) throws DataAccessException {
+		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
+				+ " WHERE email = ?"
+				, mailAddress);
+		
+		//結果返却用の変数
+		User user = new User();
+		
+		//取得したデータを結果返却用の変数にセットしていく
+		user.setOfficeName((String)map.get("officeName"));
+		
+		return user;
+		
+	}
+	
 	
 	
 }

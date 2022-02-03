@@ -8,8 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.login.domain.model.User;
+import com.example.demo.login.domain.service.UserService;
 import com.example.demo.service.HomeService;
-
 
 
 @Controller
@@ -17,6 +18,9 @@ public class HomeController {
 	
 	@Autowired
 	HomeService homeService;
+	
+	@Autowired
+	UserService userService;
 	
 	//ホーム画面用のGET用メソッド
 	@GetMapping("/home")
@@ -28,7 +32,12 @@ public class HomeController {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         //Principalからログインユーザの情報を取得
-        String mailAddress = auth.getName();    
+        String mailAddress = auth.getName();
+        
+        String officeName = userService.getOfficeName(mailAddress).getOfficeName();
+        model.addAttribute("OfficeName", officeName);
+       
+        
 		return "login/home";
 	}
 	

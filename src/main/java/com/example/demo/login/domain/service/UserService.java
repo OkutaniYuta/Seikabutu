@@ -10,11 +10,17 @@ import com.example.demo.login.domain.repository.UserDao;
 public class UserService {
 	@Autowired
 	 UserDao dao;
-	
+		
 	//insert用メソッド
 	public void insert(User user) {
 		//insert実行
 		dao.insertOne(user);	
+	}
+	
+	public User getOfficeName(String mailAddress) {
+		
+		return dao.getOfficeName(mailAddress);
+		
 	}
 	
 }
