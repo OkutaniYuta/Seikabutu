@@ -21,6 +21,8 @@ public class HomeController {
 	
 	@Autowired
 	UserService userService;
+
+	public Object mailAddress;
 	
 	//ホーム画面用のGET用メソッド
 	@GetMapping("/home")
