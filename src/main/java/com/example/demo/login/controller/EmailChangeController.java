@@ -32,10 +32,13 @@ public class EmailChangeController {
 	
 	@GetMapping("/email_change")
 	public String getEmailChange(@ModelAttribute SignupForm form, Model model, HttpServletRequest request) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    //Principalからログインユーザの情報を取得
+	    String mailAddress = auth.getName();
 	    
-	    HttpSession session = request.getSession();
-	    int userId = (int)session.getAttribute("userId");
-	    
+		int userId = userService.selectUserId(mailAddress).getUserId();
+        
         String userEmail = userService.selectEmail(userId).getEmail();
 		
 		model.addAttribute("UserEmail", userEmail);
