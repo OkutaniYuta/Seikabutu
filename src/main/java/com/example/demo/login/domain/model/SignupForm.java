@@ -18,6 +18,11 @@ public class SignupForm {
     @NotBlank
     @Email
     private String email;
+    
+    //確認用
+    @NotBlank
+    @Email
+    private String comfirmEmail;
 
     //必須入力、長さ8から50桁まで、半角英数字のみ
     @NotBlank

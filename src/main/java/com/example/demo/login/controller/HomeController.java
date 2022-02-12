@@ -1,23 +1,15 @@
 package com.example.demo.login.controller;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.login.domain.model.User;
+import com.example.demo.login.domain.service.UserService;
 import com.example.demo.service.HomeService;
 
 
@@ -27,6 +19,11 @@ public class HomeController {
 	@Autowired
 	HomeService homeService;
 	
+	@Autowired
+	UserService userService;
+
+	public Object mailAddress;
+	
 	//ホーム画面用のGET用メソッド
 	@GetMapping("/home")
 	public String getHome(Model model) {
@@ -35,16 +32,15 @@ public class HomeController {
 		
 		model.addAttribute("HomeService", nowDate);
 		
-		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        //Principalからログインユーザの情報を取得
+        String mailAddress = auth.getName();
+        
+        String officeName = userService.getOfficeName(mailAddress).getOfficeName();
+        model.addAttribute("OfficeName", officeName);
+       
+        
 		return "login/home";
 	}
-	
-	
-	
-//	@PostMapping("/home")
-//	public String postLogout() {
-//		//ログイン画面にリダイレクト
-//		return "redirecr:/email_change";
-//	}
 	
 }

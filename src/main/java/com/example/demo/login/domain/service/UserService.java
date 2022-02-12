@@ -1,9 +1,6 @@
 package com.example.demo.login.domain.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.login.domain.model.User;
@@ -12,23 +9,38 @@ import com.example.demo.login.domain.repository.UserDao;
 @Service
 public class UserService {
 	@Autowired
-	UserDao dao;
-	
+	 UserDao dao;
+		
 	//insert用メソッド
 	public void insert(User user) {
 		//insert実行
-		dao.insertOne(user);
+		dao.insertOne(user);	
+	}
+	
+	//オフィスネームゲットメソッド
+	public User getOfficeName(String mailAddress) {
+		
+		return dao.getOfficeName(mailAddress);
 		
 	}
 	
-	//カウント用メソッド
-	public int count() {
-		return dao.count();
+	//メールアドレスUpdate用メソッド
+	public void emailUpdate(User user) {
+		
+		dao.emailUpdate(user);
+	}
+
+	//userId取得メソッド
+	public User selectUserId(String userId) {
+		
+		return dao.selectUserId(userId);
 	}
 	
-	//全件取得メソッド
-	public List<User> selectMany() {
-		//全件取得
-		return dao.selectMany();
+	//ログインユーザーのメールアドレス
+	public User selectEmail(int userId) {
+		
+		return dao.selectEmail(userId);
 	}
+	
+	
 }
