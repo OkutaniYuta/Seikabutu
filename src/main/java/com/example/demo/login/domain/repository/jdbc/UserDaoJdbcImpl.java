@@ -75,11 +75,8 @@ public class UserDaoJdbcImpl implements UserDao {
 	
 	//ログインユーザーのユーザーIDを取得
 	@Override
-	public User selectUserId(String userId) throws DataAccessException {
+	public User selectUserId(String mailAddress) throws DataAccessException {
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        //Principalからログインユーザの情報を取得
-        String mailAddress = auth.getName();
 		
 		Map<String, Object> map = jdbc.queryForMap("SELECT USERID FROM user"
 				+ " WHERE email = ?" , mailAddress);
@@ -93,20 +90,14 @@ public class UserDaoJdbcImpl implements UserDao {
 	
 	//ユーザーIDをキーにログインユーザーのメールアドレスを1件取得
 	@Override
-	public  User selectEmail(int email) throws DataAccessException {
+	public  User selectEmail(int userId) throws DataAccessException {
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        //Principalからログインユーザの情報を取得
-        String mailAddress = auth.getName();
-		
-		int userId = userService.selectUserId(mailAddress).getUserId();
-		
-		Map<String, Object> map = jdbc.queryForMap("SELECT EMAIL FROM user"
+		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user"
 				+ " WHERE USERID = ?" , userId);
 		
 		User user = new User();
 		
-		user.setUserId((int)map.get("userId"));
+		user.setEmail((String)map.get("email"));
 		
 		return user;
 	}
@@ -122,6 +113,7 @@ public class UserDaoJdbcImpl implements UserDao {
 		
 		//取得したデータを結果返却用の変数にセットしていく
 		user.setOfficeName((String)map.get("officeName"));
+		
 		
 		
 		return user;

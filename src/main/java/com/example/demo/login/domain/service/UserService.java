@@ -31,9 +31,9 @@ public class UserService {
 	}
 
 	//userId取得メソッド
-	public User selectUserId(String userId) {
+	public User selectUserId(String mailAddress) {
 		
-		return dao.selectUserId(userId);
+		return dao.selectUserId(mailAddress);
 	}
 	
 	//ログインユーザーのメールアドレス
