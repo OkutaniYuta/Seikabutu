@@ -1,5 +1,8 @@
 package com.example.demo.login.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,14 +31,11 @@ public class EmailChangeController {
 	
 	
 	@GetMapping("/email_change")
-	public String getEmailChange(@ModelAttribute SignupForm form, Model model) {
-		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    //Principalからログインユーザの情報を取得
-	    String mailAddress = auth.getName();
+	public String getEmailChange(@ModelAttribute SignupForm form, Model model, HttpServletRequest request) {
 	    
-		int userId = userService.selectUserId(mailAddress).getUserId();
-        
+	    HttpSession session = request.getSession();
+	    int userId = (int)session.getAttribute("userId");
+	    
         String userEmail = userService.selectEmail(userId).getEmail();
 		
 		model.addAttribute("UserEmail", userEmail);
