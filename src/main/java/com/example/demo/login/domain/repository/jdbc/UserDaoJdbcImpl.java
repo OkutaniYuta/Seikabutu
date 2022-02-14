@@ -25,14 +25,11 @@ public class UserDaoJdbcImpl implements UserDao {
 	PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	EmailChangeController email;
-	
-	@Autowired
 	UserService userService;
 	
 	//Userテーブルに1件insert
 	@Override
-	public void insertOne(User user) throws DataAccessException {
+	public void insertByUserDeteal(User user) throws DataAccessException {
 		
 		//パスワード暗号化
 		String password = passwordEncoder.encode(user.getPassword());
@@ -57,8 +54,7 @@ public class UserDaoJdbcImpl implements UserDao {
 	}
 	
 	//メールアドレス更新用メソッド
-	@Override
-	public void emailUpdate(User user)  throws DataAccessException {
+	public void updateByEmail(User user)  throws DataAccessException {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         //Principalからログインユーザの情報を取得
@@ -74,8 +70,7 @@ public class UserDaoJdbcImpl implements UserDao {
 	}
 	
 	//ログインユーザーのユーザーIDを取得
-	@Override
-	public User selectUserId(String mailAddress) throws DataAccessException {
+	public User selectByUserId(String mailAddress) throws DataAccessException {
 		
 		
 		Map<String, Object> map = jdbc.queryForMap("SELECT USERID FROM user"
@@ -90,7 +85,7 @@ public class UserDaoJdbcImpl implements UserDao {
 	
 	//ユーザーIDをキーにログインユーザーのメールアドレスを1件取得
 	@Override
-	public  User selectEmail(int userId) throws DataAccessException {
+	public  User selectByEmail(int userId) throws DataAccessException {
 		
 		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user"
 				+ " WHERE USERID = ?" , userId);
@@ -103,7 +98,7 @@ public class UserDaoJdbcImpl implements UserDao {
 	}
 
 	@Override
-	public User getOfficeName(String mailAddress) throws DataAccessException {
+	public User getByOfficeName(String mailAddress) throws DataAccessException {
 		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
 				+ " WHERE email = ?"
 				, mailAddress);

@@ -12,34 +12,34 @@ public class UserService {
 	 UserDao dao;
 		
 	//insert用メソッド
-	public void insert(User user) {
+	public void insertByUserDeteal(User user) {
 		//insert実行
-		dao.insertOne(user);	
+		dao.insertByUserDeteal(user);	
 	}
 	
 	//オフィスネームゲットメソッド
-	public User getOfficeName(String mailAddress) {
+	public User getByOfficeName(String mailAddress) {
 		
-		return dao.getOfficeName(mailAddress);
+		return dao.getByOfficeName(mailAddress);
 		
 	}
 	
 	//メールアドレスUpdate用メソッド
-	public void emailUpdate(User user) {
+	public void updateByEmail(User user) {
 		
-		dao.emailUpdate(user);
+		dao.updateByEmail(user);
 	}
 
 	//userId取得メソッド
-	public User selectUserId(String userId) {
+	public User selectByUserId(String userId) {
 		
-		return dao.selectUserId(userId);
+		return dao.selectByUserId(userId);
 	}
 	
 	//ログインユーザーのメールアドレス
 	public User selectEmail(int userId) {
 		
-		return dao.selectEmail(userId);
+		return dao.selectByEmail(userId);
 	}
 	
 	

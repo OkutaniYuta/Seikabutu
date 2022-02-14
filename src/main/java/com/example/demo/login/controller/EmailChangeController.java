@@ -1,7 +1,6 @@
 package com.example.demo.login.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -9,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +18,7 @@ import com.example.demo.login.domain.service.UserService;
 
 
 @Controller
-public class EmailChangeController {
+public class EmailChangeController<UserEntity> {
 	
 	@Autowired
 	UserService userService;
@@ -37,7 +35,7 @@ public class EmailChangeController {
 	    //Principalからログインユーザの情報を取得
 	    String mailAddress = auth.getName();
 	    
-		int userId = userService.selectUserId(mailAddress).getUserId();
+		int userId = userService.selectByUserId(mailAddress).getUserId();
         
         String userEmail = userService.selectEmail(userId).getEmail();
 		
@@ -59,11 +57,23 @@ public class EmailChangeController {
     	user.setComfirmEmail(form.getComfirmEmail());
     	
     	if(user.getEmail().equals(user.getComfirmEmail())) {
-    		userService.emailUpdate(user);
+    		userService.updateByEmail(user);
     	}
     	
     	return "redirect:/email_change";
     	
 	}
+	
+//	   private void updateSecurityContext(UserEntity userEntity) {
+//	        UserDetails user = User.builder()
+//	                .username(userEntity.getUsername())
+//	                .password(userEntity.getPassword())
+//	                .roles(userMapper.findRolesByUserId(userEntity.getId()).toArray(String[]::new))
+//	                .build();
+//	        SecurityContext context = SecurityContextHolder.getContext();
+//	        context.setAuthentication(new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities()));
+//
+//	        logger.info("security context updated to {}", user);
+//	    }
 	
 }

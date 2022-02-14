@@ -6,9 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.login.domain.model.User;
 import com.example.demo.login.domain.service.UserService;
 import com.example.demo.service.HomeService;
 
@@ -36,7 +34,7 @@ public class HomeController {
         //Principalからログインユーザの情報を取得
         String mailAddress = auth.getName();
         
-        String officeName = userService.getOfficeName(mailAddress).getOfficeName();
+        String officeName = userService.getByOfficeName(mailAddress).getOfficeName();
         model.addAttribute("OfficeName", officeName);
        
         
