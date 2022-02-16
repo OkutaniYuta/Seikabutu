@@ -3,8 +3,12 @@ package com.example.demo.login.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,51 +33,45 @@ public class EmailChangeController<UserEntity> {
 	
 	
 	@GetMapping("/email_change")
-	public String getEmailChange(@ModelAttribute SignupForm form, Model model, HttpServletRequest request) {
+	public String getEmailChange(@ModelAttribute SignupForm form, Model model, HttpServletRequest request, @AuthenticationPrincipal UserDetails auth) {
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    //Principalからログインユーザの情報を取得
-	    String mailAddress = auth.getName();
+	    String mailAddress = auth.getUsername();
 	    
-		int userId = userService.selectByUserId(mailAddress).getUserId();
-        
-        String userEmail = userService.selectEmail(userId).getEmail();
 		
-		model.addAttribute("UserEmail", userEmail);
+		
+		model.addAttribute("UserEmail", mailAddress);
 		
 		return "login/email_change";
 		
 	}
 	
 	@PostMapping("/email_change")
-    public String postEmailchange(@ModelAttribute SignupForm form, BindingResult bindingResult,
-    		Model model) {
-    	
-    	
-    	
-    	User user = new User();
-    	
-    	user.setEmail(form.getEmail());
-    	user.setComfirmEmail(form.getComfirmEmail());
-    	
-    	if(user.getEmail().equals(user.getComfirmEmail())) {
-    		userService.updateByEmail(user);
+	public String postEmailchange(@ModelAttribute SignupForm form, BindingResult bindingResult,
+    		Model model, @AuthenticationPrincipal UserDetails auth) {
+    	String originalEmail = auth.getUsername();
+    	String newEmail = form.getEmail();
+    	String comfirmEmail = form.getComfirmEmail();
+		
+    	if(newEmail.equals(comfirmEmail)) {
+    		userService.updateEmail(newEmail, originalEmail);
+    		org.springframework.security.core.userdetails.User updated = new org.springframework.security.core.userdetails.User(
+					newEmail,
+					"dummy",
+					auth.getAuthorities());
+			updated.eraseCredentials();
+			SecurityContextHolder.getContext().setAuthentication(
+					new UsernamePasswordAuthenticationToken(updated,
+															null,
+															updated.getAuthorities()));
     	}
+    	
+    	
     	
     	return "redirect:/email_change";
     	
 	}
 	
-//	   private void updateSecurityContext(UserEntity userEntity) {
-//	        UserDetails user = User.builder()
-//	                .username(userEntity.getUsername())
-//	                .password(userEntity.getPassword())
-//	                .roles(userMapper.findRolesByUserId(userEntity.getId()).toArray(String[]::new))
-//	                .build();
-//	        SecurityContext context = SecurityContextHolder.getContext();
-//	        context.setAuthentication(new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities()));
-//
-//	        logger.info("security context updated to {}", user);
-//	    }
+	  
 	
 }

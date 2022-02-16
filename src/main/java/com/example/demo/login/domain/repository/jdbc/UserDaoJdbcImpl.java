@@ -29,7 +29,7 @@ public class UserDaoJdbcImpl implements UserDao {
 	
 	//Userテーブルに1件insert
 	@Override
-	public void insertByUserDeteal(User user) throws DataAccessException {
+	public void insert(User user) throws DataAccessException {
 		
 		//パスワード暗号化
 		String password = passwordEncoder.encode(user.getPassword());
@@ -54,47 +54,14 @@ public class UserDaoJdbcImpl implements UserDao {
 	}
 	
 	//メールアドレス更新用メソッド
-	public void updateByEmail(User user)  throws DataAccessException {
-		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        //Principalからログインユーザの情報を取得
-        String mailAddress = auth.getName();
-		
+	public void updateEmail(String newEmail, String originalEmail)  throws DataAccessException {
 		
 		jdbc.update("UPDATE user"
 				+ " SET"
 				+ " email = ?"
 				+ " WHERE email = ?"
-				, user.getEmail()
-				, mailAddress);
-	}
-	
-	//ログインユーザーのユーザーIDを取得
-	public User selectByUserId(String mailAddress) throws DataAccessException {
-		
-		
-		Map<String, Object> map = jdbc.queryForMap("SELECT USERID FROM user"
-				+ " WHERE email = ?" , mailAddress);
-		
-		User user = new User();
-		
-		user.setUserId((int)map.get("userId"));
-		
-		return user;
-	}
-	
-	//ユーザーIDをキーにログインユーザーのメールアドレスを1件取得
-	@Override
-	public  User selectByEmail(int userId) throws DataAccessException {
-		
-		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user"
-				+ " WHERE USERID = ?" , userId);
-		
-		User user = new User();
-		
-		user.setEmail((String)map.get("email"));
-		
-		return user;
+				, newEmail
+				, originalEmail);
 	}
 
 	@Override

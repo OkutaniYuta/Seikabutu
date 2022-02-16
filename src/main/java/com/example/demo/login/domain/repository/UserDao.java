@@ -8,17 +8,10 @@ public interface UserDao {
 	//DataAccessException
 	
 	//Userテーブルにデータを1件insert
-	public void insertByUserDeteal(User user) throws DataAccessException;
+	public void insert(User user) throws DataAccessException;
 	
-	public void updateByEmail(User user) throws DataAccessException;
+	public void updateEmail(String newEmail, String originalEmail) throws DataAccessException;
 
 	public User getByOfficeName(String mailAddress) throws DataAccessException;
-
-	public User selectByUserId(String userId) throws DataAccessException;
-
-	public User selectByEmail(int userId) throws DataAccessException;
-
-	
-	
 		
 }

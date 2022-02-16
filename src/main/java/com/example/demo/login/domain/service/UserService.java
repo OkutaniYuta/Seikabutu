@@ -12,9 +12,9 @@ public class UserService {
 	 UserDao dao;
 		
 	//insert用メソッド
-	public void insertByUserDeteal(User user) {
+	public void insert(User user) {
 		//insert実行
-		dao.insertByUserDeteal(user);	
+		dao.insert(user);	
 	}
 	
 	//オフィスネームゲットメソッド
@@ -25,21 +25,9 @@ public class UserService {
 	}
 	
 	//メールアドレスUpdate用メソッド
-	public void updateByEmail(User user) {
+	public void updateEmail(String newEmail, String originalEmail) {
 		
-		dao.updateByEmail(user);
-	}
-
-	//userId取得メソッド
-	public User selectByUserId(String userId) {
-		
-		return dao.selectByUserId(userId);
-	}
-	
-	//ログインユーザーのメールアドレス
-	public User selectEmail(int userId) {
-		
-		return dao.selectByEmail(userId);
+		dao.updateEmail(newEmail, originalEmail);
 	}
 	
 	

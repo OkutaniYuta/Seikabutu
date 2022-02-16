@@ -61,7 +61,7 @@ public class SignupController {
 		user.setReqestedAt(nowDate);
 		
 		//ユーザー登録処理
-		userService.insertByUserDeteal(user);
+		userService.insert(user);
 		
 		
     	
