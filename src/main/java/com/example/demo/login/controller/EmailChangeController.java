@@ -47,13 +47,12 @@ public class EmailChangeController<UserEntity> {
 	}
 	
 	@PostMapping("/email_change")
-	public String postEmailchange(@ModelAttribute SignupForm form, BindingResult bindingResult,
-    		Model model, @AuthenticationPrincipal UserDetails auth) {
+	public String postEmailchange(@ModelAttribute SignupForm form, Model model, @AuthenticationPrincipal UserDetails auth) {
     	String originalEmail = auth.getUsername();
     	String newEmail = form.getEmail();
-    	String comfirmEmail = form.getComfirmEmail();
+    	String confirmEmail = form.getConfirmEmail();
 		
-    	if(newEmail.equals(comfirmEmail)) {
+    	if(newEmail.equals(confirmEmail)) {
     		userService.updateEmail(newEmail, originalEmail);
     		org.springframework.security.core.userdetails.User updated = new org.springframework.security.core.userdetails.User(
 					newEmail,

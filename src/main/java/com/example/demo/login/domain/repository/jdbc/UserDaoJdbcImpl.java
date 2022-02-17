@@ -5,12 +5,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.login.controller.EmailChangeController;
 import com.example.demo.login.domain.model.User;
 import com.example.demo.login.domain.repository.UserDao;
 import com.example.demo.login.domain.service.UserService;
@@ -62,6 +59,17 @@ public class UserDaoJdbcImpl implements UserDao {
 				+ " WHERE email = ?"
 				, newEmail
 				, originalEmail);
+	}
+	
+	//パスワード更新用メソッド
+	public void updatePassword(String newPassword, String originalPassword)  throws DataAccessException {
+		
+		jdbc.update("UPDATE user"
+				+ " SET"
+				+ " password = ?"
+				+ " WHERE password = ?"
+				, newPassword
+				, originalPassword);
 	}
 
 	@Override

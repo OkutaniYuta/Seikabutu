@@ -13,5 +13,7 @@ public interface UserDao {
 	public void updateEmail(String newEmail, String originalEmail) throws DataAccessException;
 
 	public User getByOfficeName(String mailAddress) throws DataAccessException;
+	
+	public void updatePassword(String newPassword, String originalPassword) throws DataAccessException;
 		
 }

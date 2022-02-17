@@ -30,5 +30,10 @@ public class UserService {
 		dao.updateEmail(newEmail, originalEmail);
 	}
 	
+	//パスワード更新用メソッド
+	public void updatePassword(String newPassword, String originalPassword) {
+		dao.updatePassword(newPassword, originalPassword); 
+	}
+	
 	
 }

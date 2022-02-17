@@ -27,9 +27,6 @@ public class User {
 	private int endTime;
 	private Date startDate;
 	private String officeName;
-	public static Object builder() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+	
 	
 }
