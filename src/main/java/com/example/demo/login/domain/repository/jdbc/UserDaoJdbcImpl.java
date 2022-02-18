@@ -62,14 +62,14 @@ public class UserDaoJdbcImpl implements UserDao {
 	}
 	
 	//パスワード更新用メソッド
-	public void updatePassword(String newPassword, String originalPassword)  throws DataAccessException {
+	public void updatePassword(String newPassword, int userId)  throws DataAccessException {
 		
 		jdbc.update("UPDATE user"
 				+ " SET"
 				+ " password = ?"
-				+ " WHERE password = ?"
+				+ " WHERE userId = ?"
 				, newPassword
-				, originalPassword);
+				, userId);
 	}
 
 	@Override
@@ -89,6 +89,9 @@ public class UserDaoJdbcImpl implements UserDao {
 		return user;
 		
 	}
+	
+	//ユーザーIDとパスワードを取得
+	
 	
 	
 	

@@ -31,8 +31,8 @@ public class UserService {
 	}
 	
 	//パスワード更新用メソッド
-	public void updatePassword(String newPassword, String originalPassword) {
-		dao.updatePassword(newPassword, originalPassword); 
+	public void updatePassword(String newPassword, int userId) {
+		dao.updatePassword(newPassword, userId); 
 	}
 	
 	

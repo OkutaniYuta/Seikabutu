@@ -40,6 +40,8 @@ public class SignupForm {
     private int userStatus;
     private int requestedAt;
     private int role;
+    
+    private String nowPassword;
 
 
 
