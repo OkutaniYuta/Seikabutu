@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.login.domain.model.EmailChangeForm;
 import com.example.demo.login.domain.model.SignupForm;
 import com.example.demo.login.domain.model.User;
 import com.example.demo.login.domain.service.UserService;
@@ -33,7 +34,7 @@ public class EmailChangeController<UserEntity> {
 	
 	
 	@GetMapping("/email_change")
-	public String getEmailChange(@ModelAttribute SignupForm form, Model model, HttpServletRequest request, @AuthenticationPrincipal UserDetails auth) {
+	public String getEmailChange(@ModelAttribute SignupForm form, Model model, @AuthenticationPrincipal UserDetails auth) {
 		
 	    //Principalからログインユーザの情報を取得
 	    String mailAddress = auth.getUsername();

@@ -43,12 +43,12 @@ public class PasswordChangeController {
 //    		return getPasswordChange(form, model);
 //    	}
 		
-		String nowPassword = form.getNowPassword();//現在のパスワード入力
-		String newPassword = form.getPassword();//新しいパスワード入力
-		String confirmPassword = form.getConfirmPassword();//新しいパスワードの確認
-		User user = ;// ログインユーザーのメールアドレスをキーにUserテーブルから１行取得する。
-		int userId = ;// userからuserIdをゲットする
-		String originalEncodedPassword = ; // userからpassword(暗号化されている)をゲットする
+		//String nowPassword = form.getNowPassword();//現在のパスワード入力
+		//String newPassword = form.getPassword();//新しいパスワード入力
+		//String confirmPassword = form.getConfirmPassword();//新しいパスワードの確認
+		//User user = ;// ログインユーザーのメールアドレスをキーにUserテーブルから１行取得する。
+		//int userId = ;// userからuserIdをゲットする
+		//String originalEncodedPassword = ; // userからpassword(暗号化されている)をゲットする
 		//メールアドレスにユニークキー(DB)をつける
 		//現在ログインしているユーザーのパスワードと画面の「現在のパスワード入力」と一致していたら、
 		//「新しいパスワード入力」と「新しいパスワードの確認」を比較して、同じなら、アップデートメソッドの引数に「新しいパスワード入力」とログインユーザーのパスワードを渡す
@@ -56,9 +56,9 @@ public class PasswordChangeController {
 		// 以下を満たす場合,DBを更新する
 		//    * 現在ログインしているユーザーのパスワードと画面の「現在のパスワード入力」が等しい
 		//    * 「新しいパスワード入力」と「新しいパスワードの確認」が等しい
-		if (passwordEncoder.matches(nowPassword, originalEncodedPassword) && newPassword.equals(confirmPassword)) {
-			userService.updatePassword(newPassword, userId);
-		}
+		//if (passwordEncoder.matches(nowPassword, originalEncodedPassword) && newPassword.equals(confirmPassword)) {
+		//	userService.updatePassword(newPassword, userId);
+		//}
 		// パスワード変更画面にリダイレクトする
 		return "redirect:/password_change";
 		/*
