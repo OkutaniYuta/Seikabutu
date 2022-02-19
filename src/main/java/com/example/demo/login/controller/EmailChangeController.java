@@ -34,7 +34,7 @@ public class EmailChangeController<UserEntity> {
 	
 	
 	@GetMapping("/email_change")
-	public String getEmailChange(@ModelAttribute SignupForm form, Model model, @AuthenticationPrincipal UserDetails auth) {
+	public String getEmailChange(@ModelAttribute EmailChangeForm form, Model model, @AuthenticationPrincipal UserDetails auth) {
 		
 	    //Principalからログインユーザの情報を取得
 	    String mailAddress = auth.getUsername();
@@ -48,7 +48,7 @@ public class EmailChangeController<UserEntity> {
 	}
 	
 	@PostMapping("/email_change")
-	public String postEmailchange(@ModelAttribute SignupForm form, Model model, @AuthenticationPrincipal UserDetails auth) {
+	public String postEmailchange(@ModelAttribute EmailChangeForm form, Model model, @AuthenticationPrincipal UserDetails auth) {
     	String originalEmail = auth.getUsername();
     	String newEmail = form.getEmail();
     	String confirmEmail = form.getConfirmEmail();
