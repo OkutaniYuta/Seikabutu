@@ -9,7 +9,6 @@ import lombok.Data;
 
 public class EmailChangeForm {
 	
-	//確認用
     @NotBlank
     @Email
     private String confirmEmail;
@@ -17,6 +16,8 @@ public class EmailChangeForm {
     @NotBlank
     @Email
     private String email;
+    
+    
 	
 
 }

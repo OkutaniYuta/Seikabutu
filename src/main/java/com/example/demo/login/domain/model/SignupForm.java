@@ -18,29 +18,16 @@ public class SignupForm {
     @NotBlank
     @Email
     private String email;
-    
-    
-    
 
     //必須入力、長さ8から50桁まで、半角英数字のみ
     @NotBlank
     @Length(min = 8, max = 100)
     @Pattern(regexp = "^[a-zA-Z0-9]+$")
     private String password; // パスワード
-
-    //パスワード確認
-    @NotBlank
-    @Length(min = 8, max = 100)
-    @Pattern(regexp = "^[a-zA-Z0-9]+$")
-    private String confirmPassword; // パスワード
     
     private int userId;
     private int userStatus;
     private int requestedAt;
     private int role;
     
-    private String nowPassword;
-
-
-
 }

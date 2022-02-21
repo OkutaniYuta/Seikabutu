@@ -8,7 +8,7 @@
 CREATE TABLE IF NOT EXISTS user (
     userId INTEGER IDENTITY(1,1) PRIMARY KEY,
     userName VARCHAR(100),
-    email VARCHAR(50),
+    email VARCHAR(50) UNIQUE,
     password VARCHAR(100),
     role INTEGER(1),
     userStatus INTEGER(1),

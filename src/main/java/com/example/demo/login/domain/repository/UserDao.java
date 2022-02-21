@@ -14,6 +14,6 @@ public interface UserDao {
 
 	public User getByOfficeName(String mailAddress) throws DataAccessException;
 	
-	public void updatePassword(String newPassword, int userId) throws DataAccessException;
+	public void updatePassword(String newPassword, String mailAddress) throws DataAccessException;
 		
 }

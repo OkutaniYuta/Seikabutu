@@ -62,14 +62,19 @@ public class UserDaoJdbcImpl implements UserDao {
 	}
 	
 	//パスワード更新用メソッド
-	public void updatePassword(String newPassword, int userId)  throws DataAccessException {
+	public void updatePassword(String newPassword, String mailAddress)  throws DataAccessException {
+		
+		User user = new User();
+		
+		//パスワード暗号化
+		String newPassword1 = passwordEncoder.encode(newPassword);
 		
 		jdbc.update("UPDATE user"
 				+ " SET"
 				+ " password = ?"
-				+ " WHERE userId = ?"
-				, newPassword
-				, userId);
+				+ " WHERE email = ?"
+				, newPassword1
+				, mailAddress);
 	}
 
 	@Override
