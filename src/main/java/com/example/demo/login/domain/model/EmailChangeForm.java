@@ -16,8 +16,5 @@ public class EmailChangeForm {
     @NotBlank
     @Email
     private String email;
-    
-    
-	
 
 }

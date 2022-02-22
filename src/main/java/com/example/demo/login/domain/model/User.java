@@ -18,7 +18,6 @@ public class User {
 	private int userStatus;
 	private String reqestedAt;
 	
-	
 	//contractテーブル
 	private int contractId;
 	private int contractTime;
@@ -27,6 +26,5 @@ public class User {
 	private int endTime;
 	private Date startDate;
 	private String officeName;
-	
 	
 }

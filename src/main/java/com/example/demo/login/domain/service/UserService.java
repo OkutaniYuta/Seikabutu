@@ -1,6 +1,7 @@
 package com.example.demo.login.domain.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.login.domain.model.User;
@@ -9,31 +10,39 @@ import com.example.demo.login.domain.repository.UserDao;
 @Service
 public class UserService {
 	@Autowired
-	 UserDao dao;
-		
+	UserDao dao;
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
 	//insert用メソッド
 	public void insert(User user) {
 		//insert実行
 		dao.insert(user);	
 	}
-	
+
 	//オフィスネームゲットメソッド
 	public User getByOfficeName(String mailAddress) {
-		
+
 		return dao.getByOfficeName(mailAddress);
-		
+
 	}
-	
+
 	//メールアドレスUpdate用メソッド
 	public void updateEmail(String newEmail, String originalEmail) {
-		
+
 		dao.updateEmail(newEmail, originalEmail);
+
 	}
-	
+
 	//パスワード更新用メソッド
 	public void updatePassword(String newPassword, String mailAddress) {
-		dao.updatePassword(newPassword, mailAddress); 
+
+		//パスワード暗号化
+		String newPassword1 = passwordEncoder.encode(newPassword);
+
+		dao.updatePassword(newPassword1, mailAddress); 
 	}
-	
-	
+
+
 }
