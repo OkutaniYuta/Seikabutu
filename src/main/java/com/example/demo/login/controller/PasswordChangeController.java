@@ -1,9 +1,7 @@
 package com.example.demo.login.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.login.domain.model.PasswordChangeForm;
+import com.example.demo.login.domain.service.AuthenticationService;
 import com.example.demo.login.domain.service.UserService;
 
 @Controller
@@ -25,6 +24,9 @@ public class PasswordChangeController {
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	AuthenticationService authenticationService;
 
 	@GetMapping("/password_change")
 	public String getPasswordChange(@ModelAttribute PasswordChangeForm form, Model model) {
@@ -43,40 +45,17 @@ public class PasswordChangeController {
 		//    		return getPasswordChange(form, model);
 		//    	}
 
-		//パスワード変更用フォームの作成と、SignupFormの改修。ModelAttributeのform変更
-		//htmlのフィールド確認
-
-		String nowPassword = form.getNowPassword();//現在のパスワード入力
-		String newPassword = form.getNewPassword();//新しいパスワード入力
-		String confirmPassword = form.getConfirmPassword();//新しいパスワードの確認
-
-		//User user = ;// ログインユーザーのメールアドレスをキーにUserテーブルから全て取得する。
-		//int userId = ;// userからuserIdをゲットする
-
-		String mailAddress = auth.getUsername();
-		String originalEncodedPassword = auth.getPassword(); // userからpassword(暗号化されている)をゲットする
-		//メールアドレスにユニークキー(DB)をつける
-		//現在ログインしているユーザーのパスワードと画面の「現在のパスワード入力」と一致していたら、
-		//「新しいパスワード入力」と「新しいパスワードの確認」を比較して、同じなら、アップデートメソッドの引数に「新しいパスワード入力」とログインユーザーのパスワードを渡す
-
-		// 以下を満たす場合,DBを更新する
-		//    * 現在ログインしているユーザーのパスワードと画面の「現在のパスワード入力」が等しい
-		//    * 「新しいパスワード入力」と「新しいパスワードの確認」が等しい
-		if (passwordEncoder.matches(nowPassword, originalEncodedPassword) && newPassword.equals(confirmPassword)) {
-			userService.updatePassword(newPassword, mailAddress);
-
-			org.springframework.security.core.userdetails.User updated = new org.springframework.security.core.userdetails.User(
-					auth.getUsername(),
-					auth.getPassword(),
-					auth.getAuthorities());
-			SecurityContextHolder.getContext().setAuthentication(
-					new UsernamePasswordAuthenticationToken(updated,
-							updated.getPassword(),
-							updated.getAuthorities()));
-		}
+		String nowPassword = form.getNowPassword(); // 「現在のパスワード入力」
+		String newPassword = form.getNewPassword(); // 「新しいパスワード入力」
+		String newEncodedPassword = passwordEncoder.encode(newPassword); // 「新しいパスワード入力」を暗号化
+		String confirmPassword = form.getConfirmPassword(); // 「新しいパスワードの確認」
+		String mailAddress = auth.getUsername(); // ログインユーザーのmailaddress
+		String originalEncodedPassword = auth.getPassword(); // 
+		
+		userService.updatePassword(nowPassword, originalEncodedPassword, newPassword, confirmPassword, mailAddress, newEncodedPassword, auth);
+		
 		// パスワード変更画面にリダイレクトする
 		return "redirect:/password_change";
 
 	}
-
 }

@@ -1,9 +1,7 @@
 package com.example.demo.login.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.login.domain.model.EmailChangeForm;
+import com.example.demo.login.domain.service.AuthenticationService;
 import com.example.demo.login.domain.service.UserService;
 
 @Controller
@@ -19,10 +18,12 @@ public class EmailChangeController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	AuthenticationService authenticationService;
 
 	@GetMapping("/email_change")
 	public String getEmailChange(@ModelAttribute EmailChangeForm form, Model model, @AuthenticationPrincipal UserDetails auth) {
-
 		//Principalからログインユーザの情報を取得
 		String mailAddress = auth.getUsername();
 
@@ -38,22 +39,9 @@ public class EmailChangeController {
 		String newEmail = form.getEmail();
 		String confirmEmail = form.getConfirmEmail();
 
-		if(newEmail.equals(confirmEmail)) {
-			userService.updateEmail(newEmail, originalEmail);
-			org.springframework.security.core.userdetails.User updated = new org.springframework.security.core.userdetails.User(
-					newEmail,
-					auth.getPassword(),
-					auth.getAuthorities());
-			SecurityContextHolder.getContext().setAuthentication(
-					new UsernamePasswordAuthenticationToken(updated,
-							updated.getPassword(),
-							updated.getAuthorities()));
-		}
+		userService.updateEmail(newEmail, originalEmail, confirmEmail, auth);
 
 		return "redirect:/email_change";
 
 	}
-
-
-
 }

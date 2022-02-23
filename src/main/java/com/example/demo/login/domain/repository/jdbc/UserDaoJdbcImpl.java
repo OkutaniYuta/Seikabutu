@@ -25,12 +25,11 @@ public class UserDaoJdbcImpl implements UserDao {
 	UserService userService;
 
 	// Userテーブルに1件insert
-	// ここのパスワードの暗号化はサービスで行う?
 	@Override
 	public void insert(User user) throws DataAccessException {
 
 		//パスワード暗号化
-		String password = passwordEncoder.encode(user.getPassword());
+		String password = passwordEncoder.encode(user.getPassword()); // ここのパスワードの暗号化はサービスで行う?
 
 		//1件登録
 		jdbc.update("INSERT INTO user("
@@ -62,18 +61,20 @@ public class UserDaoJdbcImpl implements UserDao {
 	}
 
 	// パスワード更新用メソッド
-	public void updatePassword(String newPassword1, String mailAddress)  throws DataAccessException {
+	public void updatePassword(String newPassword, String mailAddress)  throws DataAccessException {
 
 		jdbc.update("UPDATE user"
 				+ " SET"
 				+ " password = ?"
 				+ " WHERE email = ?"
-				, newPassword1
+				, newPassword
 				, mailAddress);
 	}
 
+	//このメソッド改修必要(2022/2/23)
 	@Override
 	public User getByOfficeName(String mailAddress) throws DataAccessException {
+		
 		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
 				+ " WHERE email = ?"
 				, mailAddress);
