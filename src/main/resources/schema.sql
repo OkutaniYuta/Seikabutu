@@ -23,5 +23,6 @@ CREATE TABLE IF NOT EXISTS contract (
     breakTime TIME(8),
     endTime TIME(8),
     startDate DATE(10),
+    endDate DATE(10),
     officeName VARCHAR(100),
 );

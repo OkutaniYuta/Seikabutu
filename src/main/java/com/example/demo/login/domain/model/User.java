@@ -25,6 +25,7 @@ public class User {
 	private int brakeTime;
 	private int endTime;
 	private Date startDate;
+	private Date endDate;
 	private String officeName;
 	
 }

@@ -12,6 +12,8 @@ public interface UserDao {
 
 	public User getByOfficeName(String mailAddress) throws DataAccessException;
 	
+	public User getByContrac(String mailAddress) throws DataAccessException;
+	
 	public void updatePassword(String newPassword, String mailAddress) throws DataAccessException;
 	
 }

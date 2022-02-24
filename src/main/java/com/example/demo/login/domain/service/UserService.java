@@ -47,7 +47,11 @@ public class UserService {
 		if (passwordEncoder.matches(nowPassword, originalEncodedPassword) && newPassword.equals(confirmPassword)) {
 			dao.updatePassword(newEncodedPassword, mailAddress); 
 			authenticationService.change(auth.getUsername(), newEncodedPassword, auth.getAuthorities());
-		}
-		
+		}		
+	}
+	
+	//コントラクトテーブルの情報を取得する
+	public User getByContract(String mailAddress) {
+		return dao.getByContrac(mailAddress);
 	}
 }

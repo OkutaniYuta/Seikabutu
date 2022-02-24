@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.login.domain.model.PasswordChangeForm;
-import com.example.demo.login.domain.service.AuthenticationService;
 import com.example.demo.login.domain.service.UserService;
 
 @Controller
@@ -25,9 +24,6 @@ public class PasswordChangeController {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
-	@Autowired
-	AuthenticationService authenticationService;
-
 	@GetMapping("/password_change")
 	public String getPasswordChange(@ModelAttribute PasswordChangeForm form, Model model) {
 

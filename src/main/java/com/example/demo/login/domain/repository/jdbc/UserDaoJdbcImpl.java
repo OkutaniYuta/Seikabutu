@@ -1,5 +1,6 @@
 package com.example.demo.login.domain.repository.jdbc;
 
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +72,7 @@ public class UserDaoJdbcImpl implements UserDao {
 				, mailAddress);
 	}
 
-	//このメソッド改修必要(2022/2/23)
+	//このメソッド改修必要?(2022/2/23)
 	@Override
 	public User getByOfficeName(String mailAddress) throws DataAccessException {
 		
@@ -84,6 +85,24 @@ public class UserDaoJdbcImpl implements UserDao {
 
 		// 取得したデータを結果返却用の変数にセットしていく
 		user.setOfficeName((String)map.get("officeName"));
+
+		return user;
+
+	}
+	
+	@Override
+	public User getByContrac(String mailAddress) throws DataAccessException {
+		
+		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
+				+ " WHERE email = ?"
+				, mailAddress);
+
+		// 結果返却用の変数
+		User user = new User();
+
+		// 取得したデータを結果返却用の変数にセットしていく
+		user.setStartDate((Date)map.get("startDate"));
+		user.setEndDate((Date)map.get("endDate"));
 
 		return user;
 

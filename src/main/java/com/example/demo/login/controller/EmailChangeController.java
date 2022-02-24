@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.login.domain.model.EmailChangeForm;
-import com.example.demo.login.domain.service.AuthenticationService;
 import com.example.demo.login.domain.service.UserService;
 
 @Controller
@@ -19,9 +18,6 @@ public class EmailChangeController {
 	@Autowired
 	UserService userService;
 	
-	@Autowired
-	AuthenticationService authenticationService;
-
 	@GetMapping("/email_change")
 	public String getEmailChange(@ModelAttribute EmailChangeForm form, Model model, @AuthenticationPrincipal UserDetails auth) {
 		//Principalからログインユーザの情報を取得
@@ -34,7 +30,7 @@ public class EmailChangeController {
 	}
 
 	@PostMapping("/email_change")
-	public String postEmailchange(@ModelAttribute EmailChangeForm form, Model model, @AuthenticationPrincipal UserDetails auth) {
+	public String postEmailChange(@ModelAttribute EmailChangeForm form, Model model, @AuthenticationPrincipal UserDetails auth) {
 		String originalEmail = auth.getUsername();
 		String newEmail = form.getEmail();
 		String confirmEmail = form.getConfirmEmail();
