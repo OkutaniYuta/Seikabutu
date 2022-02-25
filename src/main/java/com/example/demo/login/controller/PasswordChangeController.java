@@ -26,32 +26,19 @@ public class PasswordChangeController {
 	
 	@GetMapping("/password_change")
 	public String getPasswordChange(@ModelAttribute PasswordChangeForm form, Model model) {
-
 		return "login/password_change";
-
 	}
 
 	@PostMapping("/password_change")
 	public String postPasswordChange(@ModelAttribute @Validated PasswordChangeForm form, BindingResult bindingResult,
 			Model model, @AuthenticationPrincipal UserDetails auth) {
-
 		//入力チェックに引っかかった場合、画面にエラーメッセージを表示する
-		//    	if(bindingResult.hasErrors()) {
-		//    		//GETリクエスト用のメソッドを呼び出して、ユーザー画面に戻ります
-		//    		return getPasswordChange(form, model);
-		//    	}
-
-		String nowPassword = form.getNowPassword(); // 「現在のパスワード入力」
-		String newPassword = form.getNewPassword(); // 「新しいパスワード入力」
-		String newEncodedPassword = passwordEncoder.encode(newPassword); // 「新しいパスワード入力」を暗号化
-		String confirmPassword = form.getConfirmPassword(); // 「新しいパスワードの確認」
-		String mailAddress = auth.getUsername(); // ログインユーザーのmailaddress
-		String originalEncodedPassword = auth.getPassword(); // 
-		
-		userService.updatePassword(nowPassword, originalEncodedPassword, newPassword, confirmPassword, mailAddress, newEncodedPassword, auth);
-		
+		if(bindingResult.hasErrors()) {
+			return "login/password_change";
+		}
+		String newEncodedPassword = passwordEncoder.encode(form.getNewPassword()); // 「新しいパスワード入力」を暗号化
+		userService.updatePassword(newEncodedPassword, auth);
 		// パスワード変更画面にリダイレクトする
 		return "redirect:/password_change";
-
 	}
 }

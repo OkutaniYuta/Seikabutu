@@ -31,23 +31,16 @@ public class UserService {
 	}
 
 	//メールアドレスUpdate用メソッド
-	public void updateEmail(String newEmail, String originalEmail, String confirmEmail, UserDetails auth) {
-		if(newEmail.equals(confirmEmail)) {
-			dao.updateEmail(newEmail, originalEmail);
-			authenticationService.change(newEmail, auth.getPassword(), auth.getAuthorities());
-		}
+	public void updateEmail(String newEmail, String originalEmail, UserDetails auth) {
+		dao.updateEmail(newEmail, originalEmail);
+		authenticationService.changeEmail(newEmail, auth);
 	}
 
 	//パスワード更新用メソッド
-	public void updatePassword(String nowPassword, String originalEncodedPassword, String newPassword, 
-				String confirmPassword, String mailAddress, String newEncodedPassword,UserDetails auth) {
-		// 以下を満たす場合,DBを更新,セッションを更新
-				//    * 現在ログインしているユーザーのパスワードと画面の「現在のパスワード入力」が等しい
-				//    * 「新しいパスワード入力」と「新しいパスワードの確認」が等しい
-		if (passwordEncoder.matches(nowPassword, originalEncodedPassword) && newPassword.equals(confirmPassword)) {
-			dao.updatePassword(newEncodedPassword, mailAddress); 
-			authenticationService.change(auth.getUsername(), newEncodedPassword, auth.getAuthorities());
-		}		
+	public void updatePassword(String newEncodedPassword, UserDetails auth) {
+		String originalEmail = auth.getUsername();
+		dao.updatePassword(newEncodedPassword, originalEmail);
+		authenticationService.changePassword(newEncodedPassword, auth);		
 	}
 	
 	//コントラクトテーブルの情報を取得する

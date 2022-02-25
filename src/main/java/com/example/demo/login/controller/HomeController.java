@@ -25,20 +25,13 @@ public class HomeController {
 	//ホーム画面用のGET用メソッド
 	@GetMapping("/home")
 	public String getHome(Model model) {
-		
 		String nowDate = homeService.todayObj();
-		
 		model.addAttribute("HomeService", nowDate);
-		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         //Principalからログインユーザの情報を取得
         String mailAddress = auth.getName();
-        
         String officeName = userService.getByOfficeName(mailAddress).getOfficeName();
         model.addAttribute("OfficeName", officeName);
-       
-        
 		return "login/home";
 	}
-	
 }
