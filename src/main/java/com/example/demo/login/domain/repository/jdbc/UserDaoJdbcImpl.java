@@ -1,6 +1,8 @@
 package com.example.demo.login.domain.repository.jdbc;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +74,7 @@ public class UserDaoJdbcImpl implements UserDao {
 				, mailAddress);
 	}
 
-	//このメソッド改修必要?(2022/2/23)
+	//このメソッド改修必要(2022/2/23)
 	@Override
 	public User getByOfficeName(String mailAddress) throws DataAccessException {
 		
@@ -91,21 +93,24 @@ public class UserDaoJdbcImpl implements UserDao {
 	}
 	
 	@Override
-	public User getByContrac(String mailAddress) throws DataAccessException {
-		
-		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
+	public List<User> getByContrac(String mailAddress) throws DataAccessException {
+		List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
 				+ " WHERE email = ?"
 				, mailAddress);
 
 		// 結果返却用の変数
-		User user = new User();
-
-		// 取得したデータを結果返却用の変数にセットしていく
-		user.setStartDate((Date)map.get("startDate"));
-		user.setEndDate((Date)map.get("endDate"));
-
-		return user;
-
+		List<User> userList = new ArrayList<>();
+		
+		for (Map<String, Object> map : getList) {
+            //Userインスタンスの生成
+            User user = new User();
+            // Userインスタンスに取得したデータをセットする
+            user.setStartDate((Date)map.get("startDate"));
+    		user.setEndDate((Date)map.get("endDate"));
+    		user.setOfficeName((String)map.get("officeName"));
+    		userList.add(user);
+		}
+		return userList;
 	}
 
 }

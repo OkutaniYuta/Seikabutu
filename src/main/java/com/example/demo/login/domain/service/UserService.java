@@ -1,5 +1,7 @@
 package com.example.demo.login.domain.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -44,7 +46,7 @@ public class UserService {
 	}
 	
 	//コントラクトテーブルの情報を取得する
-	public User getByContract(String mailAddress) {
+	public List<User> getByContract(String mailAddress) {
 		return dao.getByContrac(mailAddress);
 	}
 }

@@ -1,5 +1,7 @@
 package com.example.demo.login.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.demo.login.domain.model.User;
 import com.example.demo.login.domain.service.UserService;
 
 
@@ -17,11 +20,10 @@ public class ContractListController {
 	UserService userService;
 	
 	@GetMapping("/contract_list")
-	public String getContractList(Model model, @AuthenticationPrincipal UserDetails auth) {	
+	public String getContractList(Model model, @AuthenticationPrincipal UserDetails auth) {
 		String mailAddress = auth.getUsername();
-		model.addAttribute("StartDate", userService.getByContract(mailAddress).getStartDate());
-		model.addAttribute("EndDate", userService.getByContract(mailAddress).getEndDate());
-		model.addAttribute("OfficeName", userService.getByOfficeName(mailAddress).getOfficeName());	
+		List<User> userList = userService.getByContract(mailAddress);
+		model.addAttribute("UserList", userList);	
 		return "login/contract_list";
 	}
 }
