@@ -61,10 +61,10 @@
                     <th class="active">パスワード確認</th>
                     <td>
                         <div class="form-group"
-                        	th:classappend="${#fields.hasErrors('passwordConfirmation')} ? 'has-error'">
-                            <input type="text" class="form-control" th:field="*{passwordConfirmation}" />
-                            <span class="text-danger" th:if="${#fields.hasErrors('passwordConfirmation')}"
-                            	th:errors="*{passwordConfirmation}">password error
+                        	th:classappend="${#fields.hasErrors('confirmPassword')} ? 'has-error'">
+                            <input type="text" class="form-control" th:field="*{confirmPassword}" />
+                            <span class="text-danger" th:if="${#fields.hasErrors('confirmPassword')}"
+                            	th:errors="*{confirmPassword}">password error
                             </span>
                         </div>
                     </td>

@@ -11,12 +11,12 @@ public class User {
 	private int userId;
 	private String userName;
 	private String password;
+	private String comfirmPassword;
 	private String email;
 	private String comfirmEmail;
 	private int role;
 	private int userStatus;
 	private String reqestedAt;
-	
 	
 	//contractテーブル
 	private int contractId;
@@ -25,6 +25,7 @@ public class User {
 	private int brakeTime;
 	private int endTime;
 	private Date startDate;
+	private Date endDate;
 	private String officeName;
 	
 }

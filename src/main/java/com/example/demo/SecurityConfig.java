@@ -91,7 +91,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
 		//ログイン処理時にユーザー情報をDBから取得する
-		auth.jdbcAuthentication()
+		auth.eraseCredentials(false)
+			.jdbcAuthentication()
 			.dataSource(dataSource)
 			.usersByUsernameQuery(USER_SQL)
 			.authoritiesByUsernameQuery(ROLE_SQL)

@@ -25,10 +25,16 @@
       <th>勤務終了日</th>
       <th>会社名</th>
     </tr>
-    <tr>
-      <td>勤務開始日実装まだ</td>
-      <td>勤務終了日まだ</td>
-      <td>会社まだ</td>
+    <tr th:each="user : ${UserList}">
+      <td>
+      	<p th:text="${user.StartDate}"></p>
+      </td>
+      <td>
+      	<p th:text="${user.EndDate}"></p>
+      </td>
+      <td>
+      	<p th:text="${user.OfficeName}"></p>
+      </td>
       <td>
       	<input type="submit" value="詳細" />
       </td>

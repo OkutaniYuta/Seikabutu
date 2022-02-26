@@ -1,24 +1,21 @@
 package com.example.demo.login.domain.repository;
 
+import java.util.List;
+
 import org.springframework.dao.DataAccessException;
 
 import com.example.demo.login.domain.model.User;
 
 public interface UserDao {
-	//DataAccessException
-	
 	//Userテーブルにデータを1件insert
-	public void insertOne(User user) throws DataAccessException;
+	public void insert(User user) throws DataAccessException;
 	
-	public void emailUpdate(User user) throws DataAccessException;
+	public void updateEmail(String newEmail, String originalEmail) throws DataAccessException;
 
-	public User getOfficeName(String mailAddress) throws DataAccessException;
-
-	public User selectUserId(String userId) throws DataAccessException;
-
-	public User selectEmail(int userId) throws DataAccessException;
-
+	public User getByOfficeName(String mailAddress) throws DataAccessException;
 	
+	public List<User> getByContrac(String mailAddress) throws DataAccessException;
 	
-		
+	public void updatePassword(String newPassword, String mailAddress) throws DataAccessException;
+	
 }
