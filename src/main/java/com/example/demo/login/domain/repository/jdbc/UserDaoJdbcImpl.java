@@ -79,7 +79,7 @@ public class UserDaoJdbcImpl implements UserDao {
 	public User getByOfficeName(String mailAddress) throws DataAccessException {
 		
 		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
-				+ " WHERE email = ?"
+				+ " WHERE email = ? ORDER BY contractid desc limit 1"
 				, mailAddress);
 
 		// 結果返却用の変数
@@ -97,12 +97,9 @@ public class UserDaoJdbcImpl implements UserDao {
 		List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
 				+ " WHERE email = ?"
 				, mailAddress);
-
 		// 結果返却用の変数
 		List<User> userList = new ArrayList<>();
-		
 		for (Map<String, Object> map : getList) {
-            //Userインスタンスの生成
             User user = new User();
             // Userインスタンスに取得したデータをセットする
             user.setStartDate((Date)map.get("startDate"));
@@ -112,5 +109,4 @@ public class UserDaoJdbcImpl implements UserDao {
 		}
 		return userList;
 	}
-
 }

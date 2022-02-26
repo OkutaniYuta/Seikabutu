@@ -32,13 +32,11 @@ public class PasswordChangeController {
 	@PostMapping("/password_change")
 	public String postPasswordChange(@ModelAttribute @Validated PasswordChangeForm form, BindingResult bindingResult,
 			Model model, @AuthenticationPrincipal UserDetails auth) {
-		//入力チェックに引っかかった場合、画面にエラーメッセージを表示する
 		if(bindingResult.hasErrors()) {
 			return "login/password_change";
 		}
 		String newEncodedPassword = passwordEncoder.encode(form.getNewPassword()); // 「新しいパスワード入力」を暗号化
 		userService.updatePassword(newEncodedPassword, auth);
-		// パスワード変更画面にリダイレクトする
 		return "redirect:/password_change";
 	}
 }
