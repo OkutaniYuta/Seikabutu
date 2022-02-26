@@ -1,7 +1,5 @@
 package com.example.demo.login.controller;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,20 +17,11 @@ public class ContractListController {
 	UserService userService;
 	
 	@GetMapping("/contract_list")
-	public String getContractList(Model model, @AuthenticationPrincipal UserDetails auth) {
-		
+	public String getContractList(Model model, @AuthenticationPrincipal UserDetails auth) {	
 		String mailAddress = auth.getUsername();
-		Date startDate = userService.getByContract(mailAddress).getStartDate();
-		Date endDate = userService.getByContract(mailAddress).getEndDate();
-		String officeName = userService.getByOfficeName(mailAddress).getOfficeName();
-		
-		model.addAttribute("StartDate", startDate);
-		model.addAttribute("EndDate", endDate);
-		model.addAttribute("OfficeName", officeName);
-		
+		model.addAttribute("StartDate", userService.getByContract(mailAddress).getStartDate());
+		model.addAttribute("EndDate", userService.getByContract(mailAddress).getEndDate());
+		model.addAttribute("OfficeName", userService.getByOfficeName(mailAddress).getOfficeName());	
 		return "login/contract_list";
-		
 	}
-	
-	
 }

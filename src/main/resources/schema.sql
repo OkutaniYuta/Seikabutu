@@ -1,10 +1,3 @@
--- CREATE TABLE IF NOT EXISTS employee (
---     employee_id INT PRIMARY KEY,
---     employee_name VARCHAR(50),
---     age INT
--- );
-
-/* ユーザー */
 CREATE TABLE IF NOT EXISTS user (
     userId INTEGER IDENTITY(1,1) PRIMARY KEY,
     userName VARCHAR(100),
