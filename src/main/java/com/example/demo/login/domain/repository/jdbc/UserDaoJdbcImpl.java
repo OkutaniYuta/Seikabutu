@@ -30,10 +30,8 @@ public class UserDaoJdbcImpl implements UserDao {
 	// Userテーブルに1件insert
 	@Override
 	public void insert(User user) throws DataAccessException {
-
 		//パスワード暗号化
 		String password = passwordEncoder.encode(user.getPassword()); // ここのパスワードの暗号化はサービスで行う?
-
 		//1件登録
 		jdbc.update("INSERT INTO user("
 				+ " userName,"
@@ -49,12 +47,10 @@ public class UserDaoJdbcImpl implements UserDao {
 				,user.getRole()
 				,user.getUserStatus()
 				,user.getReqestedAt());
-
 	}
 
 	// メールアドレス更新用メソッド
 	public void updateEmail(String newEmail, String originalEmail)  throws DataAccessException {
-
 		jdbc.update("UPDATE user"
 				+ " SET"
 				+ " email = ?"
@@ -65,7 +61,6 @@ public class UserDaoJdbcImpl implements UserDao {
 
 	// パスワード更新用メソッド
 	public void updatePassword(String newPassword, String mailAddress)  throws DataAccessException {
-
 		jdbc.update("UPDATE user"
 				+ " SET"
 				+ " password = ?"
@@ -74,30 +69,20 @@ public class UserDaoJdbcImpl implements UserDao {
 				, mailAddress);
 	}
 
-	//このメソッド改修必要(2022/2/23)
-	@Override
+	
 	public User getByOfficeName(String mailAddress) throws DataAccessException {
-		
 		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
-				+ " WHERE email = ? ORDER BY contractid desc limit 1"
-				, mailAddress);
-
-		// 結果返却用の変数
-		User user = new User();
-
-		// 取得したデータを結果返却用の変数にセットしていく
-		user.setOfficeName((String)map.get("officeName"));
-
+				+ " WHERE email = ? ORDER BY startDate desc limit 1" 
+				, mailAddress); // 勤務開始日(startDate)を降順(desc)で並び替え、一番上のものをとる。つまり最新(現在契約中)の会社を指定できる
+		User user = new User(); // 結果返却用の変数
+		user.setOfficeName((String)map.get("officeName")); // 取得したデータを結果返却用の変数にセット
 		return user;
-
 	}
 	
-	@Override
 	public List<User> getByContrac(String mailAddress) throws DataAccessException {
 		List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
 				+ " WHERE email = ?"
 				, mailAddress);
-		// 結果返却用の変数
 		List<User> userList = new ArrayList<>();
 		for (Map<String, Object> map : getList) {
             User user = new User();
