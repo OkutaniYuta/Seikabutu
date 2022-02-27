@@ -12,11 +12,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.login.domain.model.User;
-import com.example.demo.login.domain.repository.UserDao;
 import com.example.demo.login.domain.service.UserService;
 
 @Repository
-public class UserDaoJdbcImpl implements UserDao {
+public class UserDaoJdbcImpl {
 
 	@Autowired
 	JdbcTemplate jdbc;
@@ -28,7 +27,6 @@ public class UserDaoJdbcImpl implements UserDao {
 	UserService userService;
 
 	// Userテーブルに1件insert
-	@Override
 	public void insert(User user) throws DataAccessException {
 		//パスワード暗号化
 		String password = passwordEncoder.encode(user.getPassword()); // ここのパスワードの暗号化はサービスで行う?
@@ -81,7 +79,7 @@ public class UserDaoJdbcImpl implements UserDao {
 	
 	public List<User> getByContrac(String mailAddress) throws DataAccessException {
 		List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
-				+ " WHERE email = ?"
+				+ " WHERE email = ? ORDER BY startDate desc"
 				, mailAddress);
 		List<User> userList = new ArrayList<>();
 		for (Map<String, Object> map : getList) {

@@ -5,4 +5,7 @@ INSERT INTO contract (contractId, userId, contractTime, startTime, breakTime, en
 VALUES(1, 1, 200, '09:00:00', '01:00:00', '19:00:00', '2021-01-01', '2022-01-01', '株式会社LIM');
 
 INSERT INTO contract (contractId, userId, contractTime, startTime, breakTime, endTime, startDate, endDate, officeName)
-VALUES(2, 1, 200, '09:00:00', '01:00:00', '19:00:00', '2022-01-01', '2022-02-01', '株式会社おっくん');
+VALUES(2, 1, 200, '09:00:00', '01:00:00', '19:00:00', '2022-01-01', '2022-02-01', '(新)株式会社おっくん');
+
+INSERT INTO contract (contractId, userId, contractTime, startTime, breakTime, endTime, startDate, endDate, officeName)
+VALUES(3, 1, 200, '09:00:00', '01:00:00', '19:00:00', '2000-01-01', '2001-02-01', '株式会社おっくん');

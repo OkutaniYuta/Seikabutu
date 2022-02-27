@@ -8,13 +8,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.login.domain.model.User;
-import com.example.demo.login.domain.repository.UserDao;
+import com.example.demo.login.domain.repository.jdbc.UserDaoJdbcImpl;
 
 @Service
 public class UserService {
-	@Autowired
-	UserDao dao;
 
+	@Autowired
+	UserDaoJdbcImpl dao;
+	
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
