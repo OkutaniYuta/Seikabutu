@@ -15,7 +15,7 @@ import com.example.demo.login.domain.model.User;
 import com.example.demo.login.domain.service.UserService;
 
 @Repository
-public class UserDaoJdbcImpl {
+public class UserDao {
 
 	@Autowired
 	JdbcTemplate jdbc;

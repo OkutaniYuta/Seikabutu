@@ -2,7 +2,6 @@ package com.example.demo.login.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -12,12 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.demo.login.domain.model.User;
 import com.example.demo.login.domain.service.UserService;
 
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Controller
 public class ContractListController {
 	
-	@Autowired
-	UserService userService;
+	private final UserService userService;
 	
 	@GetMapping("/contract_list")
 	public String getContractList(Model model, @AuthenticationPrincipal UserDetails auth) {

@@ -6,22 +6,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LoginController {
-
-  //ログイン画面のGETメソッド用処理
     @GetMapping("/login")
     public String getLogin() {
-
-        //login.htmlに画面遷移
         return "login/login";
     }
-
-    /**
-     * ログイン画面のPOSTメソッド用処理.
-     */
     @PostMapping("/login")
     public String postLogin() {
-
-        //homeに画面遷移
     	return "redirect:/home";
     }
 }
