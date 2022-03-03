@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Controller
 public class ContractListController {
-	
 	private final UserService userService;
 	
 	@GetMapping("/contract_list")

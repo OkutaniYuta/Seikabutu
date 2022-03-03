@@ -44,7 +44,7 @@ public class SignupController {
 		user.setEmail(form.getEmail());
 		user.setPassword(form.getPassword());
 		user.setRole(1);
-		user.setUserStatus(0);
+		user.setUserStatus(1);
 		user.setReqestedAt(nowDate);
 		userService.insert(user);
         return "login/waitApplication";

@@ -5,26 +5,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.login.domain.model.User;
-import com.example.demo.login.domain.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Repository
 public class UserDao {
-
-	@Autowired
-	JdbcTemplate jdbc;
-
-	@Autowired
-	PasswordEncoder passwordEncoder;
-
-	@Autowired
-	UserService userService;
+	private final JdbcTemplate jdbc;
+	private final PasswordEncoder passwordEncoder;
 
 	// Userテーブルに1件insert
 	public void insert(User user) throws DataAccessException {
@@ -67,13 +61,22 @@ public class UserDao {
 				, mailAddress);
 	}
 
-	
+	//ログインユーザーの会社名を1件取得
 	public User getByOfficeName(String mailAddress) throws DataAccessException {
 		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
 				+ " WHERE email = ? ORDER BY startDate desc limit 1" 
 				, mailAddress); // 勤務開始日(startDate)を降順(desc)で並び替え、一番上のものをとる。つまり最新(現在契約中)の会社を指定できる
 		User user = new User(); // 結果返却用の変数
 		user.setOfficeName((String)map.get("officeName")); // 取得したデータを結果返却用の変数にセット
+		return user;
+	}
+	
+	public User getByUserStatus(String mailAddress) throws DataAccessException {
+		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
+				+ " WHERE email = ?" 
+				, mailAddress); 
+		User user = new User(); // 結果返却用の変数
+		user.setUserStatus((int)map.get("userStatus")); // 取得したデータを結果返却用の変数にセット
 		return user;
 	}
 	
@@ -92,4 +95,5 @@ public class UserDao {
 		}
 		return userList;
 	}
+
 }
