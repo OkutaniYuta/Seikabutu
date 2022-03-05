@@ -1,5 +1,6 @@
 package com.example.demo.login.domain.model;
 
+import java.sql.Time;
 import java.util.Date;
 
 import lombok.Data;
@@ -20,10 +21,10 @@ public class User {
 	
 	//contractテーブル
 	private int contractId;
-	private int contractTime;
-	private int startTime;
-	private int brakeTime;
-	private int endTime;
+	private Time contractTime;
+	private Time startTime;
+	private Time breakeTime;
+	private Time endTime;
 	private Date startDate;
 	private Date endDate;
 	private String officeName;

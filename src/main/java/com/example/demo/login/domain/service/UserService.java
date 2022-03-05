@@ -41,8 +41,12 @@ public class UserService {
 		dao.updatePassword(newEncodedPassword, originalEmail);
 		authenticationService.changePassword(newEncodedPassword, auth);		
 	}
-	//コントラクトテーブルの情報を取得する
+	//コントラクトテーブルとユーザーテーブルの情報を取得する
 	public List<User> getByContract(String mailAddress) {
-		return dao.getByContrac(mailAddress);
+		return dao.getByContract(mailAddress);
+	}
+	//コントラクトテーブルの情報のみを取得
+	public List<User> getByOnlyContract(int userId) {
+		return dao.getByOnlyContract(userId);
 	}
 }
