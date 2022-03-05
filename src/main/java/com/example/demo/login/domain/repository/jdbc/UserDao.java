@@ -72,7 +72,7 @@ public class UserDao {
 	}
 	
 	public User getByUserStatus(String mailAddress) throws DataAccessException {
-		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
+		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user "
 				+ " WHERE email = ?" 
 				, mailAddress); 
 		User user = new User(); // 結果返却用の変数
