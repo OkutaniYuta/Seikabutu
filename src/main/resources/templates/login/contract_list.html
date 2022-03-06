@@ -2,50 +2,47 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultaq.net.nz/thymeleaf/layout">
 <head>
-    <meta charset="UTF-8"></meta>
+<meta charset="UTF-8"></meta>
 
-    <!-- Bootstrapの設定 -->
-    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
-    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-	<link th:href="@{/css/home.css}" rel="stylesheet"></link>
-	
-    <title>ContractList</title>
+<!-- Bootstrapの設定 -->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<link th:href="@{/css/home.css}" rel="stylesheet"></link>
+
+<title>ContractList</title>
 </head>
 
 <body>
-<div th:replace="login/header::header"></div>
+	<div th:replace="login/header::header"></div>
 	<div class="col-sm-8" th:text-align:center>
 		<h3>契約一覧</h3>
 	</div>
 	<div class="col-sm-10" th:text-align:center>
-	<table border="1" class="col-sm-10">
-    <tr>
-      <th>勤務開始日</th>
-      <th>勤務終了日</th>
-      <th>会社名</th>
-    </tr>
-    <tr th:each="user : ${UserList}">
-      <td>
-      	<p th:text="${user.StartDate}"></p>
-      </td>
-      <td>
-      	<p th:text="${user.EndDate}"></p>
-      </td>
-      <td>
-      	<p th:text="${user.OfficeName}"></p>
-      </td>
-      <td>
-      	<input type="submit" value="詳細" />
-      </td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>
-      	<input type="submit" value="詳細" />
-      </td>
-    </tr>
-  </table>
-  </div>
+		<table border="1" class="col-sm-10">
+			<tr>
+				<th>勤務開始日</th>
+				<th>勤務終了日</th>
+				<th>会社名</th>
+			</tr>
+			<tr th:each="user : ${UserList}">
+				<td>
+					<p th:text="${user.StartDate}"></p>
+				</td>
+				<td>
+					<p th:text="${user.EndDate}"></p>
+				</td>
+				<td>
+					<p th:text="${user.OfficeName}"></p>
+				</td>
+				<td><a th:href="@{'working_info_month'}">
+						<button type="button">詳細</button>
+				</a></td>
+			</tr>
+			<tr>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

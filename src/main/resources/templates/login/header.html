@@ -2,15 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultaq.net.nz/thymeleaf/layout">
 <head>
-    <meta charset="UTF-8"></meta>
+<meta charset="UTF-8"></meta>
 
-    <!-- Bootstrapの設定 -->
-    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
-    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!-- Bootstrapの設定 -->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 
-	<link th:href="@{/css/home.css}" rel="stylesheet"></link>
-	
+<link th:href="@{/css/home.css}" rel="stylesheet"></link>
+
 </head>
 <!-- ヘッダー -->
 <div th:fragment="header">
@@ -21,20 +22,20 @@
 			</div>
 			<div class="header-logo-menu">
 				<div id="nav-drawer">
-      				<input id="nav-input" type="checkbox" class="nav-unshown">
-      				<label id="nav-open" for="nav-input"><span></span></label>
-      				<label class="nav-unshown" id="nav-close" for="nav-input"></label>
-      				<div id="nav-content">
-      					<a th:href="@{'/email_change'}">メールアドレスの変更</a><br>
-      					<a th:href="@{'/password_change'}">パスワードの変更</a><br>
-      					<a th:href="@{'/contract_list'}">契約画面一覧</a><br>
-      					<a th:href="@{'/whours_change'}">勤務時間変更</a><br>
-      					<a th:href="@{'contract_update'}">契約更新</a><br>
-      					<a th:href="@{'/logout'}">ログアウト</a><br>
-      				</div>
-  				</div>
-  					<div class="logo-area">LOGO</div>
-  			</div>
+					<input id="nav-input" type="checkbox" class="nav-unshown">
+					<label id="nav-open" for="nav-input"><span></span></label> <label
+						class="nav-unshown" id="nav-close" for="nav-input"></label>
+					<div id="nav-content">
+						<a th:href="@{'/email_change'}">メールアドレスの変更</a><br> <a
+							th:href="@{'/password_change'}">パスワードの変更</a><br> <a
+							th:href="@{'/contract_list'}">契約画面一覧</a><br> <a
+							th:href="@{'/whours_change'}">勤務時間変更</a><br> <a
+							th:href="@{'contract_update'}">契約更新</a><br> <a
+							th:href="@{'/logout'}">ログアウト</a><br>
+					</div>
+				</div>
+				<div class="logo-area">LOGO</div>
+			</div>
 		</div>
 	</nav>
 </div>

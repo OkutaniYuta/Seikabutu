@@ -72,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.failureUrl("/login")
 				.usernameParameter("email")
 				.passwordParameter("password")
-				.defaultSuccessUrl("/home", true);
+				.defaultSuccessUrl("/session", true);
 		
 		//ログアウト処理
 	    http

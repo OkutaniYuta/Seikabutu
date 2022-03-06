@@ -30,8 +30,8 @@
 		<table class="table table-bordered table-hover">
 
 			<tr>
-				<!-- メールアドレスの入力エリア -->
-				<th class="active col-sm-3">新しいメールアドレスの入力</th>
+				<!-- 新しいメールアドレスの入力エリア -->
+				<th class="active col-sm-3">新しいメールアドレス入力</th>
 				<td>
 					<div class="form-group"
 						th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
@@ -42,16 +42,19 @@
 				</td>
 			</tr>
 			<tr>
-				<th class="active col-sm-3">新しいメールアドレスの確認</th>
-				<td><input type="text" class="form-control"
-					th:field="*{confirmEmail}" /></td>
+				<!-- 新しいメールアドレスの確認 -->
+				<th class="active col-sm-3">新しいメールアドレス入力の確認</th>
+				<td>
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('confirmEmail')} ? 'has-error'">
+						<input type="text" class="form-control" th:field="*{confirmEmail}" /> 
+						<span
+							class="text-danger" th:if="${#fields.hasErrors('emailEqual')}"
+							th:errors="*{emailEqual}">email error </span>
+					</div>
+				</td>
 			</tr>
 		</table>
-		<!-- エラーメッセージの一覧表示 -->
-		<ul>
-			<li th:each="error : ${#fields.detailedErrors()}"><span
-				th:text="${error.message}">Error message</span></li>
-		</ul>
 		<!-- ボタン -->
 		<button class="btn btn-primary" type="submit">変更する</button>
 
