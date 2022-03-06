@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class WhoursChangeController {
 	@GetMapping("/whours_change")
 	public String getWhoursChange() {
-		
 		return "login/whours_change";
 		
 	}
-	
-	
 }

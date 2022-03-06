@@ -1,6 +1,5 @@
 package com.example.demo.login.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,14 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.login.domain.model.PasswordChangeForm;
 import com.example.demo.login.domain.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Controller
 public class PasswordChangeController {
-
-	@Autowired
-	UserService userService;
-
-	@Autowired
-	PasswordEncoder passwordEncoder;
+	private final UserService userService;
+	private final PasswordEncoder passwordEncoder;
 	
 	@GetMapping("/password_change")
 	public String getPasswordChange(@ModelAttribute PasswordChangeForm form, Model model) {

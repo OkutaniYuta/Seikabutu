@@ -1,6 +1,5 @@
 package com.example.demo.login.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -10,18 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.demo.login.domain.service.UserService;
 import com.example.demo.service.HomeService;
 
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Controller
 public class HomeController {
-	
-	@Autowired
-	HomeService homeService;
-	
-	@Autowired
-	UserService userService;
-
-	public Object mailAddress;
-	
+	private final HomeService homeService;
+	private final UserService userService;
 	//ホーム画面用のGET用メソッド
 	@GetMapping("/home")
 	public String getHome(Model model) {
