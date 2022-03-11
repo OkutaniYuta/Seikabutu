@@ -9,21 +9,11 @@ import lombok.Data;
 
 @Data
 public class ContractInfoForm {	
-	@NotBlank
-	private int contractId;
-	@NotBlank
-	private Time contractTime;
-	@NotBlank
+	private String contractTime;
 	private Time startTime;
-	@NotBlank
 	private Time breakTime;
-	@NotBlank
 	private Time endTime;
-	@NotBlank
 	private Date startDate;
-	@NotBlank
-	private Date endDate;
-	@NotBlank
 	private String officeName;
 	
 //	@AssertTrue(message = "一緒にして")

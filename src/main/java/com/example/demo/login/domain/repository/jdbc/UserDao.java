@@ -89,6 +89,7 @@ public class UserDao {
             // Userインスタンスに取得したデータをセットする
             user.setContractId((int)map.get("contractId"));
             user.setUserId((int)map.get("userId"));
+            user.setContractTime((String)map.get("contractTime"));
             user.setStartTime((Time)map.get("startTime"));
             user.setBreakTime((Time)map.get("breakeTime"));
             user.setEndTime((Time)map.get("endTime"));

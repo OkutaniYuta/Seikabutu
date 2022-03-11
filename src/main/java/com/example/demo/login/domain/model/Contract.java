@@ -10,7 +10,7 @@ public class Contract {
 	//contractテーブル
 	private int contractId;
 	private int userId;
-	private Time contractTime;
+	private String contractTime;
 	private Time startTime;
 	private Time breakTime;
 	private Time endTime;

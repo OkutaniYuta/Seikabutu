@@ -22,7 +22,7 @@ public class User {
 	//contractテーブル
 	// TODO 31行目までを消す。
 	private int contractId;
-	private Time contractTime;
+	private String contractTime;
 	private Time startTime;
 	private Time breakTime;
 	private Time endTime;

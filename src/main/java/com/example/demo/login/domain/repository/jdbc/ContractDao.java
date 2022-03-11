@@ -82,24 +82,20 @@ public class ContractDao {
 	public void insertContract(Contract contract) throws DataAccessException {
 		//1件登録
 		jdbc.update("INSERT INTO contract("
-				+ " contractId,"
 				+ " userId,"
 				+ " contractTime,"
 				+ " startTime,"
 				+ " breakTime,"
 				+ " endTime,"
 				+ " startDate,"
-				+ " endTime,"
 				+ " officeName,)"
-				+ " VALUES(?, ?, ?, ?, ?, ?)"
-				,contract.getContractId()
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?)"
 				,contract.getUserId()
 				,contract.getContractTime()
 				,contract.getStartTime()
 				,contract.getBreakTime()
 				,contract.getEndTime()
 				,contract.getStartDate()
-				,contract.getEndDate()
 				,contract.getOfficeName());
 	}
 	
@@ -107,7 +103,7 @@ public class ContractDao {
 	    Contract contract = new Contract();
 	    contract.setContractId((int)map.get("contractId"));
 	    contract.setUserId((int)map.get("userId"));
-	    contract.setContractTime((Time)map.get("contractTime"));
+	    contract.setContractTime((String)map.get("contractTime"));
 	    contract.setStartTime((Time)map.get("startTime"));
 	    contract.setBreakTime((Time)map.get("breakTime"));
 	    contract.setEndTime((Time)map.get("endTime"));
