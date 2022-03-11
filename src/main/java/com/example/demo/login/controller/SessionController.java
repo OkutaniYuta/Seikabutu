@@ -25,21 +25,26 @@ public class SessionController {
 	
 	@GetMapping("/session")
     public void getSessionController(@AuthenticationPrincipal UserDetails auth, HttpServletResponse response,
-    		HttpServletRequest request) throws ServletException, IOException{
-		String mailAddress = auth.getUsername();
-		int role = userService.getByUserStatus(mailAddress).getRole();
-		int userStatus = userService.getByUserStatus(mailAddress).getUserStatus();
-    	int userId = userService.getByUserStatus(mailAddress).getUserId();
+    	HttpServletRequest request) throws ServletException, IOException{
+		String email = auth.getUsername();
+		User user = userService.getEmailByEmail(email);
+		int role = user.getRole();
+		int userStatus = user.getUserStatus();
+    	int userId = user.getUserId();
     	HttpSession session = request.getSession(); // セッションオブジェクトを生成
     	session.setAttribute("userId", userId); // セッションにuserIdを登録
-    	List<User> userList = userService.getByOnlyContract(userId);// !ここに書く事!UserIdをキーにコントラクトテーブルのみを全件リスト型で取得
+    	List<User> userList = userService.getOnlyContractByUserId(userId);// UserIdをキーにコントラクトテーブルのみを全件リスト型で取得
+    	// TODO getContractListByUserId UserIdによってコントラクトリストを取得する
     	
+    	String redirect;
     	if(role == 0) {
-    		response.sendRedirect("/adminhome");
-    	}else if(userStatus == 1 && userList.size() >= 1) {//　&&　コントラクトリストのみをListで取得して、List sizeが1以上なら、Home画面に遷移する。
-    		response.sendRedirect("/home");
+    		redirect = "/adminhome";
+    	}else if(userStatus == 1 && !userList.isEmpty()) {//　&&　コントラクトリストのみをListで取得して、List sizeが1以上なら、Home画面に遷移する。
+    		redirect = "/home";
     	}else {
-    		response.sendRedirect("/login");
+    		redirect = "/login";
     	}
+    	response.sendRedirect(redirect);
 	}
+	
 }

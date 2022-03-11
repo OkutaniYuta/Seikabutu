@@ -3,7 +3,6 @@ package com.example.demo.login.domain.service;
 import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.login.domain.model.User;
@@ -20,16 +19,17 @@ public class UserService {
 	//insert用メソッド
 	public void insert(User user) {
 		//insert実行
-		dao.insert(user);	
+		dao.insert(user);
 	}
 	//オフィスネームゲットメソッド
-	public User getByOfficeName(String mailAddress) {
-		return dao.getByOfficeName(mailAddress);
+	public User getOfficeNameByEmail(String email) {
+		return dao.getOfficeNameByEmail(email);
 	}
-	//ログインユーザーのuserStatu取得
-		public User getByUserStatus(String mailAddress) {
-			return dao.getByUserStatus(mailAddress);
-		}
+	
+	public User getEmailByEmail(String email) {
+		return dao.getEmailByEmail(email);
+	}
+	
 	//メールアドレスUpdate用メソッド
 	public void updateEmail(String newEmail, String originalEmail, UserDetails auth) {
 		dao.updateEmail(newEmail, originalEmail);
@@ -42,11 +42,16 @@ public class UserService {
 		authenticationService.changePassword(newEncodedPassword, auth);		
 	}
 	//コントラクトテーブルとユーザーテーブルの情報を取得する
-	public List<User> getByContract(String mailAddress) {
-		return dao.getByContract(mailAddress);
+	public List<User> getContractByEmail(String email) {
+		return dao.getContractByEmail(email);
 	}
 	//コントラクトテーブルの情報のみを取得
-	public List<User> getByOnlyContract(int userId) {
-		return dao.getByOnlyContract(userId);
+	public List<User> getOnlyContractByUserId(int userId) {
+		return dao.getOnlyContractByUserId(userId);
+	}
+	//コントラクトテーブルにinsert
+	public void insertIntoContract(User user) {
+		//insert実行
+		dao.insert(user);
 	}
 }

@@ -24,7 +24,7 @@ public class HomeController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         //Principalからログインユーザの情報を取得
         String mailAddress = auth.getName();
-        String officeName = userService.getByOfficeName(mailAddress).getOfficeName();
+        String officeName = userService.getOfficeNameByEmail(mailAddress).getOfficeName();
         model.addAttribute("OfficeName", officeName);
 		return "login/home";
 	}

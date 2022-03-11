@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class ContractInfoController {	
+public class ContractInfoForm {	
 	@NotBlank
 	private int contractId;
 	@NotBlank
@@ -16,11 +16,11 @@ public class ContractInfoController {
 	@NotBlank
 	private Time startTime;
 	@NotBlank
-	private Time breakeTime;
+	private Time breakTime;
 	@NotBlank
 	private Time endTime;
 	@NotBlank
-	private Date starDate;
+	private Date startDate;
 	@NotBlank
 	private Date endDate;
 	@NotBlank

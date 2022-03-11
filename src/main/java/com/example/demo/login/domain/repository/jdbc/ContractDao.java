@@ -8,60 +8,18 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.login.domain.model.Contract;
 import com.example.demo.login.domain.model.User;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Repository
-public class UserDao {
+public class ContractDao {
 	private final JdbcTemplate jdbc;
-	private final PasswordEncoder passwordEncoder;
-
-	// Userテーブルに1件insert
-	public void insert(User user) throws DataAccessException {
-		//パスワード暗号化
-		String password = passwordEncoder.encode(user.getPassword()); // ここのパスワードの暗号化はサービスで行う?
-		//1件登録
-		jdbc.update("INSERT INTO user("
-				+ " userName,"
-				+ " email,"
-				+ " password,"
-				+ " role,"
-				+ " userStatus,"
-				+ " requestedAt)"
-				+ " VALUES(?, ?, ?, ?, ?, ?)"
-				,user.getUserName()
-				,user.getEmail()
-				,password
-				,user.getRole()
-				,user.getUserStatus()
-				,user.getRequestedAt());
-	}
-
-	// メールアドレス更新用メソッド
-	public void updateEmail(String newEmail, String originalEmail)  throws DataAccessException {
-		jdbc.update("UPDATE user"
-				+ " SET"
-				+ " email = ?"
-				+ " WHERE email = ?"
-				, newEmail
-				, originalEmail);
-	}
-
-	// パスワード更新用メソッド
-	public void updatePassword(String newPassword, String mailAddress)  throws DataAccessException {
-		jdbc.update("UPDATE user"
-				+ " SET"
-				+ " password = ?"
-				+ " WHERE email = ?"
-				, newPassword
-				, mailAddress);
-	}
-
+	
 	//ログインユーザーの会社名を1件取得
 	public User getOfficeNameByEmail(String mailAddress) throws DataAccessException {
 		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
@@ -72,7 +30,7 @@ public class UserDao {
 		return user; // return convert　convertメソッドにcontractテーブルの
 	}
 	
-	public User getEmailByEmail(String email) throws DataAccessException {
+	public Contract getEmailByEmail(String email) throws DataAccessException {
 		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user "
 				+ " WHERE email = ?" 
 				, email); 
@@ -121,7 +79,7 @@ public class UserDao {
 		return userList;
 	}
 	
-	public void insertIntoContract(User user) throws DataAccessException {
+	public void insertContract(Contract contract) throws DataAccessException {
 		//1件登録
 		jdbc.update("INSERT INTO contract("
 				+ " contractId,"
@@ -134,27 +92,29 @@ public class UserDao {
 				+ " endTime,"
 				+ " officeName,)"
 				+ " VALUES(?, ?, ?, ?, ?, ?)"
-				,user.getContractId()
-				,user.getUserId()
-				,user.getContractTime()
-				,user.getStartTime()
-				,user.getBreakTime()
-				,user.getEndTime()
-				,user.getStartDate()
-				,user.getEndDate()
-				,user.getOfficeName());
+				,contract.getContractId()
+				,contract.getUserId()
+				,contract.getContractTime()
+				,contract.getStartTime()
+				,contract.getBreakTime()
+				,contract.getEndTime()
+				,contract.getStartDate()
+				,contract.getEndDate()
+				,contract.getOfficeName());
 	}
 	
-	private User convert(Map<String, Object> map) {		 
-		User user = new User();
-        user.setUserId((int)map.get("userId"));
-        user.setUserName((String)map.get("userName"));
-        user.setEmail((String)map.get("email"));
-        user.setPassword((String)map.get("password"));
-        user.setRole((int)map.get("role"));
-        user.setUserStatus((int)map.get("userStatus"));
-    	user.setRequestedAt((String)map.get("requestedAt"));
-		return user;
+	private Contract convert(Map<String, Object> map) {		 
+	    Contract contract = new Contract();
+	    contract.setContractId((int)map.get("contractId"));
+	    contract.setUserId((int)map.get("userId"));
+	    contract.setContractTime((Time)map.get("contractTime"));
+	    contract.setStartTime((Time)map.get("startTime"));
+	    contract.setBreakTime((Time)map.get("breakTime"));
+	    contract.setEndTime((Time)map.get("endTime"));
+	    contract.setStartDate((Date)map.get("startDate"));
+	    contract.setEndDate((Date)map.get("endDate"));
+	    contract.setOfficeName((String)map.get("officeName"));
+	    return contract;
 	}
 	
 }
