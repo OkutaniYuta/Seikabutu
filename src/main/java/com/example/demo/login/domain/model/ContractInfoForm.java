@@ -1,9 +1,7 @@
 package com.example.demo.login.domain.model;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

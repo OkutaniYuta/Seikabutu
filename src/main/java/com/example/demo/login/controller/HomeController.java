@@ -20,7 +20,7 @@ public class HomeController {
 	@GetMapping("/home")
 	public String getHome(Model model) {
 		String nowDate = homeService.todayObj();
-		model.addAttribute("HomeService", nowDate);
+		model.addAttribute("NowDate", nowDate);
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         //Principalからログインユーザの情報を取得
         String mailAddress = auth.getName();

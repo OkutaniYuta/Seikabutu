@@ -46,6 +46,6 @@ public class ContractInfoRegistrationController {
 		contract.setStartDate(form.getStartDate());
 		contract.setOfficeName(form.getOfficeName());
 		contractService.insertContract(contract);
-        return "login/home";
+        return "login/login";
     }
 }
