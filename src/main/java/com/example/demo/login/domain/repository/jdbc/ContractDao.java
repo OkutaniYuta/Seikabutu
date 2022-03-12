@@ -30,12 +30,12 @@ public class ContractDao {
 		return user; // return convert　convertメソッドにcontractテーブルの
 	}
 	
-	public Contract getEmailByEmail(String email) throws DataAccessException {
-		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user "
-				+ " WHERE email = ?" 
-				, email); 
-		return convert(map);
-	}
+//	public Contract getEmailByEmail(String email) throws DataAccessException {
+//		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user "
+//				+ " WHERE email = ?" 
+//				, email); 
+//		return convert(map);
+//	}
 	
 	public List<User> getContractByEmail(String mailAddress) throws DataAccessException {
 		List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
@@ -99,18 +99,18 @@ public class ContractDao {
 				,contract.getOfficeName());
 	}
 	
-	private Contract convert(Map<String, Object> map) {		 
-	    Contract contract = new Contract();
-	    contract.setContractId((int)map.get("contractId"));
-	    contract.setUserId((int)map.get("userId"));
-	    contract.setContractTime((String)map.get("contractTime"));
-	    contract.setStartTime((Time)map.get("startTime"));
-	    contract.setBreakTime((Time)map.get("breakTime"));
-	    contract.setEndTime((Time)map.get("endTime"));
-	    contract.setStartDate((Date)map.get("startDate"));
-	    contract.setEndDate((Date)map.get("endDate"));
-	    contract.setOfficeName((String)map.get("officeName"));
-	    return contract;
-	}
+//	private Contract convert(Map<String, Object> map) {		 
+//	    Contract contract = new Contract();
+//	    contract.setContractId((int)map.get("contractId"));
+//	    contract.setUserId((int)map.get("userId"));
+//	    contract.setContractTime((String)map.get("contractTime"));
+//	    contract.setStartTime((Time)map.get("startTime"));
+//	    contract.setBreakTime((Time)map.get("breakTime"));
+//	    contract.setEndTime((Time)map.get("endTime"));
+//	    contract.setStartDate((Date)map.get("startDate"));
+//	    contract.setEndDate((Date)map.get("endDate"));
+//	    contract.setOfficeName((String)map.get("officeName"));
+//	    return contract;
+//	}
 	
 }

@@ -22,12 +22,12 @@ import lombok.RequiredArgsConstructor;
 public class ContractInfoRegistrationController {
 	private final ContractService contractService;
 	
-	@GetMapping("/contract_info_registration")
+	@GetMapping("/contractInsert")
 	public String getContractInfoRagistration(@ModelAttribute ContractInfoForm form, Model model) {
-		return "login/contract_info_registration";
+		return "login/contractInsert";
 	}
 	
-	@PostMapping("/contract_info_registration")
+	@PostMapping("/contractInsert")
     public String postSignUp(@ModelAttribute @Validated ContractInfoForm form, BindingResult bindingResult,
     		Model model, HttpServletRequest request) { 	
     	if(bindingResult.hasErrors()) {

@@ -1,7 +1,7 @@
 package com.example.demo.login.domain.model;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import lombok.Data;
 
@@ -11,10 +11,10 @@ public class Contract {
 	private int contractId;
 	private int userId;
 	private String contractTime;
-	private Time startTime;
-	private Time breakTime;
-	private Time endTime;
-	private Date startDate;
-	private Date endDate;
+	private LocalTime startTime;
+	private LocalTime breakTime;
+	private LocalTime endTime;
+	private LocalDate startDate;
+	private LocalDate endDate;
 	private String officeName;
 }

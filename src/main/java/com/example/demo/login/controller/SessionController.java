@@ -45,7 +45,7 @@ public class SessionController {
     	}else if(userStatus == 1 && !userList.isEmpty()) {//　&&　コントラクトリストのみをListで取得して、List sizeが1以上なら、Home画面に遷移する。
     		redirect = "/home";
     	}else {
-    		redirect = "/contract_info_registration";
+    		redirect = "/contractInsert";
     	}
     	response.sendRedirect(redirect);
 	}
