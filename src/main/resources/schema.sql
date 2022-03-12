@@ -9,9 +9,9 @@ CREATE TABLE IF NOT EXISTS user (
 );
 
 CREATE TABLE IF NOT EXISTS contract (
-    contractId INTEGER(3) PRIMARY KEY,
+    contractId INTEGER IDENTITY(1,1) PRIMARY KEY,
     userId INTEGER(3),
-    contractTime INTEGER(3),
+    contractTime VARCHAR(3),
     startTime TIME(8),
     breakTime TIME(8),
     endTime TIME(8),

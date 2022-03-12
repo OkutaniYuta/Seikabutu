@@ -21,7 +21,7 @@ public class ContractListController {
 	@GetMapping("/contract_list")
 	public String getContractList(Model model, @AuthenticationPrincipal UserDetails auth) {
 		String mailAddress = auth.getUsername();
-		List<User> userList = userService.getByContract(mailAddress);
+		List<User> userList = userService.getContractByEmail(mailAddress);
 		model.addAttribute("UserList", userList);	
 		return "login/contract_list";
 	}

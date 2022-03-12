@@ -17,16 +17,16 @@ public class User {
 	private String comfirmEmail;
 	private int role;
 	private int userStatus;
-	private String reqestedAt;
+	private String requestedAt;
 	
 	//contractテーブル
+	// TODO 31行目までを消す。
 	private int contractId;
-	private Time contractTime;
+	private String contractTime;
 	private Time startTime;
-	private Time breakeTime;
+	private Time breakTime;
 	private Time endTime;
 	private Date startDate;
 	private Date endDate;
 	private String officeName;
-	
 }
