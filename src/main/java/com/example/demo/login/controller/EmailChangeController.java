@@ -24,8 +24,8 @@ public class EmailChangeController {
 	@GetMapping("/email_change")
 	public String getEmailChange(@ModelAttribute EmailChangeForm form, Model model, @AuthenticationPrincipal UserDetails auth) {
 		//Principalからログインユーザの情報を取得
-		String mailAddress = auth.getUsername();
-		model.addAttribute("UserEmail", mailAddress);
+		String email = auth.getUsername();
+		model.addAttribute("UserEmail", email);
 		return "login/email_change";
 	}
 

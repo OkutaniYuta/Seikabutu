@@ -1,6 +1,8 @@
 package com.example.demo.login.domain.repository.jdbc;
 
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,21 +23,14 @@ public class ContractDao {
 	private final JdbcTemplate jdbc;
 	
 	//ログインユーザーの会社名を1件取得
-	public User getOfficeNameByEmail(String mailAddress) throws DataAccessException {
+	public User getOfficeNameByEmail(String email) throws DataAccessException {
 		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
 				+ " WHERE email = ? ORDER BY startDate desc limit 1" 
-				, mailAddress); // 勤務開始日(startDate)を降順(desc)で並び替え、一番上のものをとる。つまり最新(現在契約中)の会社を指定できる
+				, email); // 勤務開始日(startDate)を降順(desc)で並び替え、一番上のものをとる。つまり最新(現在契約中)の会社を指定できる
 		User user = new User(); // 結果返却用の変数
 		user.setOfficeName((String)map.get("officeName")); // 取得したデータを結果返却用の変数にセット
 		return user; // return convert　convertメソッドにcontractテーブルの
 	}
-	
-//	public Contract getEmailByEmail(String email) throws DataAccessException {
-//		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user "
-//				+ " WHERE email = ?" 
-//				, email); 
-//		return convert(map);
-//	}
 	
 	public List<User> getContractByEmail(String mailAddress) throws DataAccessException {
 		List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
@@ -99,18 +94,18 @@ public class ContractDao {
 				,contract.getOfficeName());
 	}
 	
-//	private Contract convert(Map<String, Object> map) {		 
-//	    Contract contract = new Contract();
-//	    contract.setContractId((int)map.get("contractId"));
-//	    contract.setUserId((int)map.get("userId"));
-//	    contract.setContractTime((String)map.get("contractTime"));
-//	    contract.setStartTime((Time)map.get("startTime"));
-//	    contract.setBreakTime((Time)map.get("breakTime"));
-//	    contract.setEndTime((Time)map.get("endTime"));
-//	    contract.setStartDate((Date)map.get("startDate"));
-//	    contract.setEndDate((Date)map.get("endDate"));
-//	    contract.setOfficeName((String)map.get("officeName"));
-//	    return contract;
-//	}
+	private Contract convert(Map<String, Object> map) {		 
+	    Contract contract = new Contract();
+	    contract.setContractId((int)map.get("contractId"));
+	    contract.setUserId((int)map.get("userId"));
+	    contract.setContractTime((String)map.get("contractTime"));
+	    contract.setStartTime((LocalTime)map.get("startTime"));
+	    contract.setBreakTime((LocalTime)map.get("breakTime"));
+	    contract.setEndTime((LocalTime)map.get("endTime"));
+	    contract.setStartDate((LocalDate)map.get("startDate"));
+	    contract.setEndDate((LocalDate)map.get("endDate"));
+	    contract.setOfficeName((String)map.get("officeName"));
+	    return contract;
+	}
 	
 }

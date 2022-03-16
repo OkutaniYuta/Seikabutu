@@ -23,8 +23,8 @@ public class HomeController {
 		model.addAttribute("NowDate", nowDate);
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         //Principalからログインユーザの情報を取得
-        String mailAddress = auth.getName();
-        String officeName = userService.getOfficeNameByEmail(mailAddress).getOfficeName();
+        String email = auth.getName();
+        String officeName = userService.getOfficeNameByEmail(email).getOfficeName();
         model.addAttribute("OfficeName", officeName);
 		return "login/home";
 	}

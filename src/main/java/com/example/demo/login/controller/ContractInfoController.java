@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
-public class ContractInfoRegistrationController {
+public class ContractInfoController {
 	private final ContractService contractService;
 	
 	@GetMapping("/contractInsert")
