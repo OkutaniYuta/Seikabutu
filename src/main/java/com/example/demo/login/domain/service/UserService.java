@@ -2,6 +2,8 @@ package com.example.demo.login.domain.service;
 
 import java.util.List;
 
+import com.example.demo.login.domain.model.Contract;
+import com.example.demo.login.domain.repository.jdbc.ContractDao;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class UserService {
 	private final UserDao dao;
+	private final ContractDao contractDao;
 	private final AuthenticationService authenticationService;
 
 	//insert用メソッド
@@ -46,8 +49,8 @@ public class UserService {
 		return dao.getContractByEmail(email);
 	}
 	//コントラクトテーブルの情報のみを取得
-	public List<User> getOnlyContractByUserId(int userId) {
-		return dao.getOnlyContractByUserId(userId);
+	public List<Contract> getOnlyContractByUserId(int userId) {
+		return contractDao.getOnlyContractByUserId(userId);
 	}
 	//コントラクトテーブルにinsert
 	public void insertIntoContract(User user) {

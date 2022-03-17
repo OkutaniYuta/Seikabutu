@@ -20,7 +20,7 @@ public class ContractService {
 		return dao.getContractByEmail(email);
 	}
 	//コントラクトテーブルの情報のみを取得
-	public List<User> getOnlyContractByUserId(int userId) {
+	public List<Contract> getOnlyContractByUserId(int userId) {
 		return dao.getOnlyContractByUserId(userId);
 	}
 	//コントラクトテーブルにinsert

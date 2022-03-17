@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.example.demo.login.domain.model.Contract;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -36,7 +37,7 @@ public class SessionController {
     	session.setAttribute("userId", userId); // セッションにuserIdを登録
     	userId = (int)session.getAttribute("userId"); // !動作確認用!セッションからuserIdを取得し、userIdに再代入
     	
-    	List<User> userList = userService.getOnlyContractByUserId(userId);// UserIdをキーにコントラクトテーブルのみを全件リスト型で取得
+    	List<Contract> userList = userService.getOnlyContractByUserId(userId);// UserIdをキーにコントラクトテーブルのみを全件リスト型で取得
     	// TODO getContractByUserId UserIdによってコントラクトリストを取得する
     	
     	String redirect;

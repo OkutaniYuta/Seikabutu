@@ -19,3 +19,10 @@ CREATE TABLE IF NOT EXISTS contract (
     endDate DATE(10),
     officeName VARCHAR(100),
 );
+
+CREATE TABLE IF NOT EXISTS month (
+    monthId INTEGER IDENTITY(1,1) PRIMARY KEY,
+    contractId INTEGER(3),
+    year INTEGER(3),
+    month INTEGER(3),
+);
