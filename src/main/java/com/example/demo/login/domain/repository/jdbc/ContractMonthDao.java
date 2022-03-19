@@ -22,8 +22,12 @@ public class ContractMonthDao {
 
         List<ContractMonth> monthList = new ArrayList<>();
         for (Map<String, Object> map : getList) {
-            ContractMonth month = convert(map);
-            monthList.add(month);
+            ContractMonth contractMonth = new ContractMonth();
+            contractMonth.setMonthId((int) map.get("monthId"));
+            contractMonth.setContractId((int) map.get("contractId"));
+            contractMonth.setYear((int) map.get("year"));
+            contractMonth.setMonth((int) map.get("month"));
+            monthList.add(contractMonth);
         }
         return monthList;
     }

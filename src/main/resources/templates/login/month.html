@@ -25,9 +25,9 @@
         <tr>
             <th>年月</th>
         </tr>
-        <tr th:each="contractMonth : ${ContractMonthList}">
+        <tr th:each="yearMonth : ${YearMonth}">
             <td>
-                <p th:text="${}"></p>
+                <p th:text="${yearMonth.YearMonth}"></p>
             </td>
             <td><a th:href="@{'working_info_month'}">
                 <button type="button">詳細</button>

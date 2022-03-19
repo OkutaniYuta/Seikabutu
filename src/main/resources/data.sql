@@ -14,10 +14,10 @@ VALUES(3, 1, 200, '09:00:00', '01:00:00', '19:00:00', '2000-01-01', '2001-02-01'
 
 --month
 INSERT INTO month (monthId, contractId, year, month)
-VALUES(1, 1, 2022, 3);
+VALUES(1, 2, 2022, 3);
 
 INSERT INTO month (monthId, contractId, year, month)
-VALUES(2, 1, 2022, 4);
+VALUES(2, 2, 2022, 4);
 
 INSERT INTO month (monthId, contractId, year, month)
-VALUES(3, 1, 2022, 5);
+VALUES(3, 2, 2022, 5);
