@@ -8,8 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,10 +28,10 @@ public class ContractDao {
         return user; // return convert　convertメソッドにcontractテーブルの
     }
 
-    public List<User> getContractByEmail(String mailAddress) throws DataAccessException {
+    public List<User> getContractByEmail(String email) throws DataAccessException {
         List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
                         + " WHERE email = ? ORDER BY startDate desc"
-                , mailAddress);
+                , email);
         List<User> userList = new ArrayList<>();
         for (Map<String, Object> map : getList) {
             User user = new User();
@@ -65,6 +63,15 @@ public class ContractDao {
         return contractList;
     }
 
+    public Contract getContractIdByUserId(int userId) throws DataAccessException {
+        Map<String, Object> map = jdbc.queryForMap("SELECT contractId FROM contract "
+                        + " WHERE userId = ? ORDER BY startDate desc limit 1"
+                , userId); // 勤務開始日(startDate)を降順(desc)で並び替え、一番上のものをとる。つまり最新(現在契約中)の会社を指定できる
+        Contract contract = new Contract(); // 結果返却用の変数
+        contract.setContractId((int) map.get("contractId")); // 取得したデータを結果返却用の変数にセット
+        return contract;
+    }
+
     public void insertContract(Contract contract) throws DataAccessException {
         //1件登録
         jdbc.update("INSERT INTO contract("
@@ -90,11 +97,10 @@ public class ContractDao {
         contract.setContractId((int) map.get("contractId"));
         contract.setUserId((int) map.get("userId"));
         contract.setContractTime((String) map.get("contractTime"));
-        contract.setStartTime((LocalTime) map.get("startTime"));
-        contract.setBreakTime((LocalTime) map.get("breakTime"));
-        contract.setEndTime((LocalTime) map.get("endTime"));
-        contract.setStartDate((LocalDate) map.get("startDate"));
-        contract.setEndDate((LocalDate) map.get("endDate"));
+        contract.setStartTime(((java.sql.Time) map.get("startTime")).toLocalTime());
+        contract.setBreakTime(((java.sql.Time) map.get("breakTime")).toLocalTime());
+        contract.setEndTime(((java.sql.Time) map.get("endTime")).toLocalTime());
+        contract.setStartDate(((java.sql.Date) map.get("startDate")).toLocalDate());
         contract.setOfficeName((String) map.get("officeName"));
         return contract;
     }

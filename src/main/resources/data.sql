@@ -1,3 +1,4 @@
+--user
 INSERT INTO user (userId, userName, email, password, role, userStatus, requestedAt)
 VALUES(1, '奥谷裕太', 'okuoku@com', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa', 1, 1, '2022-01-19');
 

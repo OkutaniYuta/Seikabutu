@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultaq.net.nz/thymeleaf/layout">
+>
 <head>
     <meta charset="UTF-8"></meta>
 
@@ -9,80 +9,80 @@
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 
-	<link th:href="@{/css/home.css}" rel="stylesheet"></link>
-	
+    <link th:href="@{/css/home.css}" rel="stylesheet"></link>
+
     <title>Home</title>
 </head>
 <body>
-	<!-- ヘッダー -->
-	<div th:replace="login/header::header"></div>
-	<!-- ===== サイドバー ===== -->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-2 sidebar">
-                <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation">
-                        <a th:href="@{'/admin'}">新規登録申請一覧</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-	<!-- 現在の日時表示 -->
-	<div style=text-align:center>
-	<p th:text="${NowDate}"></p>
-	</div>
-	<br>
-	<!-- コンテンツ -->
-	<div class="company">
-		<div class="col-sm-10 col-sm-offset-3">
-			<span>現在契約中の会社 : </span>
-			<span th:text="${OfficeName}"></span>
-			<br>
-			<p>最低稼働時間まで : </p>
-			<br>
-			<p>今月の稼働時間 : </p>
-		</div>	
-	</div>
-	<br>
-	<!-- ボタン実装 -->
-	<div class="container-fluid">
-		<div class=”row”>
-			<div class="text-center">
-				<!-- 過去の勤務時間詳細・変更 -->
-    			<button class="btn btn-primary　w-auto col-sm" th:href="@{'/'}" type="submit">今日の勤務時間登録</button>
-    			<!-- 過去の勤務時間登録 -->
-    			<a class="btn btn-primary　w-auto col-sm" th:href="@{'/contract_list'}">過去の勤務時間詳細・変更</a> 
-    		</div>
-    	</div>
-    </div>
-    <br>
-    <!-- ボタン -->
-    <div class="text-center">
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demoNormalModal">
-    勤怠を締める
-</button>
-
-<!-- モーダルダイアログ -->
-<div class="modal fade" id="demoNormalModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="demoModalTitle">締め切り確認</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                本当に今月の勤怠を締めますか？
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary w-auto col-sm">はい</button>
-                <button type="button" class="btn btn-primary w-auto col-sm" th:href="@{'/signup'}">いいえ</button>
-            </div>
+<!-- ヘッダー -->
+<div th:replace="login/header::header"></div>
+<!-- ===== サイドバー ===== -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2 sidebar">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation">
+                    <a th:href="@{'/admin'}">新規登録申請一覧</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
+<!-- 現在の日時表示 -->
+<div style=text-align:center>
+    <p th:text="${NowDate}"></p>
+</div>
+<br>
+<!-- コンテンツ -->
+<div class="company">
+    <div class="col-sm-10 col-sm-offset-3">
+        <span>現在契約中の会社 : </span>
+        <span th:text="${OfficeName}"></span>
+        <br>
+        <p>最低稼働時間まで : </p>
+        <br>
+        <p>今月の稼働時間 : </p>
+    </div>
+</div>
+<br>
+<!-- ボタン実装 -->
+<div class="container-fluid">
+    <div class=”row”>
+        <div class="text-center">
+            <!-- 過去の勤務時間詳細・変更 -->
+            <button class="btn btn-primary　w-auto col-sm" th:href="@{'/'}" type="submit">今日の勤務時間登録</button>
+            <!-- 過去の勤務時間登録 -->
+            <a class="btn btn-primary　w-auto col-sm" th:href="@{'/month'}">過去の勤務時間詳細・変更</a>
+        </div>
+    </div>
+</div>
+<br>
+<!-- ボタン -->
+<div class="text-center">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demoNormalModal">
+        勤怠を締める
+    </button>
+
+    <!-- モーダルダイアログ -->
+    <div class="modal fade" id="demoNormalModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="demoModalTitle">締め切り確認</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    本当に今月の勤怠を締めますか？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary w-auto col-sm">はい</button>
+                    <button type="button" class="btn btn-primary w-auto col-sm" th:href="@{'/signup'}">いいえ</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

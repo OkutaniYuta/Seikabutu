@@ -26,15 +26,13 @@
             <th>勤務終了日</th>
             <th>会社名</th>
         </tr>
-        <tr th:each="user : ${UserList}">
+        <tr th:each="contract : ${ContractList}">
             <td>
-                <p th:text="${user.StartDate}"></p>
+                <p th:text="${contract.StartDate}"></p>
             </td>
+            <p th:text="${contract.EndDate}"></p>
             <td>
-                <p th:text="${user.EndDate}"></p>
-            </td>
-            <td>
-                <p th:text="${user.OfficeName}"></p>
+                <p th:text="${contract.OfficeName}"></p>
             </td>
             <td><a th:href="@{'working_info_month'}">
                 <button type="button">詳細</button>
