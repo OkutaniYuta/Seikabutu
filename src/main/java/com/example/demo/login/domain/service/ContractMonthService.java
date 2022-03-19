@@ -12,7 +12,7 @@ import java.util.List;
 public class ContractMonthService {
     private final ContractMonthDao contractMonthDao;
 
-    public static List<ContractMonth> getMonthByContractId(int contractId) {
+    public List<ContractMonth> getMonthByContractId(int contractId) {
         return contractMonthDao.getMonthByContractId(contractId);
     }
 

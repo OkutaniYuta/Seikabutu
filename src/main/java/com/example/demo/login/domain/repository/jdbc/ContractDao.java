@@ -28,6 +28,15 @@ public class ContractDao {
         return user; // return convert　convertメソッドにcontractテーブルの
     }
 
+    public Contract getOfficeNameByContractId(int contractId) throws DataAccessException {
+        Map<String, Object> map = jdbc.queryForMap("SELECT officeName FROM contract "
+                        + " WHERE contractId = ?"
+                , contractId);
+        Contract contract = new Contract(); // 結果返却用の変数
+        contract.setOfficeName((String) map.get("officeName"));
+        return contract;
+    }
+
     public List<User> getContractByEmail(String email) throws DataAccessException {
         List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
                         + " WHERE email = ? ORDER BY startDate desc"

@@ -29,7 +29,12 @@ public class ContractService {
         contractDao.insertContract(contract);
     }
 
-    public static Contract getContractIdByUserId(int userId) {
+    //オフィスネームゲットメソッド
+    public Contract getOfficeNameByContractId(int contractId) {
+        return contractDao.getOfficeNameByContractId(contractId);
+    }
+
+    public Contract getContractIdByUserId(int userId) {
         return contractDao.getContractIdByUserId(userId);
     }
 }
