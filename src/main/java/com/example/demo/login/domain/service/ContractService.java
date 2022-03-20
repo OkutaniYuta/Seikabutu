@@ -1,7 +1,6 @@
 package com.example.demo.login.domain.service;
 
 import com.example.demo.login.domain.model.Contract;
-import com.example.demo.login.domain.model.User;
 import com.example.demo.login.domain.repository.jdbc.ContractDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,7 @@ public class ContractService {
     private final ContractDao contractDao;
 
     //コントラクトテーブルとユーザーテーブルの情報を取得する
-    public List<User> getContractByEmail(String email) {
+    public List<Contract> getContractByEmail(String email) {
         return contractDao.getContractByEmail(email);
     }
 
@@ -30,8 +29,8 @@ public class ContractService {
     }
 
     //オフィスネームゲットメソッド
-    public Contract getOfficeNameByContractId(int contractId) {
-        return contractDao.getOfficeNameByContractId(contractId);
+    public Contract getOfficeNameByUserId(int userId) {
+        return contractDao.getOfficeNameByUserId(userId);
     }
 
     public Contract getContractIdByUserId(int userId) {

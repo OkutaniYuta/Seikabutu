@@ -24,7 +24,7 @@ public class ContractMonthController {
         HttpSession session = request.getSession(); // セッションオブジェクトを生成
         int userId = (int) session.getAttribute("userId"); // セッションからuserIdを取得し、userIdに再代入
         int contractId = contractService.getContractIdByUserId(userId).getContractId();
-        String officeName = contractService.getOfficeNameByContractId(contractId).getOfficeName();
+        String officeName = contractService.getOfficeNameByUserId(contractId).getOfficeName();
 
         List<ContractMonth> contractMonthList = contractMonthService.getMonthByContractId(contractId);
         List<Map<String, String>> yearMonth = contractMonthService.getYearMonth(contractMonthList);
