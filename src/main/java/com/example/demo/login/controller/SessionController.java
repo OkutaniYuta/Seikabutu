@@ -33,9 +33,7 @@ public class SessionController {
         HttpSession session = request.getSession(); // セッションオブジェクトを生成
         session.setAttribute("userId", userId); // セッションにuserIdを登録
         userId = (int) session.getAttribute("userId"); // !動作確認用!セッションからuserIdを取得し、userIdに再代入
-
         List<Contract> userList = userService.getOnlyContractByUserId(userId);// UserIdをキーにコントラクトテーブルのみを全件リスト型で取得
-        // TODO getContractByUserId UserIdによってコントラクトリストを取得する
 
         String redirect;
         if (role == 0) {

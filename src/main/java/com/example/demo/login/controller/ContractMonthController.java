@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -19,16 +19,11 @@ public class ContractMonthController {
     private final ContractService contractService;
     private final ContractMonthService contractMonthService;
 
-    @GetMapping("/month")
-    public String getContractList(Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession(); // セッションオブジェクトを生成
-        int userId = (int) session.getAttribute("userId"); // セッションからuserIdを取得し、userIdに再代入
-        int contractId = contractService.getContractIdByUserId(userId).getContractId();
-        String officeName = contractService.getOfficeNameByUserId(contractId).getOfficeName();
-
+    @GetMapping("/month/{contractId}")
+    public String getContractList(Model model, HttpServletRequest request, @PathVariable("contractId") int contractId) {
+        String officeName = contractService.getOfficeNameByContractId(contractId).getOfficeName();
         List<ContractMonth> contractMonthList = contractMonthService.getMonthByContractId(contractId);
         List<Map<String, String>> yearMonth = contractMonthService.getYearMonth(contractMonthList);
-
         model.addAttribute("OfficeName", officeName);
         model.addAttribute("YearMonth", yearMonth);
         return "login/month";

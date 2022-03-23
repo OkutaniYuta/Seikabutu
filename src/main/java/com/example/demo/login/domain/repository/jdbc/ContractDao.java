@@ -24,6 +24,15 @@ public class ContractDao {
         return contract;
     }
 
+    public Contract getOfficeNameByContractId(int contractId) throws DataAccessException {
+        Map<String, Object> map = jdbc.queryForMap("SELECT officeName FROM contract "
+                        + " WHERE contractId = ?"
+                , contractId);
+        Contract contract = new Contract(); // 結果返却用の変数
+        contract.setOfficeName((String) map.get("officeName"));
+        return contract;
+    }
+
     public List<Contract> getContractByEmail(String email) throws DataAccessException {
         List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
                         + " WHERE email = ? ORDER BY startDate desc"
@@ -53,7 +62,7 @@ public class ContractDao {
     public Contract getContractIdByUserId(int userId) throws DataAccessException {
         Map<String, Object> map = jdbc.queryForMap("SELECT contractId FROM contract "
                         + " WHERE userId = ? ORDER BY startDate desc limit 1"
-                , userId); // 勤務開始日(startDate)を降順(desc)で並び替え、一番上のものをとる。つまり最新(現在契約中)の会社を指定できる
+                , userId);
         Contract contract = new Contract(); // 結果返却用の変数
         contract.setContractId((int) map.get("contractId")); // 取得したデータを結果返却用の変数にセット
         return contract;

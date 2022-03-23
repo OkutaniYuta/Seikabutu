@@ -21,6 +21,7 @@ public class ContractListController {
         String email = auth.getUsername();
         List<Contract> contractList = contractService.getContractByEmail(email);
         model.addAttribute("ContractList", contractList);
+
         return "login/contract_list";
     }
 }

@@ -36,7 +36,7 @@
             <td>
                 <p th:text="${contract.OfficeName}"></p>
             </td>
-            <td><a th:href="@{'working_info_month'}">
+            <td><a th:href="@{'/month/'+ ${contract.contractId}}">
                 <button type="button">詳細</button>
             </a></td>
         </tr>
