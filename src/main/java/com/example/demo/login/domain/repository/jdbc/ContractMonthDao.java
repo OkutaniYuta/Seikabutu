@@ -1,6 +1,6 @@
 package com.example.demo.login.domain.repository.jdbc;
 
-import com.example.demo.login.domain.model.ContractMonth;
+import com.example.demo.login.domain.model.Month;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,24 +15,29 @@ import java.util.Map;
 public class ContractMonthDao {
     private final JdbcTemplate jdbc;
 
-    public List<ContractMonth> getMonthByContractId(int contractId) throws DataAccessException {
+    public List<Month> getMonthListByContractId(int contractId) throws DataAccessException {
         List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM month"
                         + " WHERE contractId = ? "
                 , contractId);
 
-        List<ContractMonth> monthList = new ArrayList<>();
+        List<Month> monthList = new ArrayList<>();
         for (Map<String, Object> map : getList) {
-            ContractMonth contractMonth = new ContractMonth();
-            contractMonth.setMonthId((int) map.get("monthId"));
-            contractMonth.setContractId((int) map.get("contractId"));
-            contractMonth.setYear((int) map.get("year"));
-            contractMonth.setMonth((int) map.get("month"));
-            monthList.add(contractMonth);
+            Month month = convert(map);
+            monthList.add(month);
         }
         return monthList;
     }
 
-    public void insertMonth(ContractMonth month) throws DataAccessException {
+    public Month getMonthIdByContractId(int contractId) throws DataAccessException {
+        Map<String, Object> map = jdbc.queryForMap("SELECT contractId FROM contract "
+                        + " WHERE contractId = ? ORDER BY monthId desc limit 1"
+                , contractId);
+        Month month = new Month(); // 結果返却用の変数
+        month.setContractId((int) map.get("contractId")); // 取得したデータを結果返却用の変数にセット
+        return month;
+    }
+
+    public void insertMonth(Month month) throws DataAccessException {
         //1件登録
         jdbc.update("INSERT INTO month("
                         + " monthId,"
@@ -46,8 +51,8 @@ public class ContractMonthDao {
                 , month.getMonth());
     }
 
-    private ContractMonth convert(Map<String, Object> map) {
-        ContractMonth month = new ContractMonth();
+    private Month convert(Map<String, Object> map) {
+        Month month = new Month();
         month.setMonthId((int) map.get("monthId"));
         month.setContractId((int) map.get("contractId"));
         month.setYear((int) map.get("year"));

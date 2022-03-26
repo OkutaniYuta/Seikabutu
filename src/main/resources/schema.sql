@@ -26,3 +26,13 @@ CREATE TABLE IF NOT EXISTS month (
     year INTEGER(3),
     month INTEGER(3),
 );
+
+CREATE TABLE IF NOT EXISTS workTime (
+    workTimeId INTEGER IDENTITY(1,1) PRIMARY KEY,
+    monthId INTEGER(3),
+    workDay DATE(10),
+    startTime TIMESTAMP(8),
+    breakTime TIME(8),
+    endTime TIMESTAMP(8),
+    workTimeMinute INTEGER(5),
+);

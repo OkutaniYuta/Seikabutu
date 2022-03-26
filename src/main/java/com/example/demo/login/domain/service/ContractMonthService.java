@@ -1,6 +1,6 @@
 package com.example.demo.login.domain.service;
 
-import com.example.demo.login.domain.model.ContractMonth;
+import com.example.demo.login.domain.model.Month;
 import com.example.demo.login.domain.repository.jdbc.ContractMonthDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,30 +15,28 @@ import java.util.Map;
 public class ContractMonthService {
     private final ContractMonthDao contractMonthDao;
 
-    public List<ContractMonth> getMonthByContractId(int contractId) {
-        return contractMonthDao.getMonthByContractId(contractId);
+    public List<Month> getMonthListByContractId(int contractId) {
+        return contractMonthDao.getMonthListByContractId(contractId);
     }
 
-    public List<Map<String, String>> getYearMonth(List<ContractMonth> contractMonthList) {
-        List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+    public Month getMonthIdByContractId(int contractId) {
+        return contractMonthDao.getMonthIdByContractId(contractId);
+    }
 
-        int listSize = contractMonthList.size();
+    public List<Map<String, String>> getYearMonth(List<Month> monthList) {
+        List<Map<String, String>> list = new ArrayList<>();
 
-        for (int i = 0; i < listSize; i++) {
+        for (Month month : monthList) {
             Map<String, String> map = new HashMap<>();
-            ContractMonth month = contractMonthList.get(i);
-            String getYear = Integer.toString(month.getYear());
-            String getMonth = String.format("%02d", month.getMonth());
-            String yearMonth = getYear + "年" + getMonth + "月";
+            String yearMonth = String.format("%d年%02d月", month.getYear(), month.getMonth());
             map.put("YearMonth", yearMonth);
             list.add(map);
         }
         return list;
-
     }
 
     // コントラクトテーブルにinsert
-    public void insertMonth(ContractMonth month) {
+    public void insertMonth(Month month) {
         //insert実行
         contractMonthDao.insertMonth(month);
     }

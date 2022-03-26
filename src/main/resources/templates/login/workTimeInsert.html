@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8"></meta>
+
+    <!-- Bootstrapの設定 -->
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+    <link th:href="@{/css/home.css}" rel="stylesheet"></link>
+
+    <title>Whoursinsert</title>
+</head>
+
+<body>
+<div th:replace="login/header::header"></div>
+<div class="col-sm-8" th:text-align:center>
+    <h3>勤務時間登録</h3>
+</div>
+<div class="col-sm-8">
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th class="active">勤務日</th>
+            <td>
+                <div class="form-group">
+                    <label for="date"></label>
+                    <input type="date"
+                           id="date" name="今日の日付" class="form-control"/>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="col-sm-8">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                <p>始業時間</p>
+                <label for="time"></label>
+                <input type="time" id="time" value="" class="col-sm-8"/>
+            </th>
+        </tr>
+    </table>
+</div>
+
+<div class="col-sm-8">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                <p>休憩時間</p>
+                <label for="time"></label>
+                <input type="time" id="time" value="" class="col-sm-8"/>
+            </th>
+        </tr>
+    </table>
+</div>
+
+<div class="col-sm-8">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                <p>終業時間</p>
+                <label for="time"></label>
+                <input type="time" id="time" value="" class="col-sm-8"/>
+            </th>
+        </tr>
+    </table>
+</div>
+
+<!-- ボタン -->
+<div class="col-sm-8">
+    <button class="btn btn-primary" type="submit">保存</button>
+</div>
+</body>
+</html>
