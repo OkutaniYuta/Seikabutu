@@ -1,8 +1,10 @@
 package com.example.demo.login.controller;
 
+import com.example.demo.login.domain.model.WorkTime;
 import com.example.demo.login.domain.model.WorkTimeForm;
 import com.example.demo.login.domain.service.ContractMonthService;
 import com.example.demo.login.domain.service.ContractService;
+import com.example.demo.login.domain.service.WorkTimeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,20 +21,30 @@ import javax.servlet.http.HttpSession;
 public class WorkTimeInsertController {
     private final ContractService contractService;
     private final ContractMonthService contractMonthService;
+    private final WorkTimeService workTimeService;
 
-    @GetMapping("/workTimeInsert")
+    @GetMapping("/workTimeInsert2")
     public String getWorkTimeInsert(@ModelAttribute WorkTimeForm form, Model model) {
-        return "login/workTimeInsert";
+        return "login/workTimeInsert2";
     }
 
-    @PostMapping("/contractInsert")
-    public String postSignUp(@ModelAttribute WorkTimeForm form, BindingResult bindingResult,
-                             Model model, HttpServletRequest request) {
+    @PostMapping("/workTimeInsert2")
+    public String postWorkTimeInsert(@ModelAttribute WorkTimeForm form, BindingResult bindingResult,
+                                     Model model, HttpServletRequest request) {
         HttpSession session = request.getSession(); // セッションオブジェクトを生成
-        int userId = (int) session.getAttribute("userId"); // !動作確認用!セッションからuserIdを取得し、userIdに再代入
+        int userId = (int) session.getAttribute("userId");
         int contractId = contractService.getContractIdByUserId(userId).getContractId();
         int monthId = contractMonthService.getMonthIdByContractId(contractId).getMonthId();
 
-        return "login/workTimeInsert";
+        WorkTime workTime = new WorkTime();
+        workTime.setMonthId(monthId);
+        workTime.setWorkDay(form.getWorkDay());
+        workTime.setStartTime(form.getStartTime());
+        workTime.setBreakTime(form.getBreakTime());
+        workTime.setEndTime(form.getEndTime());
+        workTime.setWorkTimeMinute(form.getWorkTimeMinute());
+        workTimeService.insertWorkTime(workTime);
+
+        return "login/workTimeInsert2";
     }
 }

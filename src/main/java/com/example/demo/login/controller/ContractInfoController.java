@@ -44,6 +44,6 @@ public class ContractInfoController {
         contract.setStartDate(form.getStartDate());
         contract.setOfficeName(form.getOfficeName());
         contractService.insertContract(contract);
-        return "login/login";
+        return "login/contractInsert";
     }
 }

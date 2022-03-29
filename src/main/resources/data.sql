@@ -26,5 +26,5 @@ INSERT INTO month (monthId, contractId, year, month)
 VALUES(4, 3, 2022, 5);
 
 --workTime
---INSERT INTO workTime (workTimeId, monthId, workDay, startTime, breakTime, endTime, workTimeMinute)
---VALUES(1, 1, '2021-01-01', '01:00:00', '01:00:00', '01:00:00', 99999);
+INSERT INTO workTime (workTimeId, monthId, workDay, startTime, breakTime, endTime, workTimeMinute)
+VALUES(1, 1, '2021-01-01', '01:00:00', '01:00:00', '01:00:00', 99999);

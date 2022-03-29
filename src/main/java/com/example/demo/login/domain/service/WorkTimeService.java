@@ -1,6 +1,6 @@
 package com.example.demo.login.domain.service;
 
-import com.example.demo.login.domain.model.Contract;
+import com.example.demo.login.domain.model.WorkTime;
 import com.example.demo.login.domain.repository.jdbc.WorkTimeDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,8 +13,8 @@ public class WorkTimeService {
 
 
     //workTimeテーブルにinsert
-    public void insertWorkTime(Contract contract) {
+    public void insertWorkTime(WorkTime workTime) {
         //insert実行
-        workTimeDao.insertContract(contract);
+        workTimeDao.insertWorkTime(workTime);
     }
 }
