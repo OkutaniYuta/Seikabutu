@@ -19,7 +19,7 @@ public class ContractMonthService {
         return contractMonthDao.getMonthListByContractId(contractId);
     }
 
-    public Month getMonthIdByContractId(int contractId) {
+    public Integer getMonthIdByContractId(int contractId) {
         return contractMonthDao.getMonthIdByContractId(contractId);
     }
 

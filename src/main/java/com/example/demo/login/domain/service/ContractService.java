@@ -37,7 +37,7 @@ public class ContractService {
         return contractDao.getOfficeNameByContractId(contractId);
     }
 
-    public Contract getContractIdByUserId(int userId) {
+    public Integer getContractIdByUserId(int userId) {
         return contractDao.getContractIdByUserId(userId);
     }
 }

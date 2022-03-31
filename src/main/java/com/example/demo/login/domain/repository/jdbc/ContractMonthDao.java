@@ -28,13 +28,9 @@ public class ContractMonthDao {
         return monthList;
     }
 
-    public Month getMonthIdByContractId(int contractId) throws DataAccessException {
-        Map<String, Object> map = jdbc.queryForMap("SELECT monthId FROM month "
-                        + " WHERE contractId = ? ORDER BY monthId desc limit 1"
-                , contractId);
-        Month month = new Month(); // 結果返却用の変数
-        month.setMonthId((int) map.get("monthId")); // 取得したデータを結果返却用の変数にセット
-        return month;
+    public Integer getMonthIdByContractId(int contractId) throws DataAccessException {
+        return jdbc.queryForObject("SELECT monthId FROM month "
+                + " WHERE contractId = ? ORDER BY monthId desc limit 1", Integer.class, contractId);
     }
 
     public void insertMonth(Month month) throws DataAccessException {

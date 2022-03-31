@@ -59,13 +59,9 @@ public class ContractDao {
         return contractList;
     }
 
-    public Contract getContractIdByUserId(int userId) throws DataAccessException {
-        Map<String, Object> map = jdbc.queryForMap("SELECT contractId FROM contract "
-                        + " WHERE userId = ? ORDER BY startDate desc limit 1"
-                , userId);
-        Contract contract = new Contract(); // 結果返却用の変数
-        contract.setContractId((int) map.get("contractId")); // 取得したデータを結果返却用の変数にセット
-        return contract;
+    public Integer getContractIdByUserId(int userId) throws DataAccessException {
+        return jdbc.queryForObject("SELECT contractId FROM contract "
+                + " WHERE userId = ? ORDER BY startDate desc limit 1", Integer.class, userId);
     }
 
     public void insertContract(Contract contract) throws DataAccessException {
