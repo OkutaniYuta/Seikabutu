@@ -23,12 +23,12 @@ public class WorkTimeInsertController {
     private final ContractMonthService contractMonthService;
     private final WorkTimeService workTimeService;
 
-    @GetMapping("/workTimeInsert2")
+    @GetMapping("/workTimeInsert")
     public String getWorkTimeInsert(@ModelAttribute WorkTimeForm form, Model model) {
-        return "login/workTimeInsert2";
+        return "login/workTimeInsert";
     }
 
-    @PostMapping("/workTimeInsert2")
+    @PostMapping("/workTimeInsert")
     public String postWorkTimeInsert(@ModelAttribute WorkTimeForm form, BindingResult bindingResult,
                                      Model model, HttpServletRequest request) {
         HttpSession session = request.getSession(); // セッションオブジェクトを生成
@@ -44,6 +44,6 @@ public class WorkTimeInsertController {
         workTime.setEndTime(form.getEndTime());
         workTimeService.insertWorkTime(workTime);
 
-        return "login/workTimeInsert2";
+        return "redirect:/workTimeInsert";
     }
 }
