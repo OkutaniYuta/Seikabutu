@@ -4,20 +4,19 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
 public class WorkTimeForm {
     private int workTimeId;
     private int monthId;
-    private LocalDate workDay;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime startTime;
-    @DateTimeFormat(pattern = "hh:mm:ss")
+    private LocalDate workDay;
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime startTime;
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime breakTime;
     @DateTimeFormat(pattern = "HH:mm")
-    private LocalDateTime endTime;
-    @DateTimeFormat(pattern = "hh:mm:ss")
-    private int workTimeMinute;
+    private LocalTime endTime;
+    private int workTimeMinute;//保留
 }

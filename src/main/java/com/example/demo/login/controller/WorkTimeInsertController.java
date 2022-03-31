@@ -42,7 +42,6 @@ public class WorkTimeInsertController {
         workTime.setStartTime(form.getStartTime());
         workTime.setBreakTime(form.getBreakTime());
         workTime.setEndTime(form.getEndTime());
-        workTime.setWorkTimeMinute(form.getWorkTimeMinute());
         workTimeService.insertWorkTime(workTime);
 
         return "login/workTimeInsert2";

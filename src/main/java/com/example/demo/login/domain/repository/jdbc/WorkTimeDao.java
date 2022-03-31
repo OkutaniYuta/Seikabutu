@@ -18,14 +18,12 @@ public class WorkTimeDao {
                         + " workDay,"
                         + " startTime,"
                         + " breakTime,"
-                        + " endTime,"
-                        + " workTimeMinute)"
-                        + " VALUES(?, ?, ?, ?, ?, ?)"
+                        + " endTime)"
+                        + " VALUES(?, ?, ?, ?, ?)"
                 , workTime.getMonthId()
                 , workTime.getWorkDay()
                 , workTime.getStartTime()
                 , workTime.getBreakTime()
-                , workTime.getEndTime()
-                , workTime.getWorkTimeMinute());
+                , workTime.getEndTime());
     }
 }

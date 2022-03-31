@@ -9,14 +9,19 @@ import java.time.LocalTime;
 @Data
 public class ContractInfoForm {
     private String contractTime;
+
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime startTime;
+
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime breakTime;
+
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime endTime;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+
     private String officeName;
 
 }
