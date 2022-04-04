@@ -17,30 +17,21 @@
 <body>
 <div th:replace="login/header::header"></div>
 <div class="col-sm-8" th:text-align:center>
-    <h3>契約一覧</h3>
+    <h3>月ごとの契約一覧</h3>
+    <p th:text="${OfficeName}"></p>
 </div>
 <div class="col-sm-10" th:text-align:center>
     <table border="1" class="col-sm-10">
         <tr>
-            <th>勤務開始日</th>
-            <th>勤務終了日</th>
-            <th>会社名</th>
+            <th>年月</th>
         </tr>
-        <tr th:each="contract : ${ContractList}">
+        <tr th:each="yearMonth : ${YearMonthList}">
             <td>
-                <p th:text="${contract.StartDate}"></p>
+                <p th:text="${yearMonth.YearMonth}"></p>
             </td>
-            <td>
-                <p th:text="${contract.EndDate}"></p>
-            </td>
-            <td>
-                <p th:text="${contract.OfficeName}"></p>
-            </td>
-            <td><a th:href="@{'/month/'+ ${contract.contractId}}">
+            <td><a th:href="@{'/monthDetails/'+ ${yearMonth.ContractId} + '/' + ${yearMonth.MonthId}}">
                 <button type="button">詳細</button>
             </a></td>
-        </tr>
-        <tr>
         </tr>
     </table>
 </div>

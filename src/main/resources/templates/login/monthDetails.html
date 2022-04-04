@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8"></meta>
+
+    <!-- Bootstrapの設定 -->
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+          rel="stylesheet"></link>
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+    <link th:href="@{/css/monthDetails.css}" rel="stylesheet"></link>
+
+    <title>MonthDetails</title>
+</head>
+
+<body>
+<div th:replace="login/header::header"></div>
+<div class="col-sm-8" th:text-align:center>
+    <h3>契約一覧</h3>
+</div>
+<div class="col-sm-10" th:text-align:center>
+    <table border="1" class="col-sm-10">
+        <tr>
+            <th>勤務日</th>
+            <th>始業時間</th>
+            <th>休憩時間</th>
+            <th>退勤時間</th>
+            <th>合計時間</th>
+        </tr>
+        <tr th:each="workTime : ${workTimeList}">
+            <td>
+                <p th:text="${workTime.WorkDay}"></p>
+            </td>
+            <td>
+                <p th:text="${workTime.StartTime}"></p>
+            </td>
+            <td>
+                <p th:text="${workTime.BreakTime}"></p>
+            </td>
+            <td>
+                <p th:text="${workTime.EndTime}"></p>
+            </td>
+            <td>
+                <p th:text="${workTime.WorkTimeMinute}"></p>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="tabs">
+    <input id="all" type="radio" name="tab_item" checked>
+    <label class="tab_item" for="all">勤務日の削除</label>
+    <input id="programming" type="radio" name="tab_item">
+    <label class="tab_item" for="programming">勤務情報の変更</label>
+    <div class="tab_content" id="all_content">
+        <div class="tab_content_description">
+            <p class="c-tsp">勤務日</p>
+            <select>
+                <option th:each="workTime : ${workTimeList}" th:text="${workTime.WorkDay}"></option>
+            </select><br>
+            <!-- ボタン -->
+            <div class="text-center">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demoNormalModal">
+                    勤怠を締める
+                </button>
+
+                <!-- モーダルダイアログ -->
+                <div class="modal fade" id="demoNormalModal" tabindex="-1" role="dialog" aria-labelledby="modal"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="demoModalTitle">削除確認画面</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                本当に削除しますか？
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary w-auto col-sm">はい</button>
+                                <button type="button" class="btn btn-primary w-auto col-sm"
+                                        th:href="@{'/monthDetails'}">いいえ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab_content" id="programming_content">
+        <div class="tab_content_description">
+            <div class="col-sm-8">
+                <p class="c-tsp">勤務時間の登録</p>
+                <form method="post" th:action="@{'/monthDetails/'+ ${yearMonth.ContractId} + '/' + ${yearMonth.MonthId}}" th:object="${workTimeForm}">
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            <th class="active">勤務日</th>
+                            <td>
+                                <div class="form-group">
+                                    <input type="date"
+                                           name="今日の日付" class="form-control" th:field="*{workDay}"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="active">始業時間</th>
+                            <td>
+                                <div class="form-group">
+                                    <label for="time"></label>
+                                    <input type="time" id="time" class="form-control" th:field="*{startTime}"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="active">休憩時間</th>
+                            <td>
+                                <div class="form-group">
+                                    <label for="time"></label>
+                                    <input type="time" id="time" class="form-control" th:field="*{breakTime}"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="active">終了時間</th>
+                            <td>
+                                <div class="form-group">
+                                    <label for="time"></label>
+                                    <input type="time" id="time" class="form-control" th:field="*{endTime}"/>
+                                </div>
+                            </td>
+                        </tr>
+                        </tr>
+                    </table>
+                    <button class="btn btn-primary" th:href="@{'/workTimeInsert'}" type="submit">保存する</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
