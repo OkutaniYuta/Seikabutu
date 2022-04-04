@@ -94,14 +94,14 @@
         <div class="tab_content_description">
             <div class="col-sm-8">
                 <p class="c-tsp">勤務時間の登録</p>
-                <form method="post" th:action="@{'/monthDetails/'+ ${yearMonth.ContractId} + '/' + ${yearMonth.MonthId}}" th:object="${workTimeForm}">
+<!--                <form method="post" th:action="@{'/monthDetails/'+ ${yearMonth.ContractId} + '/' + ${yearMonth.MonthId}}" th:object="${workTimeForm}">-->
                     <table class="table table-bordered table-hover">
                         <tr>
                             <th class="active">勤務日</th>
                             <td>
                                 <div class="form-group">
                                     <input type="date"
-                                           name="今日の日付" class="form-control" th:field="*{workDay}"/>
+                                           name="今日の日付" class="form-control" />
                                 </div>
                             </td>
                         </tr>
@@ -110,7 +110,7 @@
                             <td>
                                 <div class="form-group">
                                     <label for="time"></label>
-                                    <input type="time" id="time" class="form-control" th:field="*{startTime}"/>
+                                    <input type="time" id="time" class="form-control" />
                                 </div>
                             </td>
                         </tr>
@@ -119,7 +119,7 @@
                             <td>
                                 <div class="form-group">
                                     <label for="time"></label>
-                                    <input type="time" id="time" class="form-control" th:field="*{breakTime}"/>
+                                    <input type="time" id="time" class="form-control" />
                                 </div>
                             </td>
                         </tr>
@@ -128,13 +128,13 @@
                             <td>
                                 <div class="form-group">
                                     <label for="time"></label>
-                                    <input type="time" id="time" class="form-control" th:field="*{endTime}"/>
+                                    <input type="time" id="time" class="form-control" />
                                 </div>
                             </td>
                         </tr>
                         </tr>
                     </table>
-                    <button class="btn btn-primary" th:href="@{'/workTimeInsert'}" type="submit">保存する</button>
+                    <button class="btn btn-primary" th:href="@{'/monthDetails'}" type="submit">保存する</button>
                 </form>
             </div>
         </div>
