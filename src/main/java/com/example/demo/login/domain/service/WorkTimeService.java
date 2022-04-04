@@ -5,16 +5,18 @@ import com.example.demo.login.domain.repository.jdbc.WorkTimeDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class WorkTimeService {
-    // TODO: UserIdをキーにContractIdを取得(１番大きいやつ)。そのContractIdをキーにMonthId(1番大きいもの)を取得。そのMonthIdをworkTimeテーブルに登録する。
     private final WorkTimeDao workTimeDao;
 
-
-    //workTimeテーブルにinsert
     public void insertWorkTime(WorkTime workTime) {
-        //insert実行
         workTimeDao.insertWorkTime(workTime);
+    }
+
+    public List<WorkTime> getWorkTimeList(int monthId) {
+        return workTimeDao.getWorkTimeListByMonthId(monthId);
     }
 }

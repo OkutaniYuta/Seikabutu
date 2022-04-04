@@ -29,11 +29,9 @@
             <td>
                 <p th:text="${yearMonth.YearMonth}"></p>
             </td>
-            <td><a th:href="@{'monthDetails'}">
-                <button type="button" th:href="@{'/monthDetails'}">詳細</button>
+            <td><a th:href="@{'/monthDetails/'+ ${yearMonth.ContractId} + '/' + ${yearMonth.MonthId}}">
+                <button type="button">詳細</button>
             </a></td>
-        </tr>
-        <tr>
         </tr>
     </table>
 </div>

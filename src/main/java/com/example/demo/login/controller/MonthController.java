@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @Controller
-public class ContractMonthController {
+public class MonthController {
     private final ContractService contractService;
     private final ContractMonthService contractMonthService;
 

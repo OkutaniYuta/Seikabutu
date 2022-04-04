@@ -28,8 +28,12 @@ public class ContractMonthService {
 
         for (Month month : monthList) {
             Map<String, String> map = new HashMap<>();
+            String monthId = String.valueOf(month.getMonthId());
+            String contractId = String.valueOf(month.getContractId());
             String yearMonth = String.format("%d年%02d月", month.getYear(), month.getMonth());
             map.put("YearMonth", yearMonth);
+            map.put("MonthId", monthId);
+            map.put("ContractId", contractId);
             list.add(map);
         }
         return list;
