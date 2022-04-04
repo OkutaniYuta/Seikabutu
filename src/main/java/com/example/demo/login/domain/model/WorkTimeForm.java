@@ -7,21 +7,16 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Data
-public class ContractInfoForm {
-    private String contractTime;
-
+public class WorkTimeForm {
+    private int workTimeId;
+    private int monthId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate workDay;
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime startTime;
-
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime breakTime;
-
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime endTime;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate startDate;
-
-    private String officeName;
-
+    private int workTimeMinute;//保留
 }

@@ -11,74 +11,73 @@
     <title>Contract</title>
 </head>
 <body>
-    <div class="col-sm-8">
-        <div class="page-header">
-            <h1>契約詳細情報の登録</h1>
-        </div>
-        <form method="post" th:action="@{/contractInsert}" th:object="${contractInfoForm}">
-            <table class="table table-bordered table-hover">
-                <tr>
-                    <th class="active">契約勤務時間</th>
-                    <td>
-                        <div class="form-group">
-                            <input type="text" class="form-control" th:field="*{contractTime}" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="active col-sm-3">想定始業時間</th>
-                    <td>
-                        <div class="form-group">
-                        	<label for="time"></label>
-                        		 <input type="time"
-                        			id="time" class="form-control" th:field="*{startTime}" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="active">想定休憩時間</th>
-                    <td>
-                        <div class="form-group">
-                        	<label for="time"></label>
-                        		 <input type="time"
-                        			id="time" class="form-control" th:field="*{breakTime}" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="active">想定退勤時間</th>
-                    <td>
-                        <div class="form-group">
-                        	<label for="time"></label>
-                        		 <input type="time"
-                        			id="time" class="form-control" th:field="*{endTime}" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="active">勤務開始日</th>
-                    <td>
-                        <div class="form-group">
-                        	<label for="date"></label>
-                        		 <input type="date"
-                        			id="date" name="今日の日付" class="form-control" th:field="*{startDate}" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="active">勤務先会社名</th>
-                    <td>
-                        <div class="form-group">
-                        	<label for="date"></label>
-                        		 <input type="text"
-                        			id="date" class="form-control" th:field="*{officeName}" />
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <button class="btn btn-primary" th:href="@{'/home'}" type="submit">保存する</button>
-            <!-- ログイン画面に戻る -->
-        </form>
+<div class="col-sm-8">
+    <div class="page-header">
+        <h1>契約詳細情報の登録</h1>
     </div>
+    <form method="post" th:action="@{/contractInsert}" th:object="${contractInfoForm}">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th class="active">契約勤務時間</th>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control" th:field="*{contractTime}"/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="active col-sm-3">想定始業時間</th>
+                <td>
+                    <div class="form-group">
+                        <label for="time"></label>
+                        <input type="time"
+                               id="time" class="form-control" th:field="*{startTime}"/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="active">想定休憩時間</th>
+                <td>
+                    <div class="form-group">
+                        <label for="time"></label>
+                        <input type="time"
+                               id="time" class="form-control" th:field="*{breakTime}"/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="active">想定退勤時間</th>
+                <td>
+                    <div class="form-group">
+                        <label for="time"></label>
+                        <input type="time"
+                               id="time" class="form-control" th:field="*{endTime}"/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="active">勤務開始日</th>
+                <td>
+                    <div class="form-group">
+                        <label for="date"></label>
+                        <input type="date"
+                               id="date" name="今日の日付" class="form-control" th:field="*{startDate}"/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="active">勤務先会社名</th>
+                <td>
+                    <div class="form-group">
+                        <label for="date"></label>
+                        <input type="text"
+                               id="date" class="form-control" th:field="*{officeName}"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <button class="btn btn-primary" th:href="@{'/home'}" type="submit">保存する</button>
+    </form>
+</div>
 </body>
 </html>
