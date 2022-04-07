@@ -37,4 +37,12 @@ public class WorkTimeService {
     public List<WorkTime> getWorkTimeList(int monthId) {
         return workTimeDao.getWorkTimeListByMonthId(monthId);
     }
+
+    public LocalDate getWorkDay(int monthId) {
+        return workTimeDao.getWorkDay(monthId);
+    }
+
+    public void deleteWorkTimeInMonthByWorkDay(LocalDate workDay) {
+        workTimeDao.getWorkTimeListDelete(workDay);
+    }
 }

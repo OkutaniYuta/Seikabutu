@@ -35,4 +35,12 @@ public class MonthDetailsController {
         workTimeService.insertWorkTimeInMonth(monthId, form.getWorkDay(), form.getStartTime(), form.getBreakTime(), form.getEndTime());
         return "redirect:/monthDetails/" + contractId + "/" + monthId;
     }
+
+    @PostMapping("/monthDetails/{contractId}/{monthId}/delete")
+    public String postDeleteMonthDetails(Model model, @ModelAttribute WorkTimeForm form, BindingResult bindingResult,
+                                         @PathVariable("monthId") int monthId, @PathVariable("contractId") int contractId) {
+
+        workTimeService.deleteWorkTimeInMonthByWorkDay(workTimeService.getWorkDay(monthId));
+        return "redirect:/monthDetails/" + contractId + "/" + monthId;
+    }
 }
