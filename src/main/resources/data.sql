@@ -27,10 +27,10 @@ VALUES(4, 3, 2022, 5);
 
 --workTime
 INSERT INTO workTime (workTimeId, monthId, workDay, startTime, breakTime, endTime, workTimeMinute)
-VALUES(1, 1, '2021-01-01', '01:00:00', '01:00:00', '01:00:00', 99999);
+VALUES(1, 1, '2022-01-01', '01:00:00', '01:00:00', '01:00:00', 99999);
 
 INSERT INTO workTime (workTimeId, monthId, workDay, startTime, breakTime, endTime, workTimeMinute)
-VALUES(2, 2, '2021-01-02', '02:00:00', '02:00:00', '02:00:00', 29999);
+VALUES(2, 2, '2022-01-02', '02:00:00', '02:00:00', '02:00:00', 29999);
 
 INSERT INTO workTime (workTimeId, monthId, workDay, startTime, breakTime, endTime, workTimeMinute)
 VALUES(3, 2, '2022-01-03', '02:00:00', '02:00:00', '02:00:00', 29999);
