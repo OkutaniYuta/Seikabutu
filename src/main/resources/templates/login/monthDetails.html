@@ -95,7 +95,7 @@
             <div class="col-sm-8">
                 <p class="c-tsp">勤務時間の登録</p>
                 <form method="post"
-                      th:action="@{'/monthDetails/'+ ${ContractId} + '/' + ${MonthId} + '/insert'}"
+                      th:action="@{'/monthDetails/'+ ${contractId} + '/' + ${monthId}}"
                       th:object="${workTimeForm}">
                     <table class="table table-bordered table-hover">
                         <tr>
@@ -135,8 +135,7 @@
                             </td>
                         </tr>
                     </table>
-                    <button class="btn btn-primary"
-                            th:href="@{'/monthDetails/'+ ${ContractId} + '/' + ${MonthId} + '/insert'}" type="submit">
+                    <button class="btn btn-primary" type="submit">
                         保存する
                     </button>
                 </form>

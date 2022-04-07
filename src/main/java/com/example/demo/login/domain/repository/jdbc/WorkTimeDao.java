@@ -52,7 +52,7 @@ public class WorkTimeDao {
         workTime.setStartTime(((java.sql.Time) map.get("startTime")).toLocalTime());
         workTime.setBreakTime(((java.sql.Time) map.get("breakTime")).toLocalTime());
         workTime.setEndTime(((java.sql.Time) map.get("endTime")).toLocalTime());
-        workTime.setWorkTimeMinute((int) map.get("workTimeMinute"));
+        workTime.setWorkTimeMinute((Integer) map.get("workTimeMinute"));
         return workTime;
     }
 }

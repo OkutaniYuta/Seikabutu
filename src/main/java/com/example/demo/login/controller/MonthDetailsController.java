@@ -20,24 +20,19 @@ public class MonthDetailsController {
     private final WorkTimeService workTimeService;
 
     @GetMapping("/monthDetails/{contractId}/{monthId}")
-    public String getMonthDetails(Model model, @PathVariable("monthId") int monthId) {
+    public String getMonthDetails(Model model, @PathVariable("monthId") int monthId, @PathVariable("contractId") int contractId, @ModelAttribute WorkTimeForm form) {
         List<WorkTime> workTimeList = workTimeService.getWorkTimeList(monthId);
         model.addAttribute("workTimeList", workTimeList);
+        model.addAttribute("contractId", contractId);
+        model.addAttribute("monthId", monthId);
         return "login/monthDetails";
     }
 
-    @PostMapping("/monthDetails/{contractId}/{monthId}/insert")
+    @PostMapping("/monthDetails/{contractId}/{monthId}")
     public String postMonthDetails(@ModelAttribute WorkTimeForm form, BindingResult bindingResult,
                                    @PathVariable("monthId") int monthId, @PathVariable("contractId") int contractId) {
 
-        WorkTime workTime = new WorkTime();
-        workTime.setMonthId(monthId);
-        workTime.setWorkDay(form.getWorkDay());
-        workTime.setStartTime(form.getStartTime());
-        workTime.setBreakTime(form.getBreakTime());
-        workTime.setEndTime(form.getEndTime());
-        workTimeService.insertWorkTime(workTime);
-
-        return "redirect:/monthDetails";
+        workTimeService.insertWorkTimeInMonth(monthId, form.getWorkDay(), form.getStartTime(), form.getBreakTime(), form.getEndTime());
+        return "redirect:/monthDetails/" + contractId + "/" + monthId;
     }
 }
