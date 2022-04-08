@@ -57,12 +57,7 @@ public class WorkTimeDao {
         return workTime;
     }
 
-    public LocalDate getWorkDay(LocalDate workDay) throws DataAccessException {
-        return jdbc.queryForObject("SELECT workDay FROM workTime "
-                + " WHERE monthId = ? ", LocalDate.class, workDay);
-    }
-
-    public void getWorkTimeListDelete(LocalDate workDay) {
+    public void getWorkTimeListDelete(LocalDate workDay) {     //ここです！
         jdbc.update("DELETE * FROM workTime WHERE workDay = ?", workDay);
     }
 }
