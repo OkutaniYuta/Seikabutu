@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -38,7 +39,11 @@ public class WorkTimeService {
         return workTimeDao.getWorkTimeListByMonthId(monthId);
     }
 
-    public void deleteWorkTimeInMonthByWorkDay(LocalDate workDay) {
-        workTimeDao.getWorkTimeListDelete(workDay);
+    public void deleteWorkTimeInMonthByWorkDay(LocalDate formatChangeWorkDay) {
+        workTimeDao.getWorkTimeListDelete(formatChangeWorkDay);
+    }
+
+    public static LocalDate convertStringToLocalDate(String workDay) {
+        return LocalDate.parse(workDay, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }

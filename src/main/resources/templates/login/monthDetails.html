@@ -56,15 +56,17 @@
         <div class="tab_content_description">
             <p class="c-tsp">勤務日</p>
             <form method="post"
-                  th:action="@{'/monthDetails/'+ ${contractId} + '/' + ${monthId}+ '/' + delete}"
+                  th:action="@{'/monthDetails/'+ ${contractId} + '/' + ${monthId}+ '/' + 'delete'}"
                   th:object="${workTimeForm}">
-                <select>
+                <select name="workDay">
                     <option th:each="workTime : ${workTimeList}" th:field="*{workDay}"
-                            th:text="${workTime.WorkDay}"></option>
+                            th:value="${workTime.WorkDay}"
+                            th:text="${workTime.WorkDay}">
+                    </option>
                 </select><br>
                 <!-- ボタン -->
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#demoNormalModal">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demoNormalModal">
                         削除する
                     </button>
 
@@ -85,8 +87,7 @@
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary w-auto col-sm">はい
                                     </button>
-                                    <button type="button" class="btn btn-primary w-auto col-sm"
-                                            th:href="@{'/monthDetails/'+ ${contractId} + '/' + ${monthId}}">いいえ
+                                    <button type="button" class="btn btn-primary w-auto col-sm">いいえ
                                     </button>
                                 </div>
                             </div>
