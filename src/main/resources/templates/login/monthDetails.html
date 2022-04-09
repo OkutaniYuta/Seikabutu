@@ -59,7 +59,8 @@
                   th:action="@{'/monthDetails/'+ ${contractId} + '/' + ${monthId}+ '/' + delete}"
                   th:object="${workTimeForm}">
                 <select>
-                    <option th:each="workTime : ${workTimeList}" th:text="${workTime.WorkDay}"></option>
+                    <option th:each="workTime : ${workTimeList}" th:field="*{workDay}"
+                            th:text="${workTime.WorkDay}"></option>
                 </select><br>
                 <!-- ボタン -->
                 <div class="text-center">

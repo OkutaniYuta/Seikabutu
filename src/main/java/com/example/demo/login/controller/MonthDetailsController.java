@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -38,10 +37,11 @@ public class MonthDetailsController {
     }
 
     @PostMapping("/monthDetails/{contractId}/{monthId}/delete")
-    public String postDeleteMonthDetails(Model model, @ModelAttribute WorkTimeForm form, @ModelAttribute("workTime.WorkDay") LocalDate workday, BindingResult bindingResult,
+    @ModelAttribute
+    public String postDeleteMonthDetails(Model model, @ModelAttribute WorkTimeForm form, BindingResult bindingResult,
                                          @PathVariable("monthId") int monthId, @PathVariable("contractId") int contractId) {
-
-        workTimeService.deleteWorkTimeInMonthByWorkDay((java.time.LocalDate) workday);
+        System.out.println(form.getWorkDay());
+        workTimeService.deleteWorkTimeInMonthByWorkDay(form.getWorkDay());
         return "redirect:/monthDetails/" + contractId + "/" + monthId;
     }
 }

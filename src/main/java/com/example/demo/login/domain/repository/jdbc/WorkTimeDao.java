@@ -57,7 +57,7 @@ public class WorkTimeDao {
         return workTime;
     }
 
-    public void getWorkTimeListDelete(LocalDate workDay) {     //ここです！
-        jdbc.update("DELETE * FROM workTime WHERE workDay = ?", workDay);
+    public void getWorkTimeListDelete(LocalDate workDay) {
+        jdbc.update("DELETE FROM workTime WHERE workDay = ?", workDay);
     }
 }

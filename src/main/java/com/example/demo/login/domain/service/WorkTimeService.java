@@ -38,10 +38,6 @@ public class WorkTimeService {
         return workTimeDao.getWorkTimeListByMonthId(monthId);
     }
 
-    public LocalDate getWorkDay(LocalDate workDay) {
-        return workTimeDao.getWorkDay(workDay);
-    }
-
     public void deleteWorkTimeInMonthByWorkDay(LocalDate workDay) {
         workTimeDao.getWorkTimeListDelete(workDay);
     }
