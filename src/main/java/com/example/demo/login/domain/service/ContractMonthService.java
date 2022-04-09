@@ -19,10 +19,6 @@ public class ContractMonthService {
         return contractMonthDao.getMonthListByContractId(contractId);
     }
 
-    public Integer getMonthIdByContractId(int contractId) {
-        return contractMonthDao.getMonthIdByContractId(contractId);
-    }
-
     public List<Map<String, String>> getYearMonth(List<Month> monthList) {
         List<Map<String, String>> list = new ArrayList<>();
 

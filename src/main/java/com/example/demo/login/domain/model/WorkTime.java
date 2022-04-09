@@ -13,5 +13,5 @@ public class WorkTime {
     private LocalTime startTime;
     private LocalTime breakTime;
     private LocalTime endTime;
-    private int workTimeMinute;
+    private Integer workTimeMinute;
 }

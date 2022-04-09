@@ -6,6 +6,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +53,11 @@ public class WorkTimeDao {
         workTime.setStartTime(((java.sql.Time) map.get("startTime")).toLocalTime());
         workTime.setBreakTime(((java.sql.Time) map.get("breakTime")).toLocalTime());
         workTime.setEndTime(((java.sql.Time) map.get("endTime")).toLocalTime());
-        workTime.setWorkTimeMinute((int) map.get("workTimeMinute"));
+        workTime.setWorkTimeMinute((Integer) map.get("workTimeMinute"));
         return workTime;
+    }
+
+    public void getWorkTimeListDelete(LocalDate formatChangeWorkDay) {
+        jdbc.update("DELETE FROM workTime WHERE workDay = ?", formatChangeWorkDay);
     }
 }
