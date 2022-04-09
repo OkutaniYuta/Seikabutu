@@ -55,46 +55,55 @@
     <div class="tab_content" id="all_content">
         <div class="tab_content_description">
             <p class="c-tsp">勤務日</p>
-            <select>
-                <option th:each="workTime : ${workTimeList}" th:text="${workTime.WorkDay}"></option>
-            </select><br>
-            <!-- ボタン -->
-            <div class="text-center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demoNormalModal">
-                    勤怠を締める
-                </button>
+            <form method="post"
+                  th:action="@{'/monthDetails/'+ ${contractId} + '/' + ${monthId}+ '/' + 'delete'}"
+                  th:object="${workTimeForm}">
+                <select name="workDay">
+                    <option th:each="workTime : ${workTimeList}" th:field="*{workDay}"
+                            th:value="${workTime.WorkDay}"
+                            th:text="${workTime.WorkDay}">
+                    </option>
+                </select><br>
+                <!-- ボタン -->
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demoNormalModal">
+                        削除する
+                    </button>
 
-                <!-- モーダルダイアログ -->
-                <div class="modal fade" id="demoNormalModal" tabindex="-1" role="dialog" aria-labelledby="modal"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="demoModalTitle">削除確認画面</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                本当に削除しますか？
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary w-auto col-sm">はい</button>
-                                <button type="button" class="btn btn-primary w-auto col-sm"
-                                        th:href="@{'/monthDetails'}">いいえ
-                                </button>
+                    <!-- モーダルダイアログ -->
+                    <div class="modal fade" id="demoNormalModal" tabindex="-1" role="dialog" aria-labelledby="modal"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="demoModalTitle">削除確認画面</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    本当に削除しますか？
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary w-auto col-sm">はい
+                                    </button>
+                                    <button type="button" class="btn btn-primary w-auto col-sm">いいえ
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     <div class="tab_content" id="programming_content">
         <div class="tab_content_description">
             <div class="col-sm-8">
                 <p class="c-tsp">勤務時間の登録</p>
-                <form method="post" th:action="@{'/monthDetails/'+ ${yearMonth.ContractId} + '/' + ${yearMonth.MonthId}}" th:object="${workTimeForm}">
+                <form method="post"
+                      th:action="@{'/monthDetails/'+ ${contractId} + '/' + ${monthId}}"
+                      th:object="${workTimeForm}">
                     <table class="table table-bordered table-hover">
                         <tr>
                             <th class="active">勤務日</th>
@@ -110,7 +119,7 @@
                             <td>
                                 <div class="form-group">
                                     <label for="time"></label>
-                                    <input type="time" id="time" class="form-control" th:field="*{startTime}"/>
+                                    <input type="time" class="form-control" th:field="*{startTime}"/>
                                 </div>
                             </td>
                         </tr>
@@ -119,7 +128,7 @@
                             <td>
                                 <div class="form-group">
                                     <label for="time"></label>
-                                    <input type="time" id="time" class="form-control" th:field="*{breakTime}"/>
+                                    <input type="time" class="form-control" th:field="*{breakTime}"/>
                                 </div>
                             </td>
                         </tr>
@@ -132,9 +141,10 @@
                                 </div>
                             </td>
                         </tr>
-                        </tr>
                     </table>
-                    <button class="btn btn-primary" th:href="@{'/workTimeInsert'}" type="submit">保存する</button>
+                    <button class="btn btn-primary" type="submit">
+                        保存する
+                    </button>
                 </form>
             </div>
         </div>
