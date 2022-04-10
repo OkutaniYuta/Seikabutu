@@ -5,6 +5,7 @@ import com.example.demo.login.domain.repository.jdbc.ContractDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -27,6 +28,17 @@ public class ContractService {
         //insert実行
         contractDao.insertContract(contract);
     }
+
+    public void updateContract(int contractId, String contractTime, LocalTime startTime, LocalTime breakTime, LocalTime endTime) {
+        Contract contract = new Contract();
+        contract.setContractId(contractId);
+        contract.setContractTime(contractTime);
+        contract.setStartTime(startTime);
+        contract.setBreakTime(breakTime);
+        contract.setEndTime(endTime);
+        contractDao.updateContract(contract);
+    }
+
 
     //オフィスネームゲットメソッド
     public Contract getOfficeNameByUserId(int userId) {

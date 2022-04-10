@@ -84,6 +84,22 @@ public class ContractDao {
                 , contract.getOfficeName());
     }
 
+    public void updateContract(Contract contract) throws DataAccessException {
+        //1件登録
+        jdbc.update("UPDATE contract"
+                        + " SET"
+                        + " contractTime = ?,"
+                        + " startTime = ?,"
+                        + " breakTime = ?,"
+                        + " endTime = ?"
+                        + " WHERE contractId = ?"
+                , contract.getContractTime()
+                , contract.getStartTime()
+                , contract.getBreakTime()
+                , contract.getEndTime()
+                , contract.getContractId());
+    }
+
     private Contract convert(Map<String, Object> map) {
         Contract contract = new Contract();
         contract.setContractId((int) map.get("contractId"));
