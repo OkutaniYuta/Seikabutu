@@ -5,6 +5,7 @@ import com.example.demo.login.domain.repository.jdbc.ContractDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -39,6 +40,12 @@ public class ContractService {
         contractDao.updateContract(contract);
     }
 
+    public void updateEndDateByContract(int contractId, LocalDate endDate) {
+        Contract contract = new Contract();
+        contract.setContractId(contractId);
+        contract.setEndDate(endDate);
+        contractDao.updateEndDateByContract(contract);
+    }
 
     //オフィスネームゲットメソッド
     public Contract getOfficeNameByUserId(int userId) {

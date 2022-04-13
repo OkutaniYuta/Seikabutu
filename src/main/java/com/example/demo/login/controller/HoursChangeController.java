@@ -34,9 +34,7 @@ public class HoursChangeController {
         }
 
         HttpSession session = request.getSession(); // セッションオブジェクトを生成
-        int userId = (int) session.getAttribute("userId"); // !動作確認用!セッションからuserIdを取得し、userIdに再代入
-        int contractId = contractDao.getContractIdByUserId(userId);
-
+        int contractId = contractDao.getContractIdByUserId((int) session.getAttribute("userId"));
         contractService.updateContract(contractId, form.getContractTime(), form.getStartTime(), form.getBreakTime(), form.getEndTime());
         return "redirect:/hours_change/";
     }

@@ -18,49 +18,54 @@
 <div class="col-sm-8" th:text-align:center>
     <h3>現在の契約</h3>
 </div>
-
 <div class="col-sm-8" th:text-align:center>
     <P th:text="${OfficeName}"></P>
 </div>
-
-<div class="col-sm-8">
-    <table class="table table-bordered table-hover">
-        <tr>
-            <th>
-                <label for="date"></label>
-                <input type="date" id="date" name="今日の日付" value="" class="col-sm-8"/>
-            </th>
-        </tr>
-    </table>
-</div>
-<br>
-
-<!-- ボタン -->
 <div class="col-sm-8" th:text-align:center>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demoNormalModal">
-        契約終了日登録
-    </button>
-    <!-- モーダルダイアログ -->
-    <div class="modal fade" id="demoNormalModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="demoModalTitle">変更確認</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    本当に登録しますか？
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary w-auto col-sm">はい</button>
-                    <button type="button" class="btn btn-primary w-auto col-sm" th:href="@{'/contract_update'}">いいえ
-                    </button>
+    <form method="post" th:action="@{/contract_update}" th:object="${contractInfoForm}">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th class="active">勤務終了日登録</th>
+                <td>
+                    <div class="form-group">
+                        <label for="date"></label>
+                        <input type="date"
+                               id="date" name="今日の日付" class="form-control" th:field="*{endDate}"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <!-- ボタン -->
+        <div class="text-center">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demoNormalModal">
+                削除する
+            </button>
+
+            <!-- モーダルダイアログ -->
+            <div class="modal fade" id="demoNormalModal" tabindex="-1" role="dialog" aria-labelledby="modal"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="demoModalTitle">登録確認画面</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            本当に登録しますか？
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary w-auto col-sm">はい
+                            </button>
+                            <button type="button" class="btn btn-primary w-auto col-sm">いいえ
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 </body>
 </html>
