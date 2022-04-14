@@ -21,7 +21,7 @@ public class ContractUpdateController {
     private final ContractDao contractDao;
 
     @GetMapping("/contract_update")
-    public String getContractUpdate(Model model, HttpServletRequest request) {
+    public String getContractUpdate(Model model, @ModelAttribute ContractInfoForm form, HttpServletRequest request) {
         HttpSession session = request.getSession(); // セッションオブジェクトを生成
         int userId = (int) session.getAttribute("userId"); // !動作確認用!セッションからuserIdを取得し、userIdに再代入
         String officeName = contractService.getOfficeNameByUserId(userId).getOfficeName();
