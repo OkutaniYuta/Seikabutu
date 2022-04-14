@@ -26,8 +26,8 @@ public class ContractInfoController {
     }
 
     @PostMapping("/contractInsert")
-    public String postSignUp(@ModelAttribute @Validated ContractInfoForm form, BindingResult bindingResult,
-                             Model model, HttpServletRequest request) {
+    public String postContract(@ModelAttribute @Validated ContractInfoForm form, BindingResult bindingResult,
+                               Model model, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             return getContractInfoRagistration(form, model);
         }

@@ -100,6 +100,15 @@ public class ContractDao {
                 , contract.getContractId());
     }
 
+    public void updateEndDateByContract(Contract contract) throws DataAccessException {
+        jdbc.update("UPDATE contract"
+                        + " SET"
+                        + " endDate = ?"
+                        + " WHERE contractId = ?"
+                , contract.getEndDate()
+                , contract.getContractId());
+    }
+
     private Contract convert(Map<String, Object> map) {
         Contract contract = new Contract();
         contract.setContractId((int) map.get("contractId"));
