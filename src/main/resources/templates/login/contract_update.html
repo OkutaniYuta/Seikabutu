@@ -19,7 +19,7 @@
     <h3>現在の契約</h3>
 </div>
 <div class="col-sm-8" th:text-align:center>
-    <P th:text="${OfficeName}"></P>
+    <P th:text="${officeName}"></P>
 </div>
 <div class="col-sm-8" th:text-align:center>
     <form method="post" th:action="@{/contract_update}" th:object="${contractInfoForm}">

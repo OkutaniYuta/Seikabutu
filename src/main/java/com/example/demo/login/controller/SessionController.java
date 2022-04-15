@@ -37,7 +37,7 @@ public class SessionController {
 
         String redirect;
         if (role == 0) {
-            redirect = "/adminhome";
+            redirect = "/adminHome";
         } else if (userStatus == 1 && !userList.isEmpty()) {//　&&　コントラクトリストのみをListで取得して、List sizeが1以上なら、Home画面に遷移する。
             redirect = "/home";
         } else {

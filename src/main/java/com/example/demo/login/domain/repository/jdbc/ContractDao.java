@@ -6,6 +6,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,22 +16,20 @@ import java.util.Map;
 public class ContractDao {
     private final JdbcTemplate jdbc;
 
-    public Contract getOfficeNameByUserId(int userId) throws DataAccessException {
+    public String getOfficeNameByUserId(int userId) throws DataAccessException {
         Map<String, Object> map = jdbc.queryForMap("SELECT officeName FROM contract "
                         + " WHERE userId = ? ORDER BY startDate desc limit 1"
                 , userId);
-        Contract contract = new Contract(); // 結果返却用の変数
-        contract.setOfficeName((String) map.get("officeName"));
-        return contract;
+        String officeName = (String) map.get("officeName");
+        return officeName;
     }
 
-    public Contract getOfficeNameByContractId(int contractId) throws DataAccessException {
+    public String getOfficeNameByContractId(int contractId) throws DataAccessException { // TODO: 2022/04/14 String型をreturnする
         Map<String, Object> map = jdbc.queryForMap("SELECT officeName FROM contract "
                         + " WHERE contractId = ?"
                 , contractId);
-        Contract contract = new Contract(); // 結果返却用の変数
-        contract.setOfficeName((String) map.get("officeName"));
-        return contract;
+        String officeName = (String) map.get("officeName");
+        return officeName;
     }
 
     public List<Contract> getContractByEmail(String email) throws DataAccessException {
@@ -100,13 +99,13 @@ public class ContractDao {
                 , contract.getContractId());
     }
 
-    public void updateEndDateByContract(Contract contract) throws DataAccessException {
+    public void updateEndDateByContractId(int contractId, LocalDate endDate) throws DataAccessException {
         jdbc.update("UPDATE contract"
                         + " SET"
                         + " endDate = ?"
                         + " WHERE contractId = ?"
-                , contract.getEndDate()
-                , contract.getContractId());
+                , endDate
+                , contractId);
     }
 
     private Contract convert(Map<String, Object> map) {
