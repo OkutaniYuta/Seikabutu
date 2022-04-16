@@ -33,6 +33,14 @@ public class UserService {
         authenticationService.changeEmail(newEmail, auth);
     }
 
+    public Integer getUserStatus() {
+        return dao.getUserStatus();
+    }
+
+    public List<User> getUserStatusList() {
+        return dao.getUserStatusList();
+    }
+
     //パスワード更新用メソッド
     public void updatePassword(String newEncodedPassword, UserDetails auth) {
         String originalEmail = auth.getUsername();

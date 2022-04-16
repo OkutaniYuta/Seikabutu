@@ -48,7 +48,7 @@ public class ContractDao {
         List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM contract"
                         + " WHERE userId = ? "
                 , userId);
-//		return getList.stream().map(this::convert).collect(toList());
+//		return getList.stream().map(this::convert).collect(toList()); 78行目から83行目を１行で書くと
 
         List<Contract> contractList = new ArrayList<>();
         for (Map<String, Object> map : getList) {

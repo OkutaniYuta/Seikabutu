@@ -14,18 +14,7 @@
 <div class="col-sm-10" th:text-align:center>
     <table border="1" class="col-sm-10">
         <tr>
-            <th>アカウントの新規申請数 :</th>
-            <th>勤務変更の申請数 :</th>
-        </tr>
-        <tr th:each="contract : ${ContractList}">
-            <td>
-                <p th:text="${contract.StartDate}">件</p>
-            </td>
-            <td>
-                <p th:text="${contract.EndDate}">件</p>
-            </td>
-        </tr>
-        <tr>
+            <th>アカウントの新規申請数 :<p th:text="${userStatus}"></p></th>
         </tr>
     </table>
 </div>
@@ -36,8 +25,6 @@
         <div class="text-center">
             <!-- 過去の勤務時間詳細・変更 -->
             <a class="btn btn-primary　w-auto col-sm" th:href="@{'/workTimeInsert'}">新規申請一覧</a>
-            <!-- 過去の勤務時間登録 -->
-            <a class="btn btn-primary　w-auto col-sm" th:href="@{'/contract_list'}">勤務変更更新一覧</a>
         </div>
     </div>
 </div>

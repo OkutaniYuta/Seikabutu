@@ -65,6 +65,25 @@ public class UserDao {
         return convert;
     }
 
+    public Integer getUserStatus() throws DataAccessException {
+        Map<String, Object> map = jdbc.queryForMap("SELECT userStatus FROM user where userStatus = 0");
+        Integer userStatus = (Integer) map.get("userStatus");
+        return userStatus;
+    }
+
+    public List<User> getUserStatusList() throws DataAccessException {
+        List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user where userStatus = 0");
+//        return getList.stream().map(this::convert).collect(toList()); 78行目から83行目を１行で書くと
+
+        List<User> userStatusList = new ArrayList<>();
+        for (Map<String, Object> map : getList) {
+            User user = convert(map);
+            userStatusList.add(user);
+        }
+        return userStatusList;
+    }
+
+
     public List<User> getContractByEmail(String email) throws DataAccessException {
         List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"
                         + " WHERE email = ? ORDER BY startDate desc"
