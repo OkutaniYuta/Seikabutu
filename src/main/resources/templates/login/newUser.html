@@ -11,36 +11,39 @@
     <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
     <link th:href="@{/css/home.css}" rel="stylesheet"></link>
 
-    <title>ContractList</title>
+    <title>newUser</title>
 </head>
 
 <body>
 <div th:replace="login/header::header"></div>
 <div class="col-sm-8" th:text-align:center>
-    <h3>契約一覧</h3>
+    <h3>新規契約者詳細</h3>
 </div>
 <div class="col-sm-10" th:text-align:center>
     <table border="1" class="col-sm-10">
         <tr>
-            <th>勤務開始日</th>
-            <th>勤務終了日</th>
-            <th>会社名</th>
+            <th>名前</th>
+            <th>メールアドレス</th>
+            <th>申請日時</th>
         </tr>
-        <tr th:each="contract : ${ContractList}">
+        <tr th:each="userStatusList : ${userStatusList}">
             <td>
-                <p th:text="${contract.StartDate}"></p>
+                <p th:text="${userStatusList.UserName}"></p>
             </td>
             <td>
-                <p th:text="${contract.EndDate}"></p>
+                <p th:text="${userStatusList.Email}"></p>
             </td>
             <td>
-                <p th:text="${contract.OfficeName}"></p>
+                <p th:text="${userStatusList.RequestedAt}"></p>
             </td>
-            <td><a th:href="@{'/month/'+ ${contract.contractId}}">
-                <button type="button">詳細</button>
-            </a></td>
+            <td>
+                <button type="button" class="btn btn-primary">許可</button>
+                <button type="button" class="btn btn-primary">拒否</button>
+            </td>
         </tr>
     </table>
 </div>
+<br>
+<a th:href="@{'/adminHome'}">未申請一覧画面に戻る</a>
 </body>
 </html>

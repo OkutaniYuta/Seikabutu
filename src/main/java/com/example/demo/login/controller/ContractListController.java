@@ -20,6 +20,7 @@ public class ContractListController {
     public String getContractList(Model model, @AuthenticationPrincipal UserDetails auth) {
         String email = auth.getUsername();
         List<Contract> contractList = contractService.getContractByEmail(email);
+        // TODO: 2022/04/20 WorkTimeテーブルからEmdDateを持ってくる
         model.addAttribute("ContractList", contractList);
 
         return "login/contract_list";

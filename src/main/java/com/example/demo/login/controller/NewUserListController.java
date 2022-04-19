@@ -12,14 +12,13 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-public class AdminHomeController {
+public class NewUserListController {
     private final UserService userService;
 
-    //ホーム画面用のGET用メソッド
-    @GetMapping("/adminHome")
+    @GetMapping("/newUser")
     public String getAdminHome(@ModelAttribute User form, Model model) {
         List<User> userStatusList = userService.getUserStatusList();
-        model.addAttribute("userStatus", userStatusList.size());
-        return "login/adminHome";
+        model.addAttribute("userStatusList", userStatusList);
+        return "login/newUser";
     }
 }
