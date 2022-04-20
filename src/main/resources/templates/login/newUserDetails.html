@@ -26,23 +26,28 @@
             <th>メールアドレス</th>
             <th>申請日時</th>
         </tr>
-        <tr th:each="userStatusList : ${userStatusList}">
+        <tr th:each="userStatus : ${userStatus}">
             <td>
-                <p th:text="${userStatusList.UserName}"></p>
+                <p th:text="${userStatus.UserName}"></p>
             </td>
             <td>
-                <p th:text="${userStatusList.Email}"></p>
+                <p th:text="${userStatus.Email}"></p>
             </td>
             <td>
-                <p th:text="${userStatusList.RequestedAt}"></p>
+                <p th:text="${userStatus.RequestedAt}"></p>
             </td>
             <td>
-            <td><a th:href="@{'/newUserDetails/'+ ${userStatusList.userId}}">
-                <button type="button">詳細</button>
-            </a></td>
+            <td>
+                <button type="button">許可</button>
+            </td>
+            <td>
+                <button type="button" class="redButton">拒否</button>
             </td>
         </tr>
     </table>
+</div>
+<div>
+    <a th:href="@{'/newUser'}">未申請一覧画面に戻る</a>
 </div>
 </body>
 </html>
