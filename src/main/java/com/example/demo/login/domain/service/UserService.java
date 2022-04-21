@@ -33,6 +33,14 @@ public class UserService {
         authenticationService.changeEmail(newEmail, auth);
     }
 
+    public void updateUserStatus(int userId) {
+        dao.updateUserStatus(userId);
+    }
+
+    public void updateUserBlocking(int userId) {
+        dao.updateUserBlocking(userId);
+    }
+
     public List<User> getUserStatusList() {
         return dao.getUserStatusList();
     }
@@ -41,6 +49,7 @@ public class UserService {
         return dao.getUserStatus(userId);
     }
 
+
     //パスワード更新用メソッド
     public void updatePassword(String newEncodedPassword, UserDetails auth) {
         String originalEmail = auth.getUsername();
@@ -48,19 +57,8 @@ public class UserService {
         authenticationService.changePassword(newEncodedPassword, auth);
     }
 
-    //コントラクトテーブルとユーザーテーブルの情報を取得する
-    public List<User> getContractByEmail(String email) {
-        return dao.getContractByEmail(email);
-    }
-
     //コントラクトテーブルの情報のみを取得
     public List<Contract> getOnlyContractByUserId(int userId) {
         return contractDao.getOnlyContractByUserId(userId);
-    }
-
-    //コントラクトテーブルにinsert
-    public void insertIntoContract(User user) {
-        //insert実行
-        dao.insert(user);
     }
 }

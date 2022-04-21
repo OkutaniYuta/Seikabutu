@@ -20,31 +20,84 @@
     <h3>新規契約者一覧</h3>
 </div>
 <div class="col-sm-10" th:text-align:center>
-    <table border="1" class="col-sm-10">
-        <tr>
-            <th>名前</th>
-            <th>メールアドレス</th>
-            <th>申請日時</th>
-        </tr>
-        <tr th:each="userStatus : ${userStatus}">
-            <td>
-                <p th:text="${userStatus.UserName}"></p>
-            </td>
-            <td>
-                <p th:text="${userStatus.Email}"></p>
-            </td>
-            <td>
-                <p th:text="${userStatus.RequestedAt}"></p>
-            </td>
-            <td>
-            <td>
-                <button type="button">許可</button>
-            </td>
-            <td>
-                <button type="button" class="redButton">拒否</button>
-            </td>
-        </tr>
-    </table>
+    <form method="post"
+          th:action="@{'/newUserDetails/'+ ${userId}}"
+          th:object="${userForm}">
+        <table border="1" class="col-sm-10">
+            <tr>
+                <th>名前</th>
+                <th>メールアドレス</th>
+                <th>申請日時</th>
+            </tr>
+            <tr th:each="userStatus : ${userStatus}">
+                <td>
+                    <p th:text="${userStatus.UserName}"></p>
+                </td>
+                <td>
+                    <p th:text="${userStatus.Email}"></p>
+                </td>
+                <td>
+                    <p th:text="${userStatus.RequestedAt}"></p>
+                </td>
+                <td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demoNormalModal">許可
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary"
+                            formaction="/newUserDetails +'/'+ ${userId} +'/'+ block"
+                            data-toggle="modal" data-target="#demoNormalModal2">拒否
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <!-- モーダルダイアログ -->
+        <div class="modal fade" id="demoNormalModal" tabindex="-1" role="dialog" aria-labelledby="modal"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="demoModalTitle">申請の許可</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        申請を許可しますか？
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary auto col-sm">はい
+                        </button>
+                        <button type="button" class="btn btn-primary auto col-sm">いいえ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="demoNormalModal2" tabindex="-1" role="dialog" aria-labelledby="modal"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="demoModalTitle2">申請の拒否</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        このメールアドレスでは登録できなくなりますがよろしい？
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary auto col-sm">はい
+                        </button>
+                        <button type="button" class="btn btn-primary auto col-sm">いいえ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 <div>
     <a th:href="@{'/newUser'}">未申請一覧画面に戻る</a>

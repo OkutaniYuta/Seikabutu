@@ -58,6 +58,24 @@ public class UserDao {
                 , mailAddress);
     }
 
+    public void updateUserStatus(int userId) throws DataAccessException {
+        jdbc.update("UPDATE user"
+                        + " SET"
+                        + " userStatus = ?"
+                        + " WHERE userId = ?"
+                , 1
+                , userId);
+    }
+
+    public void updateUserBlocking(int userId) throws DataAccessException {
+        jdbc.update("UPDATE user"
+                        + " SET"
+                        + " userStatus = ?"
+                        + " WHERE userId = ?"
+                , 2
+                , userId);
+    }
+
     public User getEmailByEmail(String email) throws DataAccessException {
         Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user "
                 + " WHERE email = ?", email);
