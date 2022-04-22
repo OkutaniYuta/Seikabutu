@@ -83,15 +83,11 @@ public class UserDao {
         return convert;
     }
 
-    public List<User> getUserStatus(int userId) throws DataAccessException {
-        List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user where userId = ?", userId);
+    public User getUserByUserId(int userId) throws DataAccessException {
+        Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user where userId = ?", userId);
 
-        List<User> userStatusList = new ArrayList<>();
-        for (Map<String, Object> map : getList) {
-            User user = convert(map);
-            userStatusList.add(user);
-        }
-        return userStatusList;
+        User convert = convert(map);
+        return convert;
     }
 
     public List<User> getUserStatusList() throws DataAccessException {

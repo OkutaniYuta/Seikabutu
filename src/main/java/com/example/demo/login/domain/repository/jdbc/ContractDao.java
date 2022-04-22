@@ -24,7 +24,7 @@ public class ContractDao {
         return officeName;
     }
 
-    public String getOfficeNameByContractId(int contractId) throws DataAccessException { // TODO: 2022/04/14 String型をreturnする
+    public String getOfficeNameByContractId(int contractId) throws DataAccessException {
         Map<String, Object> map = jdbc.queryForMap("SELECT officeName FROM contract "
                         + " WHERE contractId = ?"
                 , contractId);
@@ -117,6 +117,7 @@ public class ContractDao {
         contract.setBreakTime(((java.sql.Time) map.get("breakTime")).toLocalTime());
         contract.setEndTime(((java.sql.Time) map.get("endTime")).toLocalTime());
         contract.setStartDate(((java.sql.Date) map.get("startDate")).toLocalDate());
+        contract.setEndDate(((java.sql.Date) map.get("endDate")).toLocalDate());
         contract.setOfficeName((String) map.get("officeName"));
         return contract;
     }

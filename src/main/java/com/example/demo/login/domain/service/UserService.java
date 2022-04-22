@@ -45,8 +45,8 @@ public class UserService {
         return dao.getUserStatusList();
     }
 
-    public List<User> getUserStatus(int userId) {
-        return dao.getUserStatus(userId);
+    public User getUserByUserId(int userId) {
+        return dao.getUserByUserId(userId);
     }
 
 
