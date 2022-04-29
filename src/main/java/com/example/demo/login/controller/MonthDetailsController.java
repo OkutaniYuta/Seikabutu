@@ -30,7 +30,7 @@ public class MonthDetailsController {
     public String postMonthDetails(@ModelAttribute WorkTimeForm form, BindingResult bindingResult,
                                    @PathVariable("monthId") int monthId, @PathVariable("contractId") int contractId) {
 
-        workTimeService.insertWorkTimeInMonth(monthId, form.getWorkDay(), form.getStartTime(), form.getBreakTime(), form.getEndTime());
+        workTimeService.insertWorkTimeInMonth(monthId, form.getWorkDay(), form.getStartTime(), form.getBreakTime(), form.getEndTime()); // TODO: 2022/04/22 updateメソッドに変更(案件に上がってから)
         return "redirect:/monthDetails/" + contractId + "/" + monthId;
     }
 
