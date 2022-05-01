@@ -7,70 +7,50 @@
     <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-
-    <title>SignUp</title>
+    <!-- cssの設定 -->
+    <link th:href="@{/css/login.css}" rel="stylesheet"></link>
 </head>
-<body>
-    <div class="col-sm-8">
-        <div class="page-header">
-            <h1>新規登録</h1>
-        </div>
-        <form method="post" th:action="@{/signup}" th:object="${signupForm}">
-            <table class="table table-bordered table-hover">
-                <!-- ユーザー名の入力エリア -->
-                <tr>
-                    <th class="active">名前</th>
-                    <td>
-                        <div class="form-group"
-                        	th:classappend="${#fields.hasErrors('userName')} ? 'has-error'">
-                            <input type="text" class="form-control" th:field="*{userName}" />
-                            <span class="text-danger" th:if="${#fields.hasErrors('userName')}"
-                            	th:errors="*{userName}">userName error
-                            </span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                <!-- メールアドレスの入力エリア -->
-                    <th class="active col-sm-3">メールアドレス</th>
-                    <td>
-                        <div class="form-group"
-                        	th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
-                            <input type="text" class="form-control" th:field="*{email}" />
-                         	<span class="text-danger" th:if="${#fields.hasErrors('email')}"
-                            	th:errors="*{email}">email error
-                            </span>
-                        </div>
-                    </td>
-                </tr>
-                <!-- パスワードの入力エリア -->
-                <tr>
-                    <th class="active">パスワード</th>
-                    <td>
-                        <div class="form-group"
-                        	th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
-                            <input type="text" class="form-control" th:field="*{password}" />
-                            <span class="text-danger" th:if="${#fields.hasErrors('password')}"
-                            	th:errors="*{password}">password error
-                            </span>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            
-            <!-- エラーメッセージの一覧表示 -->
-            <ul>
-                <li th:each="error : ${#fields.detailedErrors()}">
-                    <span th:text="${error.message}">Error message</span>
-                </li>
-            </ul>
-            
-            <!-- 申請する -->
-            <button class="btn btn-primary" th:href="@{'/waitApplication'}" type="submit">申請する</button>
-            <!-- ログイン画面に戻る -->
-            <br>
-            <a type="submit" th:href="@{'/login'}">ログイン画面に戻る</a>
-        </form>
+<body class="text-center">
+<form name="login_form" method="post" action="/signup" th:object="${signupForm}">
+    <div class="login_form_top">
+        <h1>SignUp</h1>
     </div>
+    <div class="login_form_btm">
+        <!-- UserName -->
+        <div class="form-group">
+            <input type="text" name="userName" placeholder="userName" th:field="*{userName}"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('userName')}"
+                  th:errors="*{userName}">userName error
+                            </span>
+        </div>
+        <!-- Email -->
+        <div class="form-group"
+             th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
+            <input type="text" name="email" placeholder="email" th:field="*{email}"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('email')}"
+                  th:errors="*{email}">userName error
+                            </span>
+        </div>
+        <!-- password -->
+        <div class="form-group"
+             th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
+            <input type="text" name="password" placeholder="password" th:field="*{password}"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('password')}"
+                  th:errors="*{password}">userName error
+                            </span>
+        </div>
+        <!-- エラーメッセージの一覧表示 -->
+        <ul>
+            <li th:each="error : ${#fields.detailedErrors()}">
+                <span th:text="${error.message}">Error message</span>
+            </li>
+        </ul>
+        <!-- ログインボタン -->
+        <input type="submit" name="botton" value="申請する">
+        <!-- ログイン画面に戻る -->
+        <a th:href="@{'/login'}">ログイン画面に戻る</a>
+    </div>
+    </form>
+</div>
 </body>
 </html>
