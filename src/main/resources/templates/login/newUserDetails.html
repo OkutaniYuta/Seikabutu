@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8"></meta>
+
+    <!-- Bootstrapの設定 -->
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+          rel="stylesheet"></link>
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+    <link th:href="@{/css/home.css}" rel="stylesheet"></link>
+
+    <title>newUser</title>
+</head>
+
+<body>
+<div th:replace="login/header::header"></div>
+<div class="col-sm-8" th:text-align:center>
+    <h3>新規契約者一覧</h3>
+</div>
+<div class="col-sm-10" th:text-align:center>
+    <form method="post"
+          th:object="${userForm}">
+        <table border="1" class="col-sm-10">
+            <tr>
+                <th>名前</th>
+                <th>メールアドレス</th>
+                <th>申請日時</th>
+            </tr>
+            <tr>
+                <td>
+                    <p th:text="${user.userName}"></p>
+                </td>
+                <td>
+                    <p th:text="${user.email}"></p>
+                </td>
+                <td>
+                    <p th:text="${user.requestedAt}"></p>
+                </td>
+                <td>
+                <td>
+                    <button type="button" class="btn btn-primary"
+                            data-toggle="modal" data-target="#demoNormalModal">許可
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary"
+                            data-toggle="modal" data-target="#demoNormalModal2">拒否
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <!-- モーダルダイアログ -->
+        <div class="modal fade" id="demoNormalModal" tabindex="-1" role="dialog" aria-labelledby="modal"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="demoModalTitle">申請の許可</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        申請を許可しますか？
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary auto col-sm"
+                                th:formaction="@{'/newUserDetails/' + ${userId}}">はい
+                        </button>
+                        <button type="button" class="btn btn-primary auto col-sm" data-dismiss="modal">いいえ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="demoNormalModal2" tabindex="-1" role="dialog" aria-labelledby="modal"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="demoModalTitle2">申請の拒否</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        このメールアドレスでは登録できなくなりますがよろしい？
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary auto col-sm"
+                                th:formaction="@{'/newUserDetails/' + ${userId} + '/block'}">はい
+                        </button>
+                        <button type="button" class="btn btn-primary auto col-sm" data-dismiss="modal">いいえ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div>
+    <a th:href="@{'/newUser'}">未申請一覧画面に戻る</a>
+</div>
+</body>
+</html>

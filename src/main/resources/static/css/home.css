@@ -39,9 +39,15 @@ header {
 }
 
 .btn {
-	width: 300px;
+	width: 100px;
 	padding: 10px;
 	background: bule;
+}
+
+.redButton {
+    width: 300px;
+    padding: 10px;
+    background: red;
 }
 
 

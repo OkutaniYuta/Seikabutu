@@ -40,19 +40,17 @@ public class ContractService {
         contractDao.updateContract(contract);
     }
 
-    public void updateEndDateByContract(int contractId, LocalDate endDate) {
-        Contract contract = new Contract();
-        contract.setContractId(contractId);
-        contract.setEndDate(endDate);
-        contractDao.updateEndDateByContract(contract);
+    public void updateEndDate(int userId, LocalDate endDate) {
+        int contractId = contractDao.getContractIdByUserId(userId);
+        contractDao.updateEndDateByContractId(contractId, endDate);
     }
 
     //オフィスネームゲットメソッド
-    public Contract getOfficeNameByUserId(int userId) {
+    public String getOfficeNameByUserId(int userId) {
         return contractDao.getOfficeNameByUserId(userId);
     }
 
-    public Contract getOfficeNameByContractId(int contractId) {
+    public String getOfficeNameByContractId(int contractId) {
         return contractDao.getOfficeNameByContractId(contractId);
     }
 }
