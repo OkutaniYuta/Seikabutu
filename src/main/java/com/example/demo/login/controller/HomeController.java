@@ -26,7 +26,7 @@ public class HomeController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         HttpSession session = request.getSession(); // セッションオブジェクトを生成
         int userId = (int) session.getAttribute("userId"); // !動作確認用!セッションからuserIdを取得し、userIdに再代入
-        String officeName = contractService.getOfficeNameByUserId(userId).getOfficeName();
+        String officeName = contractService.getOfficeNameByUserId(userId);
         model.addAttribute("OfficeName", officeName);
         return "login/home";
     }

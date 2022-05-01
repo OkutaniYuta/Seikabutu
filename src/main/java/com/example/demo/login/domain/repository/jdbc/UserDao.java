@@ -58,12 +58,50 @@ public class UserDao {
                 , mailAddress);
     }
 
+    public void updateUserStatus(int userId) throws DataAccessException {
+        jdbc.update("UPDATE user"
+                        + " SET"
+                        + " userStatus = ?"
+                        + " WHERE userId = ?"
+                , 1
+                , userId);
+    }
+
+    public void updateUserBlocking(int userId) throws DataAccessException {
+        jdbc.update("UPDATE user"
+                        + " SET"
+                        + " userStatus = ?"
+                        + " WHERE userId = ?"
+                , 2
+                , userId);
+    }
+
     public User getEmailByEmail(String email) throws DataAccessException {
         Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user "
                 + " WHERE email = ?", email);
         User convert = convert(map);
         return convert;
     }
+
+    public User getUserByUserId(int userId) throws DataAccessException {
+        Map<String, Object> map = jdbc.queryForMap("SELECT * FROM user where userId = ?", userId);
+
+        User convert = convert(map);
+        return convert;
+    }
+
+    public List<User> getUserStatusList() throws DataAccessException {
+        List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user where userStatus = 0");
+//        return getList.stream().map(this::convert).collect(toList()); 78行目から83行目を１行で書くと
+
+        List<User> userStatusList = new ArrayList<>();
+        for (Map<String, Object> map : getList) {
+            User user = convert(map);
+            userStatusList.add(user);
+        }
+        return userStatusList;
+    }
+
 
     public List<User> getContractByEmail(String email) throws DataAccessException {
         List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM user INNER JOIN contract on user.userId = contract.userId"

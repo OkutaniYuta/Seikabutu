@@ -20,7 +20,7 @@ public class MonthController {
 
     @GetMapping("/month/{contractId}")
     public String getContractList(Model model, @PathVariable("contractId") int contractId) {
-        String officeName = contractService.getOfficeNameByContractId(contractId).getOfficeName();
+        String officeName = contractService.getOfficeNameByContractId(contractId);
         List<Month> monthList = contractMonthService.getMonthListByContractId(contractId);
         List<Map<String, String>> yearMonthList = contractMonthService.getYearMonth(monthList);
         model.addAttribute("OfficeName", officeName);

@@ -6,6 +6,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,16 @@ public class ContractMonthDao {
             monthList.add(month);
         }
         return monthList;
+    }
+
+    public YearMonth getYearMonth(int monthId) throws DataAccessException {
+        Map<String, Object> map = jdbc.queryForMap("SELECT * FROM month "
+                        + " WHERE monthId = ?"
+                , monthId);
+        int year = (int) map.get("year");
+        int month = (int) map.get("month");
+
+        return YearMonth.of(year, month);
     }
 
     public Integer getMonthIdByContractId(int contractId) throws DataAccessException {
