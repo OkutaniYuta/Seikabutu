@@ -37,6 +37,15 @@ public class WorkTimeService {
         workTimeDao.insertWorkTime(workTime);
     }
 
+    public void updateWorkTime(LocalDate workDay, LocalTime startTime, LocalTime breakTime, LocalTime endTime) {
+        WorkTime workTime = new WorkTime();
+        workTime.setWorkDay(workDay);
+        workTime.setStartTime(startTime);
+        workTime.setBreakTime(breakTime);
+        workTime.setEndTime(endTime);
+        workTimeDao.updateWorkTime(workTime);
+    }
+
     public List<WorkTime> getWorkTimeList(int monthId) {
         YearMonth yearMonth = contractMonthDao.getYearMonth(monthId);
         List<WorkTime> workTimeListInDB = workTimeDao.getWorkTimeListByMonthId(monthId); // DBから2日と3日の2件
@@ -70,6 +79,10 @@ public class WorkTimeService {
 //                    return workTime;
 //                }))
 //                .collect(Collectors.toList());
+    }
+
+    public List<WorkTime> getWorkTimeListByMonthId(int monthId) {
+        return workTimeDao.getWorkTimeListByMonthId(monthId);
     }
 
     public void deleteWorkTimeInMonthByWorkDay(LocalDate formatChangeWorkDay) {

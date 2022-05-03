@@ -20,7 +20,9 @@ public class MonthDetailsController {
     @GetMapping("/monthDetails/{contractId}/{monthId}")
     public String getMonthDetails(Model model, @PathVariable("monthId") int monthId, @PathVariable("contractId") int contractId, @ModelAttribute WorkTimeForm form) {
         List<WorkTime> workTimeList = workTimeService.getWorkTimeList(monthId);
+        List<WorkTime> workTimeListByMonthId = workTimeService.getWorkTimeListByMonthId(monthId);
         model.addAttribute("workTimeList", workTimeList);
+        model.addAttribute("workTimeListByMonthId", workTimeListByMonthId);
         model.addAttribute("contractId", contractId);
         model.addAttribute("monthId", monthId);
         return "login/monthDetails";
@@ -30,7 +32,7 @@ public class MonthDetailsController {
     public String postMonthDetails(@ModelAttribute WorkTimeForm form, BindingResult bindingResult,
                                    @PathVariable("monthId") int monthId, @PathVariable("contractId") int contractId) {
 
-        workTimeService.insertWorkTimeInMonth(monthId, form.getWorkDay(), form.getStartTime(), form.getBreakTime(), form.getEndTime()); // TODO: 2022/04/22 updateメソッドに変更(案件に上がってから)
+        workTimeService.updateWorkTime(form.getWorkDay(), form.getStartTime(), form.getBreakTime(), form.getEndTime());
         return "redirect:/monthDetails/" + contractId + "/" + monthId;
     }
 

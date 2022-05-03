@@ -19,16 +19,8 @@ body {
   bottom: 0;
 }
 
-
 .page-header {
   margin-top: 0px;
-}
-
-
-
-
-header {
-  
 }
 
 /* 時間を真ん中に */
@@ -43,14 +35,6 @@ header {
 	padding: 10px;
 	background: bule;
 }
-
-.redButton {
-    width: 300px;
-    padding: 10px;
-    background: red;
-}
-
-
 
 #nav-drawer {
   position:absolute; top:20px; right:30px;;
@@ -112,7 +96,7 @@ header {
   max-width: 330px;/*最大幅（お好みで調整を）*/
   height: 100%;
   background: #fff;
-  transition: .3s ease-in-out;
+  transition: .5s ease-in-out;
   -webkit-transform: translateX(-105%);
   transform: translateX(-105%);
 }

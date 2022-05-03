@@ -59,7 +59,7 @@
                   th:action="@{'/monthDetails/'+ ${contractId} + '/' + ${monthId}+ '/' + 'delete'}"
                   th:object="${workTimeForm}">
                 <select name="workDay">
-                    <option th:each="workTime : ${workTimeList}" th:field="*{workDay}"
+                    <option th:each="workTime : ${workTimeListByMonthId}" th:field="*{workDay}"
                             th:value="${workTime.WorkDay}"
                             th:text="${workTime.WorkDay}">
                     </option>
@@ -100,7 +100,7 @@
     <div class="tab_content" id="programming_content">
         <div class="tab_content_description">
             <div class="col-sm-8">
-                <p class="c-tsp">勤務時間の登録</p>
+                <p class="c-tsp">勤務時間の変更</p>
                 <form method="post"
                       th:action="@{'/monthDetails/'+ ${contractId} + '/' + ${monthId}}"
                       th:object="${workTimeForm}">
@@ -108,10 +108,12 @@
                         <tr>
                             <th class="active">勤務日</th>
                             <td>
-                                <div class="form-group">
-                                    <input type="date"
-                                           name="今日の日付" class="form-control" th:field="*{workDay}"/>
-                                </div>
+                                <select name="workDay">
+                                    <option th:each="workTime : ${workTimeListByMonthId}" th:field="*{workDay}"
+                                            th:value="${workTime.WorkDay}"
+                                            th:text="${workTime.WorkDay}">
+                                    </option>
+                                </select><br>
                             </td>
                         </tr>
                         <tr>

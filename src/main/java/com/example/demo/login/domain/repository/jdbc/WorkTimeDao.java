@@ -57,6 +57,20 @@ public class WorkTimeDao {
         return workTime;
     }
 
+    public void updateWorkTime(WorkTime workTime) throws DataAccessException {
+        //1件登録
+        jdbc.update("UPDATE workTime"
+                        + " SET"
+                        + " startTime = ?,"
+                        + " breakTime = ?,"
+                        + " endTime = ?"
+                        + " WHERE workDay = ?"
+                , workTime.getStartTime()
+                , workTime.getBreakTime()
+                , workTime.getEndTime()
+                , workTime.getWorkDay());
+    }
+
     public void getWorkTimeListDelete(LocalDate formatChangeWorkDay) {
         jdbc.update("DELETE FROM workTime WHERE workDay = ?", formatChangeWorkDay);
     }
