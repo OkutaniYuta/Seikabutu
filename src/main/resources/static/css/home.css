@@ -65,10 +65,10 @@ body {
   cursor: pointer;
 }
 #nav-open span:before {
-  bottom: -8px;
+  bottom: 8px;
 }
 #nav-open span:after {
-  bottom: -16px;
+  bottom: 16px;
 }
 
 /*閉じる用の薄黒箇所*/
@@ -90,15 +90,15 @@ body {
   overflow: auto;
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   z-index: 9999;
   width: 90%;
   max-width: 330px;/*最大幅（お好みで調整を）*/
   height: 100%;
   background: #fff;
   transition: .5s ease-in-out;
-  -webkit-transform: translateX(-105%);
-  transform: translateX(-105%);
+  -webkit-transform: translateX(405%);
+  transform: translateX(405%);
 }
 
 /*チェックがついたら表示させる*/
@@ -184,3 +184,4 @@ input[name="tab_item"] {
   background-color: #5ab4bd;
   color: #fff;
 }
+

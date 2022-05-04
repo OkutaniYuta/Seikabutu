@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"></meta>
-    <title>アドミン画面</title>
+
+    <!-- Bootstrapの設定 -->
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+    <link th:href="@{/css/adminHome.css}" rel="stylesheet"></link>
+
+    <title>AdminHome</title>
 </head>
-<body>
-<div th:fragment="admin_contents">
+<!-- ヘッダー -->
+<div th:replace="login/adminHeader::header"></div>
     <div class="page-header">
         <h1>新規申請一覧画面</h1>
     </div>
 </div>
+<body>
 <div class="col-sm-10" th:text-align:center>
     <table border="1" class="col-sm-10">
         <tr>
-            <th>アカウントの新規申請数 :<p th:text="${userStatus}"></p></th>
+            <th>アカウントの新規申請数 :<div th:text="${userStatus}"></div></th>
         </tr>
     </table>
 </div>
 <br>
-<!-- ボタン実装 -->
-<div class="container-fluid">
-    <div class=”row”>
-        <div class="text-center">
-            <!-- 過去の勤務時間詳細・変更 -->
-            <a class="btn btn-primary　w-auto col-sm" th:href="@{'/newUser'}">新規申請一覧</a>
-        </div>
-    </div>
-</div>
+<a class="btn btn-primary　w-auto col-sm" th:href="@{'/newUser'}">新規申請一覧</a>
 </body>
 </html>
